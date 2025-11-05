@@ -1,0 +1,108 @@
+// Breakpoints - Tailles d'écran
+// ============================================
+
+// Tailles de breakpoints (mobile-first)
+$breakpoint-xs: 0px; // Extra small (mobile portrait)
+$breakpoint-sm: 576px; // Small (mobile landscape)
+$breakpoint-md: 768px; // Medium (tablet portrait)
+$breakpoint-lg: 992px; // Large (tablet landscape / desktop)
+$breakpoint-xl: 1200px; // Extra large (large desktop)
+$breakpoint-xxl: 1400px; // XXL (very large desktop)
+
+// Mixins pour les media queries
+// ============================================
+
+// Mobile first - min-width
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (min-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == xxl {
+    @media (min-width: $breakpoint-xxl) {
+      @content;
+    }
+  }
+}
+
+// Desktop first - max-width
+@mixin respond-to-down($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: ($breakpoint-sm - 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == sm {
+    @media (max-width: ($breakpoint-md - 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (max-width: ($breakpoint-lg - 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (max-width: ($breakpoint-xl - 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (max-width: ($breakpoint-xxl - 1px)) {
+      @content;
+    }
+  } @else if $breakpoint == xxl {
+    @media (min-width: $breakpoint-xxl) {
+      @content;
+    }
+  }
+}
+
+// Range - entre deux breakpoints
+@mixin respond-to-between($min, $max) {
+  @media (min-width: $min) and (max-width: ($max - 1px)) {
+    @content;
+  }
+}
+
+// Orientation
+@mixin respond-to-portrait {
+  @media (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin respond-to-landscape {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
+// Retina / High DPI displays
+@mixin respond-to-retina {
+  @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+// Exemples d'utilisation:
+// ============================================
+// @include respond-to(md) { ... }           // min-width: 768px
+// @include respond-to-down(lg) { ... }      // max-width: 1199px
+// @include respond-to-between(md, lg) { ... } // entre 768px et 991px
+// @include respond-to-portrait { ... }       // orientation portrait
+// @include respond-to-retina { ... }        // écrans haute résolution

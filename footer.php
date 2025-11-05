@@ -1,19 +1,21 @@
     </main>
 
-    <footer id="colophon" class="site-footer">
-        <div class="container">
-            <div class="site-info">
-                <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. <?php esc_html_e('Tous droits réservés.', 'onthemove'); ?></p>
-                <p>
-                    <?php
-                    printf(
-                        esc_html__('Propulsé par %s', 'onthemove'),
-                        '<a href="' . esc_url(__('https://wordpress.org/', 'onthemove')) . '">WordPress</a>'
-                    );
-                    ?>
-                </p>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-content-left">
+                <?php
+                $footer_logo = get_theme_mod('footer_logo');
+                if ($footer_logo) : ?>
+                    <div class="footer-logo">
+                        <img src="<?php echo esc_url($footer_logo); ?>" alt="<?php bloginfo('name'); ?>">
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="footer-content-right">
+                <h3>Contact Us</h3>
             </div>
         </div>
+        
     </footer>
 </div>
 
