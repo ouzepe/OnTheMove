@@ -3,16 +3,21 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-content-left">
-                <?php
-                $footer_logo = get_theme_mod('footer_logo');
-                if ($footer_logo) : ?>
-                    <div class="footer-logo">
-                        <img src="<?php echo esc_url($footer_logo); ?>" alt="<?php bloginfo('name'); ?>">
-                    </div>
-                <?php endif; ?>
+                <div class="footer-logo">
+                    <img src="<?php echo esc_url(home_url('/wp-content/uploads/2025/11/OnTheMoveLogo.png')); ?>" alt="<?php bloginfo('name'); ?>">
+                    <img src="<?php echo esc_url(home_url('/wp-content/uploads/2025/11/LogoBaseline.png')); ?>" alt="<?php bloginfo('name'); ?>">
+                </div>
             </div>
             <div class="footer-content-right">
-                <h3>Contact Us</h3>
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'footer-menu',
+                    'container' => 'nav',
+                    'container_class' => 'footer-menu',
+                    'menu_class' => 'footer-menu-list',
+                    'fallback_cb' => false
+                ));
+                ?>
             </div>
         </div>
         
