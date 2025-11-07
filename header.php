@@ -35,10 +35,10 @@
             </div>
 
             <nav id="site-navigation" class="main-navigation">
-                <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+                <!-- <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
                     <span class="screen-reader-text"><?php esc_html_e('Menu principal', 'onthemove'); ?></span>
                     <span class="menu-icon">☰</span>
-                </button>
+                </button> -->
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'menu-1',

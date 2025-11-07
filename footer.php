@@ -1,6 +1,6 @@
     </main>
 
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="footer-content">
             <div class="footer-content-left">
                 <div class="footer-logo">
@@ -9,14 +9,14 @@
                 </div>
             </div>
             <div class="footer-content-right">
+                
                 <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'footer-menu',
-                    'container' => 'nav',
-                    'container_class' => 'footer-menu',
-                    'menu_class' => 'footer-menu-list',
-                    'fallback_cb' => false
-                ));
+                    wp_nav_menu(array(
+                        'theme_location' => 'menu',
+                        'menu_id'        => 'primary-menu',
+                        'container'      => false,
+                        'menu_class'     => 'primary-menu',
+                    ));
                 ?>
             </div>
         </div>
