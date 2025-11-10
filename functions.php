@@ -8,7 +8,7 @@ add_action('wp_enqueue_scripts', 'mon_theme_enqueue_assets');
 function register_my_menus() {
     register_nav_menus(
         array(
-            'menu' => __('Menu', 'onthemove'),
+            'Footer' => __('Footer_Menu', 'onthemove'),
         )
     );
 }
