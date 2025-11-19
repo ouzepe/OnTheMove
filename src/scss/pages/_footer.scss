@@ -65,26 +65,34 @@
     }
 
     .footer-press-logo {
-      width: 100%;
-      grid-column: 1 / -1;
+      width: 100vw;
       display: flex;
-      flex-direction: row;
-      align-items: left;
-      justify-content: left;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
       gap: 10px;
-      img {
-        width: 400px;
-        height: auto;
-        aspect-ratio: 1 / 1;
-        object-fit: contain;
+      //   @include respond-to-down(sm) {
+      //     gap: 2px;
+      //   }
+      figure {
+        width: 150px;
         background-color: #ffffff;
-        padding: 5px;
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        // @include respond-to-down(sm) {
+        //   width: 90px;
+        // }
 
-        @include respond-to-down(md) {
-          width: 400px;
-          flex-wrap: wrap;
+        img {
+          width: 70px;
+          height: 120px;
+          flex-shrink: 0;
+          object-fit: contain;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
         }
       }
 
