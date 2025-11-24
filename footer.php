@@ -1,6 +1,7 @@
 </main>
 
 <footer class="footer" id="footer">
+    <?php if (!is_page('press')): ?>
     <div class="footer-press">
         <div class="footer-press-title">
             <h3>Ils ont publié nos articles</h3>
@@ -21,6 +22,7 @@
             ?>
         </div>
     </div>
+    <?php endif; ?>
     <div class="footer-content">
         <div class="footer-content-left">
             <div class="footer-logo">
