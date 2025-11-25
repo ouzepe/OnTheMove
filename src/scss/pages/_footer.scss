@@ -84,7 +84,7 @@
       align-items: flex-start;
       justify-content: flex-start;
       flex-wrap: wrap;
-      padding: 19px;
+      padding: 25px;
       gap: 5px;
       @include respond-to-down(sm) {
         display: flex;
@@ -95,7 +95,7 @@
         content: "";
         padding-top: 40px;
         display: block;
-        width: 99%;
+        width: 99.5%;
         margin: 0 auto;
         border-bottom: 1px solid $primary-border-red;
         @include respond-to-down(sm) {
@@ -104,8 +104,10 @@
       }
 
       figure {
-        width: 156px;
-        height: 200px;
+        // width: 156px;
+        // height: 200px;
+        width: 132px;
+        height: 140px;
         background-color: #ffffff;
         display: flex;
         flex-direction: row;
@@ -116,16 +118,17 @@
           width: 110px;
           height: 140px;
         }
-        @include respond-to-down(lg) {
-          width: 120px;
-          height: 140px;
+        @include respond-to-down(xxl) {
+          width: 156px;
+          height: 200px;
         }
+
         @include respond-to-down(sm) {
           width: 120px;
           height: 120px;
         }
         @include respond-to-down(xs) {
-          width: 120px;
+          width: 110px;
           height: 100px;
         }
 
@@ -192,6 +195,10 @@
       gap: 40px;
       margin: 0;
       padding: 0;
+
+      @include respond-to-down(md) {
+        gap: 10px;
+      }
 
       li {
         color: $primary-light-white;
