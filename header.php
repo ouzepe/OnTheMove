@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php wp_head(); ?>
 </head>
+
 <body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
+    <?php wp_body_open(); ?>
 
-<div id="page" class="site">
-    <header id="masthead" class="site-header">
-        <div class="container">
-            <div class="site-branding">
-                <?php
-                if (has_custom_logo()) {
-                    the_custom_logo();
-                } else {
-                    ?>
-                    <h1 class="site-title">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                            <?php bloginfo('name'); ?>
-                        </a>
-                    </h1>
-                    <?php
-                    $description = get_bloginfo('description', 'display');
-                    if ($description || is_customize_preview()) {
-                        ?>
-                        <p class="site-description"><?php echo $description; ?></p>
+    <div id="page" class="site">
+        <header id="header" class="header">
+            <div class="container">
+                <nav id="header-menu" class="header-menu-">
+                    <div class="header-menu-sub-menu">
+                        
+                    </div>
+                    <div class="header-menu-logo">
+                        <picture>
+                            <source media="(max-width: 600px)"
+                                srcset="<?php echo get_template_directory_uri(); ?>/src/assets/LogoMobile.svg">
+                            <img src="<?php echo get_template_directory_uri(); ?>/src/assets/headerLogoWithText.svg"
+                                alt="Logo OnTheMove">
+                        </picture>
+                    </div>
+                    <div class="header-menu-right">
                         <?php
-                    }
-                }
-                ?>
+                        wp_nav_menu(array(
+                            'theme_location' => 'Header',
+                            'menu_id' => 'primary-menu',
+                            'container' => false,
+                            'menu_class' => 'primary-menu',
+                        ));
+                        ?>
+                    </div>
+                    <div class="header-menu-lang">
+                        <div class="header-menu-lang-fr">
+                            <a href="<?php echo home_url(); ?>/"
+                                style="<?php echo (get_locale() == 'en_US') ? 'color: #A58491;' : ''; ?>">FR</a>
+                        </div>
+                        <!-- Separator -->
+                        <span class="header-menu-lang-separator">/</span>
+                        <div class="header-menu-lang-en">
+                            <a href="<?php echo home_url(); ?>/en"
+                                style="<?php echo (get_locale() == 'en_US') ? '' : 'color: #A58491;'; ?>">EN</a>
+                        </div>
+                    </div>
+                </nav>
             </div>
+        </header>
 
-            <nav id="site-navigation" class="main-navigation">
-                <!-- <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-                    <span class="screen-reader-text"><?php esc_html_e('Menu principal', 'onthemove'); ?></span>
-                    <span class="menu-icon">☰</span>
-                </button> -->
-                <?php
-                wp_nav_menu(array(
-                    'theme_location' => 'menu-1',
-                    'menu_id'        => 'primary-menu',
-                    'container'      => false,
-                    'menu_class'     => 'primary-menu',
-                ));
-                ?>
-            </nav>
-        </div>
-    </header>
-
-    <main id="main" class="site-main">
-
+        <main id="main" class="site-main">

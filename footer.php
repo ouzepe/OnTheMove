@@ -2,26 +2,26 @@
 
 <footer class="footer" id="footer">
     <?php if (!is_page('press')): ?>
-    <div class="footer-press">
-        <div class="footer-press-title">
-            <h3>Ils ont publié nos articles</h3>
-        </div>
-        <div class="footer-press-link">
-            <a href="<?php echo home_url('/press'); ?>">Voir nos articles de presse</a>
-        </div>
-        <div class="footer-press-logo">
-            <?php
-            // Get the press article post
-            $press_post = get_page_by_path('/ils-ont-publie-nos-articles', OBJECT, 'post');
+        <div class="footer-press">
+            <div class="footer-press-title">
+                <h3>Ils ont publié nos articles</h3>
+            </div>
+            <div class="footer-press-link">
+                <a href="<?php echo home_url('/press'); ?>">Voir nos articles de presse</a>
+            </div>
+            <div class="footer-press-logo">
+                <?php
+                // Get the press article post
+                $press_post = get_page_by_path('/ils-ont-publie-nos-articles', OBJECT, 'post');
 
-            if ($press_post) {
-                // Get the post content or custom field with press logos
-                $press_content = apply_filters('the_content', $press_post->post_content);
-                echo $press_content;
-            }
-            ?>
+                if ($press_post) {
+                    // Get the post content or custom field with press logos
+                    $press_content = apply_filters('the_content', $press_post->post_content);
+                    echo $press_content;
+                }
+                ?>
+            </div>
         </div>
-    </div>
     <?php endif; ?>
     <div class="footer-content">
         <div class="footer-content-left">

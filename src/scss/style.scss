@@ -1,6 +1,7 @@
 @import "variables";
 @import "breakpoints";
 @import "pages/footer";
+@import "./pages/header";
 
 body {
   background-color: $primary-dark-red;
