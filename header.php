@@ -23,7 +23,12 @@
                                 alt="Logo OnTheMove">
                         </picture>
                     </div>
-                    <div class="header-menu-content">
+                    <button class="header-menu-burger" id="header-menu-burger" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div class="header-menu-content" id="header-menu-content">
                         <?php
                         wp_nav_menu(array(
                             'theme_location' => 'Header',
@@ -32,6 +37,18 @@
                             'menu_class' => 'primary-menu'
                         ));
                         ?>
+                        <div class="header-menu-lang-mobile">
+                            <div class="header-menu-lang-fr">
+                                <a href="<?php echo home_url(); ?>/"
+                                    style="<?php echo (get_locale() == 'en_US') ? 'color: #A58491;' : ''; ?>">FR</a>
+                            </div>
+                            <!-- Separator -->
+                            <span class="header-menu-lang-separator">/</span>
+                            <div class="header-menu-lang-en">
+                                <a href="<?php echo home_url(); ?>/en"
+                                    style="<?php echo (get_locale() == 'en_US') ? '' : 'color: #A58491;'; ?>">EN</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="header-menu-lang">
                         <div class="header-menu-lang-fr">

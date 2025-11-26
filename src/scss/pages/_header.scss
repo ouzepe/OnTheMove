@@ -11,6 +11,7 @@
     align-items: center;
     padding: 25px;
     margin: 0 auto;
+    position: relative;
 
     @include respond-to-down(sm) {
       justify-content: center;
@@ -46,11 +47,79 @@
     }
   }
 
+  .header-menu-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: relative;
+
+    span {
+      width: 100%;
+      height: 3px;
+      background-color: $primary-light-white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    &.active {
+      span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+      }
+      span:nth-child(2) {
+        opacity: 0;
+      }
+      span:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+      }
+    }
+
+    @include respond-to-down(sm) {
+      display: flex;
+      position: absolute;
+      left: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &.active {
+        transform: translateY(-50%);
+      }
+    }
+  }
+
   .header-menu-content {
     display: flex;
     align-items: center;
     flex: 1;
     gap: 20px;
+    width: 100%;
+
+    @include respond-to-down(sm) {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: $primary-dark-red;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 80px 25px 25px;
+      z-index: 1000;
+      overflow-y: auto;
+
+      &.active {
+        display: flex;
+      }
+    }
 
     .primary-menu {
       display: flex;
@@ -58,12 +127,24 @@
       gap: 20px;
       margin: 0;
       padding: 0;
+      flex: 1;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+      }
 
       li {
         color: $primary-light-white;
         transition: all 0.3s ease;
         width: max-content;
         position: relative;
+
+        @include respond-to-down(sm) {
+          width: 100%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
         a {
           text-decoration: none;
@@ -72,9 +153,34 @@
           border-radius: 4px;
           transition: all 0.3s ease;
 
+          @include respond-to-down(sm) {
+            display: block;
+            padding: 15px 20px;
+            border-radius: 0;
+            width: 100%;
+          }
+
           &:hover {
             opacity: 0.8;
             background-color: rgba(255, 255, 255, 0.1);
+          }
+        }
+
+        // Les 2 premiers éléments (La carte et Les territoires d'enquête) sans hover background
+        &:nth-child(1),
+        &:nth-child(2) {
+          a {
+            &:hover {
+              background-color: transparent;
+            }
+          }
+        }
+
+        // Border-bottom blanc pour "La carte" (premier élément)
+        &:nth-child(1) {
+          a {
+            border-bottom: 1px solid $primary-light-white;
+            width: 90%;
           }
         }
 
@@ -84,13 +190,26 @@
           position: absolute;
           top: 100%;
           left: 0;
+          margin-top: 10px;
           background-color: $primary-dark-red;
+          border: 0.15px solid $primary-light-white;
+          border-radius: 4px;
           list-style: none;
-          padding: 10px 0;
-          margin: 0;
-          min-width: 200px;
+          padding: 15px 0;
+          min-width: 300px;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           z-index: 1000;
+
+          @include respond-to-down(sm) {
+            position: static;
+            margin-top: 0;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            min-width: auto;
+            box-shadow: none;
+            display: none;
+          }
 
           li {
             width: 100%;
@@ -99,8 +218,19 @@
               display: block;
               padding: 10px 20px;
               white-space: nowrap;
+              border-bottom: none;
+
+              @include respond-to-down(sm) {
+                padding: 15px 20px;
+                padding-left: 40px;
+              }
 
               &:hover {
+                width: max-content;
+
+                @include respond-to-down(sm) {
+                  width: 100%;
+                }
                 background-color: rgba(255, 255, 255, 0.1);
               }
             }
@@ -109,15 +239,25 @@
 
         &:hover .sub-menu {
           display: block;
+
+          @include respond-to-down(sm) {
+            display: none;
+          }
         }
 
-        // Les 3 derniers éléments à droite
-        &:nth-last-child(-n + 3) {
-          margin-right: auto;
+        // Affichage du sous-menu sur mobile avec classe active
+        @include respond-to-down(sm) {
+          &.menu-item-has-children {
+            .sub-menu {
+              &.active {
+                display: block;
+              }
+            }
+          }
         }
 
-        &:nth-last-child(3) {
-          margin-right: auto;
+        &:nth-child(3) {
+          margin-left: auto;
         }
       }
     }
@@ -130,6 +270,10 @@
     gap: 10px;
     color: $primary-light-white;
     font-size: 14px;
+
+    @include respond-to-down(sm) {
+      display: none;
+    }
 
     .header-menu-lang-fr,
     .header-menu-lang-en {
@@ -147,6 +291,41 @@
       color: $primary-red-transparent;
       font-size: 17px;
       font-weight: 900;
+    }
+  }
+
+  .header-menu-lang-mobile {
+    display: none;
+
+    @include respond-to-down(sm) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      color: $primary-light-white;
+      font-size: 14px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+
+      .header-menu-lang-fr,
+      .header-menu-lang-en {
+        a {
+          text-decoration: none;
+          color: inherit;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+
+      .header-menu-lang-separator {
+        color: $primary-red-transparent;
+        font-size: 17px;
+        font-weight: 900;
+      }
     }
   }
 }
