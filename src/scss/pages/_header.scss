@@ -46,10 +46,11 @@
     }
   }
 
-  .header-menu-right {
+  .header-menu-content {
     display: flex;
-    justify-content: center;
-    flex: 0.3;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
 
     .primary-menu {
       display: flex;
@@ -62,6 +63,8 @@
         color: $primary-light-white;
         transition: all 0.3s ease;
         width: max-content;
+        position: relative;
+
         a {
           text-decoration: none;
           color: $primary-light-white;
@@ -73,6 +76,48 @@
             opacity: 0.8;
             background-color: rgba(255, 255, 255, 0.1);
           }
+        }
+
+        // Sous-menu
+        .sub-menu {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: $primary-dark-red;
+          list-style: none;
+          padding: 10px 0;
+          margin: 0;
+          min-width: 200px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+
+          li {
+            width: 100%;
+
+            a {
+              display: block;
+              padding: 10px 20px;
+              white-space: nowrap;
+
+              &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+              }
+            }
+          }
+        }
+
+        &:hover .sub-menu {
+          display: block;
+        }
+
+        // Les 3 derniers éléments à droite
+        &:nth-last-child(-n + 3) {
+          margin-right: auto;
+        }
+
+        &:nth-last-child(3) {
+          margin-right: auto;
         }
       }
     }

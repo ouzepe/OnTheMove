@@ -15,9 +15,6 @@
         <header id="header" class="header">
             <div class="container">
                 <nav id="header-menu" class="header-menu-">
-                    <div class="header-menu-sub-menu">
-
-                    </div>
                     <div class="header-menu-logo">
                         <picture>
                             <source media="(max-width: 600px)"
@@ -26,13 +23,13 @@
                                 alt="Logo OnTheMove">
                         </picture>
                     </div>
-                    <div class="header-menu-right">
+                    <div class="header-menu-content">
                         <?php
                         wp_nav_menu(array(
                             'theme_location' => 'Header',
                             'menu_id' => 'primary-menu',
                             'container' => false,
-                            'menu_class' => 'primary-menu',
+                            'menu_class' => 'primary-menu'
                         ));
                         ?>
                     </div>
