@@ -239,11 +239,11 @@
           }
 
           li {
-            width: 100%;
+            width: auto;
 
             a {
-              display: block;
-              padding: 10px 20px;
+              display: inline-block;
+              margin: 5px 20px;
               white-space: nowrap;
               border-bottom: none;
 
@@ -251,11 +251,11 @@
                 display: none;
               }
               &:hover {
-                width: auto;
                 transition: all 0.3s ease;
                 background-color: rgba(255, 255, 255, 0.1);
               }
               @include respond-to-down(sm) {
+                display: block;
                 padding: 15px 20px;
                 padding-left: 40px;
               }
