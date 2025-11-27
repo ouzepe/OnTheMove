@@ -27,6 +27,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
+                        <span class="header-menu-burger-text">Menu</span>
                     </button>
                     <div class="header-menu-content" id="header-menu-content">
                         <?php
