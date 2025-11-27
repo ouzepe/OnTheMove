@@ -176,11 +176,37 @@
           }
         }
 
-        // Border-bottom blanc pour "La carte" (premier élément)
+        // Supprimer le ::before sur tous les éléments sauf le premier
+        &:not(:nth-child(1)) {
+          a {
+            &::before {
+              display: none !important;
+            }
+          }
+        }
+
+        // Border-bottom blanc pour "La carte" (premier élément uniquement)
         &:nth-child(1) {
           a {
-            border-bottom: 1px solid $primary-light-white;
-            width: 90%;
+            position: relative;
+            width: auto;
+
+            &::before {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 80%;
+              height: 1px;
+              background-color: $primary-light-white;
+            }
+
+            @include respond-to-down(sm) {
+              &::before {
+                display: none;
+              }
+            }
           }
         }
 
@@ -192,13 +218,14 @@
           left: 0;
           margin-top: 10px;
           background-color: $primary-dark-red;
-          border: 0.15px solid $primary-light-white;
+          border: 0.15px solid $primary-light-red;
           border-radius: 4px;
           list-style: none;
           padding: 15px 0;
           min-width: 300px;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           z-index: 1000;
+          pointer-events: auto;
 
           @include respond-to-down(sm) {
             position: static;
@@ -220,18 +247,17 @@
               white-space: nowrap;
               border-bottom: none;
 
+              &::before {
+                display: none;
+              }
+              &:hover {
+                width: auto;
+                transition: all 0.3s ease;
+                background-color: rgba(255, 255, 255, 0.1);
+              }
               @include respond-to-down(sm) {
                 padding: 15px 20px;
                 padding-left: 40px;
-              }
-
-              &:hover {
-                width: max-content;
-
-                @include respond-to-down(sm) {
-                  width: 100%;
-                }
-                background-color: rgba(255, 255, 255, 0.1);
               }
             }
           }
