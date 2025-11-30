@@ -197,13 +197,13 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 100vw;
       height: 100vh;
       background-color: $primary-dark-red;
       flex-direction: column;
-      //   justify-content: flex-start;
-      //   align-items: center;
-      padding: 120px 25px 25px;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 120px;
       z-index: 1000;
       overflow-y: auto;
       font-size: 18px;
@@ -220,35 +220,46 @@
 
       &.active {
         display: flex;
+        justify-content: flex-start;
+        align-items: center;
       }
     }
 
     .primary-menu {
       display: flex;
       list-style: none;
-      //   gap: 20px;
+      width: 100%;
       margin: 0;
       padding: 0;
       flex: 1;
 
       @include respond-to-down(md) {
         flex-direction: column;
-        // width: 95%;
-        // margin: 0 auto;
-        // align-items: center;
-        // justify-content: center;
+        width: 95%;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: flex-start;
       }
 
       li {
         color: $primary-light-white;
         transition: all 0.3s ease;
-        width: max-content;
         position: relative;
+        justify-content: center;
+        align-items: center;
 
         @include respond-to-down(md) {
-          width: 50%;
+          width: 98%;
           border-bottom: 1px solid $primary-border-red;
-          //   margin: 0 auto;
+          margin: 0 auto;
+          display: block;
+        }
+
+        // Supprimer le border-bottom pour tous les li actifs en mobile/tablette
+        @include respond-to-down(md) {
+          &.active {
+            border-bottom: none !important;
+          }
         }
 
         a {
@@ -257,6 +268,8 @@
           padding: 10px 15px;
           border-radius: 4px;
           transition: all 0.3s ease;
+          justify-content: center;
+          align-items: center;
 
           @include respond-to-down(md) {
             display: block;
@@ -265,6 +278,7 @@
             border-radius: 0;
             width: 100%;
             position: relative;
+            text-align: center;
           }
 
           &:hover {
@@ -285,6 +299,13 @@
 
         // "Les territoires d'enquête" - garde le cursor pointer (le clic est désactivé en JS)
         &:nth-child(2) {
+          @include respond-to-down(md) {
+            // Supprimer le border-bottom quand le sous-menu est ouvert
+            &.active {
+              border-bottom: none !important;
+            }
+          }
+
           a {
             cursor: pointer;
             position: relative;
@@ -310,11 +331,11 @@
 
             @include respond-to-down(md) {
               //   padding-right: 35px;
-              padding-right: 2px;
+              padding-right: 0;
               position: relative;
 
               &::after {
-                right: 10;
+                right: 8px;
                 width: 12px;
                 height: 8px;
                 display: block !important;
@@ -365,8 +386,8 @@
         &:nth-child(1) {
           @include respond-to-down(md) {
             border-top: 1px solid $primary-border-red;
-            width: 80%;
-            margin: 0 auto;
+            width: 98%;
+            margin: 0;
           }
 
           a {
@@ -415,16 +436,38 @@
             border: none;
             border-radius: 0;
             padding: 0;
-            min-width: auto;
+            width: 100%;
             box-shadow: none;
             display: none;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          // Quand le sous-menu est actif, l'afficher en flex et centré
+          @include respond-to-down(md) {
+            &.active {
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              width: 100%;
+            }
           }
 
           li {
-            width: auto;
+            width: 100%;
 
             @include respond-to-down(md) {
+              width: 80%;
+              margin: 0 auto;
               border-bottom: none !important;
+              border-top: none !important;
+            }
+
+            // Supprimer le border-top du premier élément du sous-menu
+            &:first-child {
+              @include respond-to-down(md) {
+                border-top: none !important;
+              }
             }
 
             a {
@@ -447,6 +490,11 @@
                 display: block;
                 padding: 15px 20px;
                 padding-left: 40px;
+                width: 100%;
+                position: relative;
+                border-bottom: none !important;
+                box-sizing: border-box;
+                transition: ease-in 0.9s !important;
               }
             }
           }
@@ -485,8 +533,11 @@
           }
         }
 
-        &:nth-child(3) {
-          margin-left: auto;
+        // Push "À propos" and following items to the right on desktop only
+        @include respond-to(lg) {
+          &:nth-child(3) {
+            margin-left: auto;
+          }
         }
       }
     }
