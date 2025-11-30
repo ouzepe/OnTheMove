@@ -7,8 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // Toggle burger menu
   if (burger && menuContent) {
     burger.addEventListener("click", () => {
+      const isActive = burger.classList.contains("active");
       burger.classList.toggle("active");
       menuContent.classList.toggle("active");
+
+      // Si on ferme le menu, réinitialiser tous les transforms et opacités
+      if (isActive) {
+        const primaryMenu = document.querySelector(".primary-menu");
+        if (primaryMenu) {
+          const allItems = Array.from(primaryMenu.children).filter(
+            (el): el is HTMLElement => el instanceof HTMLElement
+          );
+          allItems.forEach((item) => {
+            item.style.transform = "translateY(0)";
+            const submenu = item.querySelector(".sub-menu") as HTMLElement;
+            if (submenu) {
+              submenu.style.opacity = "0";
+            }
+          });
+        }
+      }
     });
   }
 
@@ -22,8 +40,71 @@ document.addEventListener("DOMContentLoaded", () => {
         // Only prevent default and toggle on mobile
         if (window.innerWidth <= 1200) {
           e.preventDefault();
-          item.classList.toggle("active");
-          submenu.classList.toggle("active");
+          const isActive = item.classList.contains("active");
+
+          // Calculer la hauteur du sous-menu
+          if (!isActive) {
+            // Ouvrir le sous-menu pour calculer sa hauteur (mais invisible au début)
+            submenu.classList.add("active");
+            item.classList.add("active");
+            const submenuElement = submenu as HTMLElement;
+
+            // Commencer avec opacité 0
+            submenuElement.style.opacity = "0";
+
+            // Attendre un court instant pour que le DOM se mette à jour
+            setTimeout(() => {
+              const submenuHeight = submenuElement.scrollHeight;
+
+              // Réduire l'espace en soustrayant une partie de la hauteur
+              // Le padding-top de 5px dans le CSS + la réduction créera un espace minimal
+              const adjustedHeight = submenuHeight - 100;
+
+              // Faire descendre les éléments suivants
+              const primaryMenu = item.parentElement as HTMLElement | null;
+              if (primaryMenu) {
+                const allItems = Array.from(primaryMenu.children).filter(
+                  (el): el is HTMLElement => el instanceof HTMLElement
+                );
+                const currentIndex = allItems.indexOf(item as HTMLElement);
+
+                // Appliquer le transform aux éléments suivants (index 2 et plus)
+                for (let i = currentIndex + 1; i < allItems.length; i++) {
+                  allItems[
+                    i
+                  ].style.transform = `translateY(${adjustedHeight}px)`;
+                }
+              }
+
+              // Faire apparaître le sous-menu avec opacité après le début de l'animation
+              setTimeout(() => {
+                submenuElement.style.opacity = "1";
+              }, 100);
+            }, 10);
+          } else {
+            // Fermer le sous-menu et réinitialiser les transforms
+            const submenuElement = submenu as HTMLElement;
+            submenuElement.style.opacity = "0";
+
+            // Attendre la fin de l'animation d'opacité avant de masquer
+            setTimeout(() => {
+              item.classList.remove("active");
+              submenu.classList.remove("active");
+            }, 300);
+
+            const primaryMenu = item.parentElement as HTMLElement | null;
+            if (primaryMenu) {
+              const allItems = Array.from(primaryMenu.children).filter(
+                (el): el is HTMLElement => el instanceof HTMLElement
+              );
+              const currentIndex = allItems.indexOf(item as HTMLElement);
+
+              // Réinitialiser le transform des éléments suivants
+              for (let i = currentIndex + 1; i < allItems.length; i++) {
+                allItems[i].style.transform = "translateY(0)";
+              }
+            }
+          }
         }
       });
     }
@@ -59,6 +140,21 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       burger.classList.remove("active");
       menuContent.classList.remove("active");
+
+      // Réinitialiser tous les transforms et opacités
+      const primaryMenu = document.querySelector(".primary-menu");
+      if (primaryMenu) {
+        const allItems = Array.from(primaryMenu.children).filter(
+          (el): el is HTMLElement => el instanceof HTMLElement
+        );
+        allItems.forEach((item) => {
+          item.style.transform = "translateY(0)";
+          const submenu = item.querySelector(".sub-menu") as HTMLElement;
+          if (submenu) {
+            submenu.style.opacity = "0";
+          }
+        });
+      }
     }
   });
 
@@ -68,12 +164,26 @@ document.addEventListener("DOMContentLoaded", () => {
       burger.classList.remove("active");
       menuContent.classList.remove("active");
       menuItems.forEach((item) => {
-        item.classList.remove("active");
-        const submenu = item.querySelector(".sub-menu");
+        const menuItem = item as HTMLElement;
+        menuItem.classList.remove("active");
+        menuItem.style.transform = "translateY(0)";
+        const submenu = menuItem.querySelector(".sub-menu") as HTMLElement;
         if (submenu) {
           submenu.classList.remove("active");
+          submenu.style.opacity = "0";
         }
       });
+
+      // Réinitialiser tous les transforms
+      const primaryMenu = document.querySelector(".primary-menu");
+      if (primaryMenu) {
+        const allItems = Array.from(primaryMenu.children).filter(
+          (el): el is HTMLElement => el instanceof HTMLElement
+        );
+        allItems.forEach((item) => {
+          item.style.transform = "translateY(0)";
+        });
+      }
     }
   });
 });

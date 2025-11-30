@@ -206,11 +206,11 @@
       padding-top: 120px;
       z-index: 1000;
       overflow-y: auto;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       line-height: 1;
       letter-spacing: 0.01em;
-      text-transform: uppercase;
+      text-transform: none;
 
       // Sous-menus avec taille de police réduite
       .sub-menu {
@@ -253,6 +253,10 @@
           border-bottom: 1px solid $primary-border-red;
           margin: 0 auto;
           display: block;
+          font-size: 34px;
+        }
+        @include respond-to-down(sm) {
+          font-size: 20px;
         }
 
         // Supprimer le border-bottom pour tous les li actifs en mobile/tablette
@@ -279,8 +283,12 @@
             width: 100%;
             position: relative;
             text-align: center;
+            font-size: 30px;
+            font-weight: bold;
           }
-
+          @include respond-to-down(sm) {
+            font-size: 20px;
+          }
           &:hover {
             opacity: 0.8;
             background-color: rgba(255, 255, 255, 0.1);
@@ -304,6 +312,9 @@
             &.active {
               border-bottom: none !important;
             }
+          }
+          @include respond-to-down(sm) {
+            font-size: 16px;
           }
 
           a {
@@ -387,7 +398,7 @@
           @include respond-to-down(md) {
             border-top: 1px solid $primary-border-red;
             width: 98%;
-            margin: 0;
+            margin: 0 auto;
           }
 
           a {
@@ -406,9 +417,17 @@
             }
 
             @include respond-to-down(md) {
+              padding-left: 10%;
+
               &::before {
                 display: none;
               }
+            }
+            @include respond-to-down(sm) {
+              padding-left: 15%;
+            }
+            @include respond-to-down(xs) {
+              padding-left: 25%;
             }
           }
         }
@@ -441,6 +460,8 @@
             display: none;
             flex-direction: column;
             align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out 0.2s;
           }
 
           // Quand le sous-menu est actif, l'afficher en flex et centré
@@ -450,6 +471,10 @@
               flex-direction: column !important;
               align-items: center !important;
               width: 100%;
+              font-size: 16px;
+              font-weight: normal;
+              text-transform: none;
+              opacity: 1;
             }
           }
 
@@ -490,11 +515,17 @@
                 display: block;
                 padding: 15px 20px;
                 padding-left: 40px;
+                font-size: 12px;
                 width: 100%;
                 position: relative;
                 border-bottom: none !important;
                 box-sizing: border-box;
-                transition: ease-in 0.9s !important;
+                transition: all 0.3s ease;
+
+                &:hover {
+                  color: $primary-red;
+                  opacity: 0.8;
+                }
               }
             }
           }
@@ -537,6 +568,14 @@
         @include respond-to(lg) {
           &:nth-child(3) {
             margin-left: auto;
+          }
+        }
+
+        // Animation pour faire descendre les éléments suivants "Les territoires d'enquête" en mobile/tablette
+        @include respond-to-down(md) {
+          &:nth-child(n + 3) {
+            transition: transform 0.4s ease-in-out;
+            will-change: transform;
           }
         }
       }
