@@ -149,14 +149,14 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+      justify-content: center;
       width: auto;
-      height: 8px;
+      height: auto;
       position: fixed;
       left: 25px;
       top: 40px;
       transform: none;
       padding-right: 0;
-      align-items: center;
 
       // Créer un espace pour les barres qui sont en absolute
       &::before {
@@ -175,29 +175,32 @@
       }
 
       span:nth-child(1):not(.header-menu-burger-text) {
-        top: 1px;
+        top: 10%;
       }
 
       span:nth-child(2):not(.header-menu-burger-text) {
-        top: 30%;
-        transform: translateY(-50%);
+        top: 20%;
+        transform: translateY(-25%);
       }
 
       span:nth-child(3):not(.header-menu-burger-text) {
-        top: 55%;
+        top: 30%;
         bottom: 1px;
       }
 
       .header-menu-burger-text {
         display: block;
         position: relative;
-        margin-left: 12px;
+        // padding-right: 2px;
+        margin-bottom: 60px;
         order: 2;
+        align-self: center;
+        line-height: 1;
       }
 
       &.active {
         transform: none;
-        top: 30px;
+        top: 10px;
 
         span:nth-child(1):not(.header-menu-burger-text) {
           top: 50%;
@@ -218,6 +221,16 @@
     @include respond-to-down(sm) {
       .header-menu-burger-text {
         display: none !important;
+      }
+      .header-menu-burger-text {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1004;
+        background-color: $primary-dark-red;
+        padding: 10px 20px;
+        border-radius: 4px;
       }
     }
   }
@@ -334,7 +347,7 @@
             font-style: normal;
             font-size: 50px;
             line-height: 100%;
-            letter-spacing: 0.005em;
+            letter-spacing: 0.05em;
             text-align: center;
           }
 
@@ -351,6 +364,14 @@
             opacity: 0.8;
             background-color: rgba(255, 255, 255, 0.1);
           }
+
+          @include respond-to-down(md) {
+            &:hover {
+              color: $primary-red;
+              opacity: 0.8;
+              background-color: transparent;
+            }
+          }
         }
 
         // Les 2 premiers éléments (La carte et Les territoires d'enquête) sans hover background
@@ -359,6 +380,11 @@
           a {
             &:hover {
               background-color: transparent;
+
+              @include respond-to-down(md) {
+                color: $primary-red;
+                opacity: 0.8;
+              }
             }
           }
         }
@@ -526,10 +552,11 @@
               flex-direction: column !important;
               align-items: center !important;
               width: 100%;
-              font-size: 16px;
-              font-weight: normal;
+              font-size: 18px;
+              font-weight: medium;
               text-transform: none;
               opacity: 1;
+              font-family: sans-serif;
             }
           }
 
@@ -569,13 +596,14 @@
               @include respond-to-down(md) {
                 display: block;
                 padding: 15px 20px;
-                padding-left: 40px;
-                font-size: 20px;
+                padding-left: 20px;
+                font-size: 14px;
                 width: 100%;
                 position: relative;
                 border-bottom: none !important;
                 box-sizing: border-box;
-                transition: all 0.3s ease;
+                transition: all 0.5s ease;
+                font-family: sans-serif;
 
                 &:hover {
                   color: $primary-red;
@@ -711,6 +739,10 @@
               font-size: 14px;
               transition: opacity 0.3s ease;
 
+              @include respond-to-down(md) {
+                font-size: 18px;
+              }
+
               &:hover {
                 opacity: 0.8;
               }
@@ -726,7 +758,15 @@
         gap: 5px;
         color: $primary-light-white;
         font-size: 14px;
-        margin-right: 10%;
+        margin-right: 8%;
+
+        @include respond-to-down(md) {
+          font-size: 18x;
+
+          .header-menu-lang-separator {
+            font-size: 18px;
+          }
+        }
 
         .header-menu-lang-fr,
         .header-menu-lang-en {

@@ -4,6 +4,110 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuContent = document.querySelector(".header-menu-content");
   const menuItems = document.querySelectorAll(".menu-item-has-children");
 
+  // Fonction pour retirer les accents d'un texte
+  const removeAccents = (text: string): string => {
+    return (
+      text
+        // Minuscules
+        .replace(/é/g, "e")
+        .replace(/è/g, "e")
+        .replace(/ê/g, "e")
+        .replace(/ë/g, "e")
+        .replace(/à/g, "a")
+        .replace(/â/g, "a")
+        .replace(/ä/g, "a")
+        .replace(/ù/g, "u")
+        .replace(/û/g, "u")
+        .replace(/ü/g, "u")
+        .replace(/î/g, "i")
+        .replace(/ï/g, "i")
+        .replace(/ô/g, "o")
+        .replace(/ö/g, "o")
+        .replace(/ç/g, "c")
+        // Majuscules
+        .replace(/É/g, "E")
+        .replace(/È/g, "E")
+        .replace(/Ê/g, "E")
+        .replace(/Ë/g, "E")
+        .replace(/À/g, "A")
+        .replace(/Â/g, "A")
+        .replace(/Ä/g, "A")
+        .replace(/Ù/g, "U")
+        .replace(/Û/g, "U")
+        .replace(/Ü/g, "U")
+        .replace(/Î/g, "I")
+        .replace(/Ï/g, "I")
+        .replace(/Ô/g, "O")
+        .replace(/Ö/g, "O")
+        .replace(/Ç/g, "C")
+    );
+  };
+
+  // Retirer l'accent du 2ème et 3ème élément du menu en version tablette (md) et mobile (sm)
+  const removeAccentOnTabletAndMobile = () => {
+    const primaryMenu = document.querySelector(".primary-menu");
+    if (!primaryMenu) return;
+
+    // Vérifier si on est en tablette (md) ou mobile (sm)
+    const isTabletOrMobile = window.innerWidth < 992;
+
+    // Traiter le 2ème élément (index 1)
+    const secondMenuItem = primaryMenu.children[1] as HTMLElement;
+    if (secondMenuItem) {
+      const secondMenuLink = secondMenuItem.querySelector("a");
+      if (secondMenuLink) {
+        const originalText = secondMenuLink.textContent || "";
+        // Sauvegarder le texte original si ce n'est pas déjà fait
+        if (!secondMenuLink.dataset.originalText) {
+          secondMenuLink.dataset.originalText = originalText;
+        }
+
+        if (isTabletOrMobile) {
+          // Remplacer les accents
+          const textWithoutAccent = removeAccents(originalText);
+          if (secondMenuLink.textContent !== textWithoutAccent) {
+            secondMenuLink.textContent = textWithoutAccent;
+          }
+        } else {
+          // Restaurer le texte original si on n'est plus en tablette/mobile
+          if (secondMenuLink.dataset.originalText) {
+            secondMenuLink.textContent = secondMenuLink.dataset.originalText;
+          }
+        }
+      }
+    }
+
+    // Traiter le 3ème élément (index 2)
+    const thirdMenuItem = primaryMenu.children[2] as HTMLElement;
+    if (thirdMenuItem) {
+      const thirdMenuLink = thirdMenuItem.querySelector("a");
+      if (thirdMenuLink) {
+        const originalText = thirdMenuLink.textContent || "";
+        // Sauvegarder le texte original si ce n'est pas déjà fait
+        if (!thirdMenuLink.dataset.originalText) {
+          thirdMenuLink.dataset.originalText = originalText;
+        }
+
+        if (isTabletOrMobile) {
+          // Remplacer les accents
+          const textWithoutAccent = removeAccents(originalText);
+          if (thirdMenuLink.textContent !== textWithoutAccent) {
+            thirdMenuLink.textContent = textWithoutAccent;
+          }
+        } else {
+          // Restaurer le texte original si on n'est plus en tablette/mobile
+          if (thirdMenuLink.dataset.originalText) {
+            thirdMenuLink.textContent = thirdMenuLink.dataset.originalText;
+          }
+        }
+      }
+    }
+  };
+
+  // Appeler la fonction au chargement et au redimensionnement
+  removeAccentOnTabletAndMobile();
+  window.addEventListener("resize", removeAccentOnTabletAndMobile);
+
   // Toggle burger menu
   if (burger && menuContent) {
     burger.addEventListener("click", () => {
