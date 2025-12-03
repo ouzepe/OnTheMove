@@ -141,7 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
             item.style.transform = "translateY(0)";
             const submenu = item.querySelector(".sub-menu") as HTMLElement;
             if (submenu) {
-              submenu.style.opacity = "0";
+              submenu.style.opacity = "0.8";
+              submenu.style.transition = "opacity 0.8s ease-in-out";
+              submenu.style.transform = "translateY(0)";
+              submenu.style.transition = "transform 0.8s ease-in-out";
             }
           });
         }
@@ -201,16 +204,10 @@ document.addEventListener("DOMContentLoaded", () => {
               }, 100);
             }, 10);
           } else {
-            // Fermer le sous-menu et réinitialiser les transforms
+            // Fermer le sous-menu et réinitialiser les transforms avec animation fluide
             const submenuElement = submenu as HTMLElement;
-            submenuElement.style.opacity = "0";
 
-            // Attendre la fin de l'animation d'opacité avant de masquer
-            setTimeout(() => {
-              item.classList.remove("active");
-              submenu.classList.remove("active");
-            }, 300);
-
+            // Réinitialiser d'abord les transforms avec transition
             const primaryMenu = item.parentElement as HTMLElement | null;
             if (primaryMenu) {
               const allItems = Array.from(primaryMenu.children).filter(
@@ -218,11 +215,33 @@ document.addEventListener("DOMContentLoaded", () => {
               );
               const currentIndex = allItems.indexOf(item as HTMLElement);
 
-              // Réinitialiser le transform des éléments suivants
+              // Réinitialiser le transform des éléments suivants avec transition
               for (let i = currentIndex + 1; i < allItems.length; i++) {
+                allItems[i].style.transition = "transform 0.6s ease-in-out";
                 allItems[i].style.transform = "translateY(0)";
               }
             }
+
+            // Faire disparaître le sous-menu avec opacité
+            submenuElement.style.transition = "opacity 0.6s ease-in-out";
+            submenuElement.style.opacity = "0";
+
+            // Attendre la fin de l'animation d'opacité avant de masquer
+            setTimeout(() => {
+              item.classList.remove("active");
+              submenu.classList.remove("active");
+              // Réinitialiser les transitions
+              if (primaryMenu) {
+                const allItems = Array.from(primaryMenu.children).filter(
+                  (el): el is HTMLElement => el instanceof HTMLElement
+                );
+                const currentIndex = allItems.indexOf(item as HTMLElement);
+                for (let i = currentIndex + 1; i < allItems.length; i++) {
+                  allItems[i].style.transition = "";
+                }
+              }
+              submenuElement.style.transition = "";
+            }, 300);
           }
         }
       });

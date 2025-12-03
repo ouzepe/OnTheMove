@@ -541,7 +541,7 @@
             flex-direction: column;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.3s ease-in-out 0.2s;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
           }
 
           // Quand le sous-menu est actif, l'afficher en flex et centré
