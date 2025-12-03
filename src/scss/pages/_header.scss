@@ -1,3 +1,6 @@
+@import "../variables";
+@import "../breakpoints";
+
 .header {
   .container {
     width: 100%;
@@ -34,7 +37,28 @@
     z-index: 1001;
 
     @include respond-to-down(md) {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 1002;
+      background-color: $primary-dark-red;
+      padding: 15px 0;
+      width: 100%;
+
+      picture {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: calc(100% + 20px);
+          height: calc(100% + 20px);
+          object-fit: cover;
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+      }
     }
 
     picture {
@@ -65,6 +89,15 @@
     z-index: 1001;
     position: relative;
 
+    @include respond-to-down(md) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1003;
+      padding: 15px 20px;
+      background-color: $primary-dark-red;
+    }
+
     span:not(.header-menu-burger-text) {
       width: 100%;
       height: 0.8px;
@@ -92,8 +125,9 @@
       display: none;
       color: $primary-light-white;
       font-size: 14px;
-      margin-left: 12px;
+      margin-left: 5px;
       white-space: nowrap;
+      margin-bottom: 10px;
     }
 
     &.active {
@@ -116,19 +150,20 @@
       flex-direction: row;
       align-items: center;
       width: auto;
-      height: 13px;
-      position: absolute;
+      height: 8px;
+      position: fixed;
       left: 25px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 40px;
+      transform: none;
       padding-right: 0;
+      align-items: center;
 
       // Créer un espace pour les barres qui sont en absolute
       &::before {
         content: "";
         display: block;
         width: 20px;
-        height: 13px;
+        height: 12px;
         flex-shrink: 0;
       }
 
@@ -140,16 +175,17 @@
       }
 
       span:nth-child(1):not(.header-menu-burger-text) {
-        top: 0;
+        top: 1px;
       }
 
       span:nth-child(2):not(.header-menu-burger-text) {
-        top: 50%;
+        top: 30%;
         transform: translateY(-50%);
       }
 
       span:nth-child(3):not(.header-menu-burger-text) {
-        bottom: 0;
+        top: 55%;
+        bottom: 1px;
       }
 
       .header-menu-burger-text {
@@ -160,7 +196,8 @@
       }
 
       &.active {
-        transform: translateY(-50%);
+        transform: none;
+        top: 30px;
 
         span:nth-child(1):not(.header-menu-burger-text) {
           top: 50%;
@@ -203,9 +240,11 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding-top: 120px;
+      padding-top: 80px;
+      padding-bottom: 100px;
       z-index: 1000;
       overflow-y: auto;
+      overflow-x: hidden;
       font-size: 16px;
       font-weight: 600;
       line-height: 1;
@@ -222,6 +261,8 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        position: relative;
+        padding-bottom: 100px;
       }
     }
 
@@ -286,8 +327,25 @@
             font-size: 30px;
             font-weight: bold;
           }
+
+          @include respond-to-down(md) {
+            font-family: "Test Manuka", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 50px;
+            line-height: 100%;
+            letter-spacing: 0.005em;
+            text-align: center;
+          }
+
           @include respond-to-down(sm) {
-            font-size: 20px;
+            font-family: "Test Manuka", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            font-size: 36px;
+            line-height: 100%;
+            letter-spacing: 0.005em;
+            text-align: center;
           }
           &:hover {
             opacity: 0.8;
@@ -312,9 +370,6 @@
             &.active {
               border-bottom: none !important;
             }
-          }
-          @include respond-to-down(sm) {
-            font-size: 16px;
           }
 
           a {
@@ -515,7 +570,7 @@
                 display: block;
                 padding: 15px 20px;
                 padding-left: 40px;
-                font-size: 12px;
+                font-size: 20px;
                 width: 100%;
                 position: relative;
                 border-bottom: none !important;
@@ -613,37 +668,83 @@
     }
   }
 
-  .header-menu-lang-mobile {
+  .header-menu-footer-mobile {
     display: none;
 
     @include respond-to-down(md) {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      color: $primary-light-white;
-      font-size: 14px;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
       width: 100%;
+      padding: 20px;
+      margin-top: auto;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: $primary-dark-red;
+      z-index: 1001;
 
-      .header-menu-lang-fr,
-      .header-menu-lang-en {
-        a {
-          text-decoration: none;
-          color: inherit;
+      .header-menu-footer-legal {
+        flex: 1;
 
-          &:hover {
-            opacity: 0.8;
+        .footer-menu-mobile {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: row;
+          gap: 20px;
+
+          li {
+            margin: 0;
+            display: none;
+
+            &:first-child {
+              display: block;
+            }
+
+            a {
+              color: $primary-light-white;
+              text-decoration: none;
+              font-size: 14px;
+              transition: opacity 0.3s ease;
+
+              &:hover {
+                opacity: 0.8;
+              }
+            }
           }
         }
       }
 
-      .header-menu-lang-separator {
-        color: $primary-red-transparent;
-        font-size: 17px;
-        font-weight: 900;
+      .header-menu-lang-mobile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        color: $primary-light-white;
+        font-size: 14px;
+        margin-right: 10%;
+
+        .header-menu-lang-fr,
+        .header-menu-lang-en {
+          a {
+            text-decoration: none;
+            color: inherit;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+
+        .header-menu-lang-separator {
+          color: $primary-red-transparent;
+          font-size: 17px;
+          font-weight: 900;
+        }
       }
     }
   }

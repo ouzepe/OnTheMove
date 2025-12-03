@@ -11,6 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
       burger.classList.toggle("active");
       menuContent.classList.toggle("active");
 
+      // Bloquer le scroll du body quand le menu est ouvert (mobile/tablette uniquement)
+      if (window.innerWidth <= 1200) {
+        if (!isActive) {
+          // Menu s'ouvre : bloquer le scroll du body
+          document.body.style.overflow = "hidden";
+          document.body.style.position = "fixed";
+          document.body.style.width = "100%";
+        } else {
+          // Menu se ferme : restaurer le scroll du body
+          document.body.style.overflow = "";
+          document.body.style.position = "";
+          document.body.style.width = "";
+        }
+      }
+
       // Si on ferme le menu, réinitialiser tous les transforms et opacités
       if (isActive) {
         const primaryMenu = document.querySelector(".primary-menu");
@@ -141,6 +156,13 @@ document.addEventListener("DOMContentLoaded", () => {
       burger.classList.remove("active");
       menuContent.classList.remove("active");
 
+      // Restaurer le scroll du body
+      if (window.innerWidth <= 1200) {
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.body.style.width = "";
+      }
+
       // Réinitialiser tous les transforms et opacités
       const primaryMenu = document.querySelector(".primary-menu");
       if (primaryMenu) {
@@ -163,6 +185,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.innerWidth > 768 && burger && menuContent) {
       burger.classList.remove("active");
       menuContent.classList.remove("active");
+
+      // Restaurer le scroll du body
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+
       menuItems.forEach((item) => {
         const menuItem = item as HTMLElement;
         menuItem.classList.remove("active");

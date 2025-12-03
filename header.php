@@ -38,16 +38,28 @@
                             'menu_class' => 'primary-menu'
                         ));
                         ?>
-                        <div class="header-menu-lang-mobile">
-                            <div class="header-menu-lang-fr">
-                                <a href="<?php echo home_url(); ?>/"
-                                    style="<?php echo (get_locale() == 'en_US') ? 'color: #A58491;' : ''; ?>">FR</a>
+                        <div class="header-menu-footer-mobile">
+                            <div class="header-menu-footer-legal">
+                                <?php
+                                wp_nav_menu(array(
+                                    'theme_location' => 'Footer',
+                                    'menu_id' => 'footer-menu-mobile',
+                                    'container' => false,
+                                    'menu_class' => 'footer-menu-mobile'
+                                ));
+                                ?>
                             </div>
-                            <!-- Separator -->
-                            <span class="header-menu-lang-separator">/</span>
-                            <div class="header-menu-lang-en">
-                                <a href="<?php echo home_url(); ?>/en"
-                                    style="<?php echo (get_locale() == 'en_US') ? '' : 'color: #A58491;'; ?>">EN</a>
+                            <div class="header-menu-lang-mobile">
+                                <div class="header-menu-lang-fr">
+                                    <a href="<?php echo home_url(); ?>/"
+                                        style="<?php echo (get_locale() == 'en_US') ? 'color: #A58491;' : ''; ?>">FR</a>
+                                </div>
+                                <!-- Separator -->
+                                <span class="header-menu-lang-separator">/</span>
+                                <div class="header-menu-lang-en">
+                                    <a href="<?php echo home_url(); ?>/en"
+                                        style="<?php echo (get_locale() == 'en_US') ? '' : 'color: #A58491;'; ?>">EN</a>
+                                </div>
                             </div>
                         </div>
                     </div>
