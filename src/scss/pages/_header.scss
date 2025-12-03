@@ -53,7 +53,7 @@
 
         img {
           width: calc(100% + 20px);
-          height: calc(100% + 20px);
+          height: calc(100% + 40px);
           object-fit: cover;
           image-rendering: -webkit-optimize-contrast;
           image-rendering: crisp-edges;
@@ -149,21 +149,21 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       width: auto;
-      height: auto;
+      height: 13px;
       position: fixed;
       left: 25px;
       top: 40px;
       transform: none;
-      padding-right: 0;
+      padding: 0;
 
       // Créer un espace pour les barres qui sont en absolute
       &::before {
         content: "";
         display: block;
         width: 20px;
-        height: 12px;
+        height: 13px;
         flex-shrink: 0;
       }
 
@@ -175,24 +175,23 @@
       }
 
       span:nth-child(1):not(.header-menu-burger-text) {
-        top: 10%;
+        top: 0;
       }
 
       span:nth-child(2):not(.header-menu-burger-text) {
-        top: 20%;
-        transform: translateY(-25%);
+        top: 50%;
+        transform: translateY(-50%);
       }
 
       span:nth-child(3):not(.header-menu-burger-text) {
-        top: 30%;
-        bottom: 1px;
+        bottom: 0;
       }
 
       .header-menu-burger-text {
         display: block;
         position: relative;
-        // padding-right: 2px;
-        margin-bottom: 60px;
+        margin-left: 10px;
+        margin-top: 10px;
         order: 2;
         align-self: center;
         line-height: 1;
@@ -200,7 +199,7 @@
 
       &.active {
         transform: none;
-        top: 10px;
+        top: 40px;
 
         span:nth-child(1):not(.header-menu-burger-text) {
           top: 50%;
