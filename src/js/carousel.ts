@@ -1,26 +1,77 @@
 // @ts-ignore
 import Swiper from "swiper";
 // @ts-ignore
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
+import { Pagination, Autoplay } from "swiper/modules";
 
 document.addEventListener("DOMContentLoaded", function () {
-  const swiperElement = document.querySelector(".home-swiper") as HTMLElement;
+  // Initialiser le carousel pour single.php (home-swiper)
+  const homeSwiperElement = document.querySelector(
+    ".home-swiper"
+  ) as HTMLElement;
 
-  if (swiperElement) {
+  if (!homeSwiperElement) {
+    return;
+  }
+
+  // Empêcher le scroll de la page quand le carousel est affiché
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.width = "100%";
+  document.body.style.height = "100%";
+  document.documentElement.style.overflow = "hidden";
+  document.documentElement.style.height = "100%";
+
+  // Trouver l'élément de pagination
+  const paginationEl = homeSwiperElement.querySelector(
+    ".swiper-pagination"
+  ) as HTMLElement;
+
+  try {
     // @ts-ignore
-    const swiper = new Swiper(".home-swiper", {
-      modules: [Pagination],
+    const homeSwiper = new Swiper(homeSwiperElement, {
+      modules: [Pagination, Autoplay],
       direction: "horizontal",
-      loop: false,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+        waitForTransition: true,
+        stopOnLastSlide: false,
       },
-      allowTouchMove: false,
-      keyboard: false,
+      speed: 1000,
+      pagination: {
+        el: paginationEl || ".swiper-pagination",
+        clickable: true,
+        type: "bullets",
+      },
+      allowTouchMove: true,
+      keyboard: {
+        enabled: true,
+      },
       mousewheel: false,
     });
+
+    // Ajouter la navigation par clic sur l'image
+    const slides = homeSwiperElement.querySelectorAll(".swiper-slide");
+    slides.forEach((slide, index) => {
+      const img = slide.querySelector("img");
+      if (img) {
+        img.style.cursor = "pointer";
+        img.addEventListener("click", () => {
+          // Avancer à la slide suivante
+          homeSwiper.slideNext();
+        });
+      }
+    });
+
+    // Démarrer l'autoplay explicitement
+    setTimeout(() => {
+      if (homeSwiper && homeSwiper.autoplay) {
+        homeSwiper.autoplay.start();
+      }
+    }, 100);
+  } catch (error) {
+    console.error("Carousel: Initialization error", error);
   }
 });

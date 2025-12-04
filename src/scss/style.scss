@@ -4,6 +4,11 @@
 @import "pages/header";
 @import "pages/single";
 
+// Swiper CSS
+@import "~swiper/css";
+@import "~swiper/css/pagination";
+@import "~swiper/css/autoplay";
+
 html {
   height: 100%;
 }
