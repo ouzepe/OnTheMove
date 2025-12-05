@@ -1,7 +1,7 @@
 // @ts-ignore
 import Swiper from "swiper";
 // @ts-ignore
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, EffectFade } from "swiper/modules";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Initialiser le carousel pour single.php (home-swiper)
@@ -29,8 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
   try {
     // @ts-ignore
     const homeSwiper = new Swiper(homeSwiperElement, {
-      modules: [Pagination, Autoplay],
-      direction: "horizontal",
+      modules: [Pagination, Autoplay, EffectFade],
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true,
+      },
       loop: true,
       autoplay: {
         delay: 5000,
@@ -40,6 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         stopOnLastSlide: false,
       },
       speed: 1000,
+      slidesPerView: 1,
+      spaceBetween: 0,
       pagination: {
         el: paginationEl || ".swiper-pagination",
         clickable: true,
