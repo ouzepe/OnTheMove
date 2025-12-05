@@ -38,6 +38,84 @@
   }
 }
 
+.home-carousel-logo-text {
+  height: 100%;
+  position: absolute;
+  top: 300px;
+  z-index: 100001;
+  color: $primary-light-white;
+  pointer-events: auto;
+  margin: 0;
+  padding: 0;
+
+  h1 {
+    margin: 0 0 30px 0;
+    padding: 0;
+    width: 600px;
+    height: 100px;
+    font-family: "Test Manuka", sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 1.2;
+    letter-spacing: 0.15px; // 0.3% de 50px = 0.15px
+    text-align: left;
+  }
+
+  .home-carousel-paragraphs {
+    display: flex;
+    gap: 40px;
+    margin: 0 0 30px 0;
+    padding: 0;
+    width: 600px;
+
+    .home-carousel-paragraph-left,
+    .home-carousel-paragraph-right {
+      flex: 1;
+      margin: 0;
+      padding: 0;
+
+      p {
+        margin: 0;
+        padding: 0;
+        font-size: 17px;
+        line-height: 1.6;
+        color: $primary-light-white;
+        text-align: left;
+      }
+    }
+  }
+
+  .home-carousel-button {
+    margin: 20px 0 0 0;
+    padding: 0;
+    width: 600px;
+
+    button,
+    a {
+      display: inline-block;
+      width: 600px;
+      padding: 18px 20px;
+      background-color: transparent;
+      border: 1px solid $primary-red;
+      color: $primary-light-white;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 40px;
+      letter-spacing: 0.15px; // 0.3% de 50px = 0.15px
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+
+      &:hover {
+        background-color: $primary-red;
+        border-color: $primary-red;
+      }
+    }
+  }
+}
+
 // Empêcher le scroll de la page quand le carousel est affiché
 body:has(.home-carousel-container) {
   overflow: hidden !important;
