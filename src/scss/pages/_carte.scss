@@ -1,0 +1,64 @@
+@import "../variables";
+@import "../breakpoints";
+
+.la-carte-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.la-carte-ocean {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: visible; // Permettre de voir les éléments en dehors de la zone visible
+
+  img {
+    width: auto; // Permettre à l'image d'être plus large que l'écran
+    height: auto; // Permettre à l'image d'être plus haute que l'écran
+    min-width: 100%;
+    min-height: 100%;
+    max-width: none; // Pas de limite de largeur
+    max-height: none; // Pas de limite de hauteur
+    object-fit: none; // Ne pas forcer le fit, garder les dimensions originales
+    object-position: center;
+    display: block;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    position: relative;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+.la-carte-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
+
+  h1 {
+    margin: 0 0 30px 0;
+    font-family: "Test Manuka", sans-serif;
+    font-weight: bold;
+    font-size: 50px;
+    color: $primary-light-white;
+  }
+
+  .la-carte-body {
+    color: $primary-light-white;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+}

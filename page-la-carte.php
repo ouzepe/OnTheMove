@@ -16,18 +16,11 @@ while (have_posts()):
     ?>
 
     <div class="la-carte-container">
-        <div class="la-carte-content">
-            <h1><?php the_title(); ?></h1>
-            <div class="la-carte-body">
-                <?php the_content(); ?>
-            </div>
+        <div class="la-carte-ocean">
+            <img src="<?php echo get_template_directory_uri(); ?>/src/assets/ocean.svg" alt="Ocean">
         </div>
     </div>
 
     <?php
 endwhile;
-?>
-
-<?php
-get_footer();
 ?>
