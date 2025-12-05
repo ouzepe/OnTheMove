@@ -61,6 +61,13 @@
     border-top: 1px solid $primary-red;
     border-bottom: 1px solid $primary-red;
     padding-bottom: 30px;
+
+    // Permettre les sauts de ligne avec <br>
+    br {
+      display: block;
+      content: "";
+      margin-top: 0;
+    }
   }
 
   .home-carousel-paragraphs {
@@ -119,7 +126,7 @@
       color: $primary-light-white;
       text-decoration: none;
       cursor: pointer;
-      font-size: 45px;
+      font-size: 40px;
       //   letter-spacing: 0.15px; // 0.3% de 50px = 0.15px
       text-align: center;
       text-transform: uppercase;

@@ -69,9 +69,15 @@ if ($home_page && !empty($home_page->post_content)) {
                 // Extraire le h2
                 preg_match('/<h2[^>]*>(.*?)<\/h2>/is', $home_page->post_content, $h2_match);
                 if (!empty($h2_match[1])) {
-                    echo '<h1>' . $h2_match[1] . '</h1>';
+                    $h2_text = $h2_match[1];
+                    // Remplacer la virgule suivie d'un espace par virgule + saut de ligne
+                    $h2_text = preg_replace('/,\s+/', ',<br>', $h2_text);
+                    echo '<h1>' . $h2_text . '</h1>';
                 } else {
-                    echo '<h1>' . $home_page->post_title . '</h1>';
+                    $title_text = $home_page->post_title;
+                    // Remplacer la virgule suivie d'un espace par virgule + saut de ligne
+                    $title_text = preg_replace('/,\s+/', ',<br>', $title_text);
+                    echo '<h1>' . $title_text . '</h1>';
                 }
 
                 // Extraire les deux premiers paragraphes (après le h2)
