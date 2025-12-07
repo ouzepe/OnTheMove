@@ -1,0 +1,51 @@
+@import "../variables";
+@import "../breakpoints";
+
+// L'overflow est déjà géré globalement dans style.scss
+
+h1 {
+  background-color: $primary-dark-red;
+  font-family: "Test Manuka", sans-serif;
+  font-weight: bold;
+  font-size: 75px;
+  color: $primary-light-white;
+  margin: 0 0 0 0;
+  text-align: left;
+  line-height: 90%;
+  text-transform: uppercase;
+  padding: 0 40px 40px 40px;
+}
+.contact-container {
+  background-color: $primary-light-white;
+
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 40px;
+  box-sizing: border-box;
+  overflow: visible;
+
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .contact-content {
+    min-width: 100%;
+    min-height: 100%;
+    color: $primary-dark-red;
+    font-size: 17px;
+    line-height: 1.6;
+
+    p {
+      margin: 0 0 20px 0;
+    }
+
+    a {
+      color: $primary-light-white;
+      text-decoration: underline;
+
+      
+    }
+  }
+}

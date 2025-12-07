@@ -199,12 +199,12 @@
         padding-bottom: 15px;
       }
 
-    //   @include respond-to-down(xs) {
-    //     width: 300px;
-    //     font-size: 20px;
-    //     padding-top: 10px;
-    //     padding-bottom: 10px;
-    //   }
+      //   @include respond-to-down(xs) {
+      //     width: 300px;
+      //     font-size: 20px;
+      //     padding-top: 10px;
+      //     padding-bottom: 10px;
+      //   }
 
       &:hover {
         background-color: $primary-red;
@@ -215,6 +215,7 @@
 }
 
 // Empêcher le scroll de la page quand le carousel est affiché
+// Note: Les styles inline du JavaScript ont la priorité, donc on utilise aussi le JavaScript
 body:has(.home-carousel-container) {
   overflow: hidden !important;
   position: fixed !important;
@@ -229,6 +230,16 @@ html:has(.home-carousel-container) {
   height: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+// S'assurer que l'overflow est visible sur toutes les autres pages
+body:not(:has(.home-carousel-container)) {
+  overflow: visible !important;
+  position: static !important;
+}
+
+html:not(:has(.home-carousel-container)) {
+  overflow: visible !important;
 }
 
 .home-swiper {

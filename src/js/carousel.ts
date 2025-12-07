@@ -56,6 +56,13 @@ document.addEventListener("DOMContentLoaded", function () {
   ) as HTMLElement;
 
   if (!homeSwiperElement) {
+    // S'assurer que l'overflow est visible si on n'est pas sur la page du carousel
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
+    document.body.style.height = "";
+    document.documentElement.style.overflow = "";
+    document.documentElement.style.height = "";
     return;
   }
 
@@ -66,6 +73,28 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.style.height = "100%";
   document.documentElement.style.overflow = "hidden";
   document.documentElement.style.height = "100%";
+
+  // Restaurer l'overflow quand on quitte la page
+  window.addEventListener("beforeunload", function () {
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
+    document.body.style.height = "";
+    document.documentElement.style.overflow = "";
+    document.documentElement.style.height = "";
+  });
+
+  // Restaurer l'overflow si la page devient invisible (changement d'onglet, etc.)
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.height = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
+    }
+  });
 
   // Tableau pour stocker les slides cachées
   const hiddenSlides: HTMLElement[] = [];

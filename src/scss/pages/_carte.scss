@@ -15,16 +15,16 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  overflow: visible; // Permettre de voir les éléments en dehors de la zone visible
+  overflow: visible;
 
   img {
-    width: auto; // Permettre à l'image d'être plus large que l'écran
-    height: auto; // Permettre à l'image d'être plus haute que l'écran
+    width: auto;
+    height: auto;
     min-width: 100%;
     min-height: 100%;
-    max-width: none; // Pas de limite de largeur
-    max-height: none; // Pas de limite de hauteur
-    object-fit: none; // Ne pas forcer le fit, garder les dimensions originales
+    max-width: none;
+    max-height: none;
+    object-fit: none;
     object-position: center;
     display: block;
     cursor: grab;

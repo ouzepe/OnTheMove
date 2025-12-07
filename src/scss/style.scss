@@ -4,8 +4,8 @@
 @import "pages/header";
 @import "pages/single";
 @import "pages/carte";
+@import "pages/contact";
 
-// Swiper CSS
 @import "~swiper/css";
 @import "~swiper/css/pagination";
 @import "~swiper/css/autoplay";
@@ -23,7 +23,15 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  // font-family: "Test Manuka", sans-serif;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: visible;
+  width: 100%;
+  max-width: 100%;
 }
 
 #page {
@@ -35,6 +43,12 @@ body {
 
 #main {
   flex: 1;
+  padding-top: 160px;
+  box-sizing: border-box;
+
+  @include respond-to-down(md) {
+    padding-top: 100px;
+  }
 }
 @font-face {
   font-family: "Test Manuka";
