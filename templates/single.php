@@ -52,6 +52,10 @@ if ($home_page && !empty($home_page->post_content)) {
         }
     }
 }
+
+// Ne pas limiter les images - on les filtrera en JavaScript selon le format
+// Desktop/tablette : images 1, 2, 3, 4 (index 0, 1, 2, 3)
+// Mobile : images 1, 2, 5, 6 (index 0, 1, 4, 5)
 ?>
 
 <div class="home-carousel-container">
@@ -136,20 +140,48 @@ if ($home_page && !empty($home_page->post_content)) {
         <div class="swiper-wrapper">
             <?php
             if (!empty($carousel_images)) {
-                // Afficher les images extraites du post_content
+                // Calculer le nombre total d'images
+                $total_images = count($carousel_images);
+                // Calculer les index des 2 dernières images (les 2 dernières = index total-2 et total-1)
+                $last_two_indexes = [];
+                if ($total_images >= 2) {
+                    $last_two_indexes[] = $total_images - 2; // Avant-dernière
+                    $last_two_indexes[] = $total_images - 1; // Dernière
+                }
+
+                // Afficher toutes les images avec des attributs data pour le filtrage
+                // Desktop/tablette : images 1, 2, 3, 4 (index 0, 1, 2, 3)
+                // Mobile : 2 premières (index 0, 1) et 2 dernières (index total-2, total-1)
                 foreach ($carousel_images as $index => $image) {
+                    // Déterminer si visible en desktop (index 0-3)
+                    $is_desktop_visible = ($index <= 3);
+                    // Déterminer si visible en mobile : 2 premières (0, 1) ou 2 dernières
+                    $is_mobile_visible = ($index == 0 || $index == 1 || in_array($index, $last_two_indexes));
                     ?>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" data-slide-index="<?php echo $index; ?>"
+                        data-desktop-visible="<?php echo $is_desktop_visible ? 'true' : 'false'; ?>"
+                        data-mobile-visible="<?php echo $is_mobile_visible ? 'true' : 'false'; ?>">
                         <img src="<?php echo esc_url($image['src']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
                     </div>
                     <?php
                 }
             } else {
-                // Fallback: afficher les 4 images du carousel depuis src/assets/carousel
-                for ($i = 1; $i <= 4; $i++) {
+                // Fallback: afficher les 6 images du carousel depuis src/assets/carousel
+                // On suppose qu'il y a au moins 6 images disponibles
+                $total_images = 6;
+                $last_two_indexes = [4, 5]; // Les 2 dernières (index 4 et 5 pour 6 images)
+            
+                for ($i = 1; $i <= 6; $i++) {
                     $image_url = get_template_directory_uri() . '/src/assets/carousel/carousel-img-' . $i . '.jpg';
+                    $index = $i - 1; // Convertir en index 0-based
+                    // Desktop/tablette : images 1, 2, 3, 4 (index 0, 1, 2, 3)
+                    // Mobile : 2 premières (index 0, 1) et 2 dernières (index 4, 5)
+                    $is_desktop_visible = ($index <= 3);
+                    $is_mobile_visible = ($index == 0 || $index == 1 || in_array($index, $last_two_indexes));
                     ?>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" data-slide-index="<?php echo $index; ?>"
+                        data-desktop-visible="<?php echo $is_desktop_visible ? 'true' : 'false'; ?>"
+                        data-mobile-visible="<?php echo $is_mobile_visible ? 'true' : 'false'; ?>">
                         <img src="<?php echo esc_url($image_url); ?>" alt="Slide <?php echo $i; ?>">
                     </div>
                     <?php

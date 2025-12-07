@@ -20,33 +20,63 @@
   opacity: 1;
   pointer-events: none;
 
+  @include respond-to-down(sm) {
+    top: 20px;
+    left: 20px;
+  }
+
   picture {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 
     img {
-      width: 345.8952941894531px;
-      height: 90.72000122070312px;
+      width: 345px;
+      height: 90px;
       object-fit: contain;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
       display: block;
       opacity: 1;
       visibility: visible;
+      @include respond-to-down(sm) {
+        width: 200px;
+        height: 50px;
+      }
     }
   }
 }
 
 .home-carousel-logo-text {
-  height: 100%;
-  position: absolute;
-  top: 300px;
+  height: 100vh;
+  position: fixed;
+  top: 40%;
+  bottom: 0;
+  left: clamp(20px, 5vw, 40px);
   z-index: 100001;
   color: $primary-light-white;
   pointer-events: auto;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @include respond-to-down(xxl) {
+    top: 60%;
+  }
+  @include respond-to-down(xl) {
+    top: 35%;
+  }
+  @include respond-to-down(lg) {
+    top: 45%;
+  }
+  @include respond-to-down(md) {
+    top: 47%;
+  }
+  @include respond-to-down(sm) {
+    top: 30%;
+  }
 
   h1 {
     margin: 0 0 10px 0;
@@ -62,7 +92,17 @@
     border-bottom: 1px solid $primary-red;
     padding-bottom: 30px;
 
-    // Permettre les sauts de ligne avec <br>
+    @include respond-to-down(sm) {
+      width: 350px;
+      font-size: 30px;
+      padding-bottom: 2px;
+    }
+    // @include respond-to-down(xs) {
+    //   width: 300px;
+    //   font-size: 26px;
+    //   padding-bottom: 2px;
+    // }
+
     br {
       display: block;
       content: "";
@@ -77,6 +117,12 @@
     padding: 0;
     width: 600px;
     position: relative;
+    @include respond-to-down(sm) {
+      width: 350px;
+    }
+    // @include respond-to-down(xs) {
+    //   width: 300px;
+    // }
 
     // Bordure verticale au milieu
     &::after {
@@ -103,6 +149,12 @@
         line-height: 1.6;
         color: $primary-light-white;
         text-align: left;
+        @include respond-to-down(sm) {
+          font-size: 14px;
+        }
+        // @include respond-to-down(xs) {
+        //   font-size: 12px;
+        // }
       }
     }
 
@@ -118,26 +170,41 @@
 
     button,
     a {
+      font-family: "Test Manuka", sans-serif;
+      font-weight: bold;
       display: inline-block;
       width: 600px;
-      padding: 18px 20px;
       background-color: transparent;
       border: 0.2px solid $primary-red;
       color: $primary-light-white;
       text-decoration: none;
       cursor: pointer;
-      font-size: 40px;
-      //   letter-spacing: 0.15px; // 0.3% de 50px = 0.15px
+      font-size: clamp(20px, 3vw, 40px);
+      letter-spacing: 0.05em;
       text-align: center;
       text-transform: uppercase;
       position: relative;
       overflow: hidden;
       z-index: 1;
       border-radius: 2px;
-      padding-top: 20px;
+      padding-top: 30px;
       padding-bottom: 30px;
-      padding-bottom: 20px;
-      padding-left: 20px;
+      padding-left: 0;
+      padding-right: 0;
+
+      @include respond-to-down(sm) {
+        width: 350px;
+        font-size: 24px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+
+    //   @include respond-to-down(xs) {
+    //     width: 300px;
+    //     font-size: 20px;
+    //     padding-top: 10px;
+    //     padding-bottom: 10px;
+    //   }
 
       &:hover {
         background-color: $primary-red;
@@ -185,8 +252,6 @@ html:has(.home-carousel-container) {
   justify-content: center;
   overflow: hidden;
   background-color: transparent;
-
-
 }
 
 .home-swiper .swiper-slide img {
@@ -223,6 +288,16 @@ html:has(.home-carousel-container) {
   justify-content: flex-end;
   align-items: center;
   pointer-events: auto !important;
+
+  // En version mobile (sm), positionner en haut à gauche sous le logo
+  @include respond-to-down(sm) {
+    top: clamp(100px, 15vw, 140px) !important;
+    bottom: auto !important;
+    left: clamp(20px, 5vw, 40px) !important;
+    right: auto !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
 }
 
 .home-swiper .swiper-pagination-bullet {
