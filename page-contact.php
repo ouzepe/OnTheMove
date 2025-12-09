@@ -12,7 +12,7 @@ while (have_posts()):
     the_post();
     ?>
 
-    <div>
+    <div class="page-template-page-contact">
         <h1><?php the_title(); ?></h1>
 
         <div class="contact-container">
