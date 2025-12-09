@@ -124,6 +124,10 @@
           width: 156px;
           height: 200px;
         }
+        @include respond-to-between(1190px, 1399px) {
+          width: 130px;
+          height: 170px;
+        }
 
         @include respond-to-down(sm) {
           width: 110px;
