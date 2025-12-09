@@ -18,13 +18,9 @@
   overflow: visible;
 
   img {
-    width: auto;
-    height: auto;
-    min-width: 100%;
-    min-height: 100%;
-    max-width: none;
-    max-height: none;
-    object-fit: none;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
     object-position: center;
     display: block;
     cursor: grab;
@@ -33,6 +29,8 @@
     -moz-user-select: none;
     -ms-user-select: none;
     position: relative;
+    transform-origin: center center;
+    will-change: transform;
 
     &:active {
       cursor: grabbing;

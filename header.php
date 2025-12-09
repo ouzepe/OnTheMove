@@ -16,12 +16,14 @@
             <div class="container">
                 <nav id="header-menu" class="header-menu-">
                     <div class="header-menu-logo">
-                        <picture>
-                            <source media="(max-width: 600px)"
-                                srcset="<?php echo get_template_directory_uri(); ?>/src/assets/LogoMobile.svg">
-                            <img src="<?php echo get_template_directory_uri(); ?>/src/assets/headerLogoWithText.svg"
-                                alt="Logo OnTheMove">
-                        </picture>
+                        <a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>">
+                            <picture>
+                                <source media="(max-width: 600px)"
+                                    srcset="<?php echo get_template_directory_uri(); ?>/src/assets/LogoMobile.svg">
+                                <img src="<?php echo get_template_directory_uri(); ?>/src/assets/headerLogoWithText.svg"
+                                    alt="Logo OnTheMove">
+                            </picture>
+                        </a>
                     </div>
                     <button class="header-menu-burger" id="header-menu-burger" aria-label="Menu">
                         <span></span>

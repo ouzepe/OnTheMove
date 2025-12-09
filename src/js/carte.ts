@@ -14,6 +14,59 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentY = 0;
   let translateX = 0;
   let translateY = 0;
+  let scale = 1;
+
+  // Calculer le zoom initial pour que l'image remplisse l'écran
+  function calculateInitialZoom() {
+    const img = oceanImage;
+    const container = img.parentElement;
+
+    if (!container) return;
+
+    // Attendre que l'image soit chargée
+    if (img.complete) {
+      setInitialZoom();
+    } else {
+      img.addEventListener("load", setInitialZoom);
+    }
+  }
+
+  function setInitialZoom() {
+    const img = oceanImage;
+    const container = img.parentElement;
+
+    if (!container) return;
+
+    const containerWidth = window.innerWidth;
+    const containerHeight = window.innerHeight;
+    const imgWidth = img.naturalWidth || img.width;
+    const imgHeight = img.naturalHeight || img.height;
+
+    if (imgWidth && imgHeight) {
+      // Calculer le zoom pour remplir l'écran (prendre le plus grand ratio)
+      const scaleX = containerWidth / imgWidth;
+      const scaleY = containerHeight / imgHeight;
+      scale = Math.max(scaleX, scaleY) * 1.1; // 1.1 pour avoir un peu de zoom supplémentaire
+
+      // Centrer l'image initialement
+      currentX = 0;
+      currentY = 0;
+      translateX = 0;
+      translateY = 0;
+
+      // Appliquer le zoom et la position initiale
+      img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      img.style.transition = "transform 0.3s ease";
+    }
+  }
+
+  // Calculer le zoom initial au chargement
+  calculateInitialZoom();
+
+  // Recalculer le zoom au redimensionnement de la fenêtre
+  window.addEventListener("resize", () => {
+    calculateInitialZoom();
+  });
 
   // Gérer le début du drag (mousedown)
   oceanImage.addEventListener("mousedown", (e) => {
@@ -33,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     translateX = currentX + deltaX;
     translateY = currentY + deltaY;
 
-    oceanImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    oceanImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
     oceanImage.style.transition = "none"; // Désactiver la transition pendant le drag
   });
 
@@ -77,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     translateX = currentX + deltaX;
     translateY = currentY + deltaY;
 
-    oceanImage.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    oceanImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
     oceanImage.style.transition = "none";
     e.preventDefault();
   });

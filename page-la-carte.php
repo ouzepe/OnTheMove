@@ -17,7 +17,7 @@ while (have_posts()):
 
     <div class="la-carte-container">
         <div class="la-carte-ocean">
-            <img src="<?php echo get_template_directory_uri(); ?>/src/assets/ocean.svg" alt="Ocean">
+            <img src="<?php echo get_template_directory_uri(); ?>/src/assets/countries.svg" alt="Carte des pays">
         </div>
     </div>
 
