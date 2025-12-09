@@ -1,8 +1,6 @@
 @import "../variables";
 @import "../breakpoints";
 
-// L'overflow est déjà géré globalement dans style.scss
-
 h1 {
   background-color: $primary-dark-red;
   font-family: "Test Manuka", sans-serif;
@@ -16,7 +14,7 @@ h1 {
   padding: 0 40px 40px 40px;
 }
 .contact-container {
-  background-color: $primary-light-white;
+  background-color: #f6f6f6;
 
   width: 100%;
   min-height: 100vh;
@@ -31,21 +29,121 @@ h1 {
   }
 
   .contact-content {
-    min-width: 100%;
-    min-height: 100%;
+    width: 60vw;
+    max-width: 60vw;
+    margin: 0 auto;
     color: $primary-dark-red;
     font-size: 17px;
     line-height: 1.6;
+    padding-top: 40px;
 
-    p {
-      margin: 0 0 20px 0;
+    p:first-child {
+      width: 800px;
+      gap: 16px;
+      font-weight: 400;
+      font-size: 21px;
+      line-height: 140%;
+      text-align: center;
+      letter-spacing: 0;
+      color: $primary-dark-red;
+      font-family: "Newsreader", sans-serif;
     }
 
     a {
       color: $primary-light-white;
       text-decoration: underline;
+    }
 
-      
+    .wpcf7 {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .wpcf7-form {
+      width: 100%;
+    }
+
+    .wpcf7-form-control {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .wpcf7-form label {
+      width: 100%;
+      font-family: "Commissioner", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: 0%;
+      color: #4a0b24;
+    }
+
+    .wpcf7-form input,
+    .wpcf7-form textarea {
+      width: 100%;
+      padding-top: 18px;
+      padding-right: 20px;
+      padding-bottom: 14px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      border: 1px solid #a5849133;
+      font-family: "Newsreader", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 17px;
+      line-height: 135%;
+      letter-spacing: 0%;
+      color: #4a0b24;
+
+      &::placeholder {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 17px;
+        line-height: 135%;
+        letter-spacing: 0%;
+        color: #a58491b2;
+        opacity: 1;
+      }
+
+      &::-webkit-input-placeholder {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 17px;
+        line-height: 135%;
+        letter-spacing: 0%;
+        color: #a58491b2;
+        opacity: 1;
+      }
+
+      &::-moz-placeholder {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 17px;
+        line-height: 135%;
+        letter-spacing: 0%;
+        color: #a58491b2;
+        opacity: 1;
+      }
+
+      &:-ms-input-placeholder {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+        font-size: 17px;
+        line-height: 135%;
+        letter-spacing: 0%;
+        color: #a58491b2;
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: #a5849133;
+      }
     }
   }
 }

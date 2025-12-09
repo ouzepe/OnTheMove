@@ -67,3 +67,35 @@ html {
   font-style: normal;
   font-display: swap;
 }
+
+// Polices Newsreader (Variable Font)
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/Newsreader/Newsreader-VariableFont_opsz,wght.ttf")
+    format("truetype");
+  font-weight: 200 800; // ExtraLight à ExtraBold
+  font-style: normal;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/Newsreader/Newsreader-Italic-VariableFont_opsz,wght.ttf")
+    format("truetype");
+  font-weight: 200 800; // ExtraLight à ExtraBold
+  font-style: italic;
+  font-display: swap;
+  font-optical-sizing: auto;
+}
+
+// Polices Commissioner (Variable Font)
+@font-face {
+  font-family: "Commissioner";
+  src: url("../fonts/Commissioner/Commissioner/Commissioner-VariableFont_FLAR,VOLM,slnt,wght.ttf")
+    format("truetype");
+  font-weight: 100 900; // Thin à Black
+  font-style: normal;
+  font-display: swap;
+  font-variation-settings: "FLAR" 0, "VOLM" 0, "slnt" 0;
+}
