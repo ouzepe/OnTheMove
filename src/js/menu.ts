@@ -1,75 +1,63 @@
-// Menu burger functionality
 document.addEventListener("DOMContentLoaded", () => {
   const burger = document.querySelector(".header-menu-burger");
   const menuContent = document.querySelector(".header-menu-content");
   const menuItems = document.querySelectorAll(".menu-item-has-children");
 
-  // Fonction pour retirer les accents d'un texte
   const removeAccents = (text: string): string => {
-    return (
-      text
-        // Minuscules
-        .replace(/é/g, "e")
-        .replace(/è/g, "e")
-        .replace(/ê/g, "e")
-        .replace(/ë/g, "e")
-        .replace(/à/g, "a")
-        .replace(/â/g, "a")
-        .replace(/ä/g, "a")
-        .replace(/ù/g, "u")
-        .replace(/û/g, "u")
-        .replace(/ü/g, "u")
-        .replace(/î/g, "i")
-        .replace(/ï/g, "i")
-        .replace(/ô/g, "o")
-        .replace(/ö/g, "o")
-        .replace(/ç/g, "c")
-        // Majuscules
-        .replace(/É/g, "E")
-        .replace(/È/g, "E")
-        .replace(/Ê/g, "E")
-        .replace(/Ë/g, "E")
-        .replace(/À/g, "A")
-        .replace(/Â/g, "A")
-        .replace(/Ä/g, "A")
-        .replace(/Ù/g, "U")
-        .replace(/Û/g, "U")
-        .replace(/Ü/g, "U")
-        .replace(/Î/g, "I")
-        .replace(/Ï/g, "I")
-        .replace(/Ô/g, "O")
-        .replace(/Ö/g, "O")
-        .replace(/Ç/g, "C")
-    );
+    return text
+      .replace(/é/g, "e")
+      .replace(/è/g, "e")
+      .replace(/ê/g, "e")
+      .replace(/ë/g, "e")
+      .replace(/à/g, "a")
+      .replace(/â/g, "a")
+      .replace(/ä/g, "a")
+      .replace(/ù/g, "u")
+      .replace(/û/g, "u")
+      .replace(/ü/g, "u")
+      .replace(/î/g, "i")
+      .replace(/ï/g, "i")
+      .replace(/ô/g, "o")
+      .replace(/ö/g, "o")
+      .replace(/ç/g, "c")
+      .replace(/É/g, "E")
+      .replace(/È/g, "E")
+      .replace(/Ê/g, "E")
+      .replace(/Ë/g, "E")
+      .replace(/À/g, "A")
+      .replace(/Â/g, "A")
+      .replace(/Ä/g, "A")
+      .replace(/Ù/g, "U")
+      .replace(/Û/g, "U")
+      .replace(/Ü/g, "U")
+      .replace(/Î/g, "I")
+      .replace(/Ï/g, "I")
+      .replace(/Ô/g, "O")
+      .replace(/Ö/g, "O")
+      .replace(/Ç/g, "C");
   };
 
-  // Retirer l'accent du 2ème et 3ème élément du menu en version tablette (md) et mobile (sm)
   const removeAccentOnTabletAndMobile = () => {
     const primaryMenu = document.querySelector(".primary-menu");
     if (!primaryMenu) return;
 
-    // Vérifier si on est en tablette (md) ou mobile (sm)
     const isTabletOrMobile = window.innerWidth < 992;
 
-    // Traiter le 2ème élément (index 1)
     const secondMenuItem = primaryMenu.children[1] as HTMLElement;
     if (secondMenuItem) {
       const secondMenuLink = secondMenuItem.querySelector("a");
       if (secondMenuLink) {
         const originalText = secondMenuLink.textContent || "";
-        // Sauvegarder le texte original si ce n'est pas déjà fait
         if (!secondMenuLink.dataset.originalText) {
           secondMenuLink.dataset.originalText = originalText;
         }
 
         if (isTabletOrMobile) {
-          // Remplacer les accents
           const textWithoutAccent = removeAccents(originalText);
           if (secondMenuLink.textContent !== textWithoutAccent) {
             secondMenuLink.textContent = textWithoutAccent;
           }
         } else {
-          // Restaurer le texte original si on n'est plus en tablette/mobile
           if (secondMenuLink.dataset.originalText) {
             secondMenuLink.textContent = secondMenuLink.dataset.originalText;
           }
@@ -77,25 +65,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Traiter le 3ème élément (index 2)
     const thirdMenuItem = primaryMenu.children[2] as HTMLElement;
     if (thirdMenuItem) {
       const thirdMenuLink = thirdMenuItem.querySelector("a");
       if (thirdMenuLink) {
         const originalText = thirdMenuLink.textContent || "";
-        // Sauvegarder le texte original si ce n'est pas déjà fait
         if (!thirdMenuLink.dataset.originalText) {
           thirdMenuLink.dataset.originalText = originalText;
         }
 
         if (isTabletOrMobile) {
-          // Remplacer les accents
           const textWithoutAccent = removeAccents(originalText);
           if (thirdMenuLink.textContent !== textWithoutAccent) {
             thirdMenuLink.textContent = textWithoutAccent;
           }
         } else {
-          // Restaurer le texte original si on n'est plus en tablette/mobile
           if (thirdMenuLink.dataset.originalText) {
             thirdMenuLink.textContent = thirdMenuLink.dataset.originalText;
           }
@@ -104,33 +88,52 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Appeler la fonction au chargement et au redimensionnement
   removeAccentOnTabletAndMobile();
   window.addEventListener("resize", removeAccentOnTabletAndMobile);
 
-  // Toggle burger menu
+  const header = document.querySelector("#header") as HTMLElement;
+  if (header && window.innerWidth > 1200) {
+    let lastScrollTop = 0;
+    window.addEventListener(
+      "scroll",
+      () => {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+        lastScrollTop = scrollTop;
+      },
+      false
+    );
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 1200) {
+        header.classList.remove("scrolled");
+      }
+    });
+  }
+
   if (burger && menuContent) {
     burger.addEventListener("click", () => {
       const isActive = burger.classList.contains("active");
       burger.classList.toggle("active");
       menuContent.classList.toggle("active");
 
-      // Bloquer le scroll du body quand le menu est ouvert (mobile/tablette uniquement)
       if (window.innerWidth <= 1200) {
         if (!isActive) {
-          // Menu s'ouvre : bloquer le scroll du body
           document.body.style.overflow = "hidden";
           document.body.style.position = "fixed";
           document.body.style.width = "100%";
         } else {
-          // Menu se ferme : restaurer le scroll du body
           document.body.style.overflow = "";
           document.body.style.position = "";
           document.body.style.width = "";
         }
       }
 
-      // Si on ferme le menu, réinitialiser tous les transforms et opacités
       if (isActive) {
         const primaryMenu = document.querySelector(".primary-menu");
         if (primaryMenu) {
@@ -152,37 +155,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Toggle submenu on mobile
   menuItems.forEach((item) => {
     const link = item.querySelector("a");
     const submenu = item.querySelector(".sub-menu");
 
     if (link && submenu) {
       link.addEventListener("click", (e) => {
-        // Only prevent default and toggle on mobile
         if (window.innerWidth <= 1200) {
           e.preventDefault();
           const isActive = item.classList.contains("active");
 
-          // Calculer la hauteur du sous-menu
           if (!isActive) {
-            // Ouvrir le sous-menu pour calculer sa hauteur (mais invisible au début)
             submenu.classList.add("active");
             item.classList.add("active");
             const submenuElement = submenu as HTMLElement;
 
-            // Commencer avec opacité 0
             submenuElement.style.opacity = "0";
 
-            // Attendre un court instant pour que le DOM se mette à jour
             setTimeout(() => {
               const submenuHeight = submenuElement.scrollHeight;
 
-              // Réduire l'espace en soustrayant une partie de la hauteur
-              // Le padding-top de 5px dans le CSS + la réduction créera un espace minimal
               const adjustedHeight = submenuHeight - 100;
 
-              // Faire descendre les éléments suivants
               const primaryMenu = item.parentElement as HTMLElement | null;
               if (primaryMenu) {
                 const allItems = Array.from(primaryMenu.children).filter(
@@ -190,7 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
                 const currentIndex = allItems.indexOf(item as HTMLElement);
 
-                // Appliquer le transform aux éléments suivants (index 2 et plus)
                 for (let i = currentIndex + 1; i < allItems.length; i++) {
                   allItems[
                     i
@@ -198,16 +191,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
               }
 
-              // Faire apparaître le sous-menu avec opacité après le début de l'animation
               setTimeout(() => {
                 submenuElement.style.opacity = "1";
               }, 100);
             }, 10);
           } else {
-            // Fermer le sous-menu et réinitialiser les transforms avec animation fluide
             const submenuElement = submenu as HTMLElement;
 
-            // Réinitialiser d'abord les transforms avec transition
             const primaryMenu = item.parentElement as HTMLElement | null;
             if (primaryMenu) {
               const allItems = Array.from(primaryMenu.children).filter(
@@ -215,22 +205,18 @@ document.addEventListener("DOMContentLoaded", () => {
               );
               const currentIndex = allItems.indexOf(item as HTMLElement);
 
-              // Réinitialiser le transform des éléments suivants avec transition
               for (let i = currentIndex + 1; i < allItems.length; i++) {
                 allItems[i].style.transition = "transform 0.6s ease-in-out";
                 allItems[i].style.transform = "translateY(0)";
               }
             }
 
-            // Faire disparaître le sous-menu avec opacité
             submenuElement.style.transition = "opacity 0.6s ease-in-out";
             submenuElement.style.opacity = "0";
 
-            // Attendre la fin de l'animation d'opacité avant de masquer
             setTimeout(() => {
               item.classList.remove("active");
               submenu.classList.remove("active");
-              // Réinitialiser les transitions
               if (primaryMenu) {
                 const allItems = Array.from(primaryMenu.children).filter(
                   (el): el is HTMLElement => el instanceof HTMLElement
@@ -248,16 +234,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Empêcher le clic sur "Les territoires d'enquête" (2ème élément du menu) uniquement sur desktop
   const primaryMenu = document.querySelector(".primary-menu");
   if (primaryMenu) {
-    const secondMenuItem = primaryMenu.children[1] as HTMLElement; // Index 1 = 2ème élément
+    const secondMenuItem = primaryMenu.children[1] as HTMLElement;
     if (secondMenuItem) {
       const secondMenuLink = secondMenuItem.querySelector("a");
       if (secondMenuLink) {
         secondMenuLink.addEventListener("click", (e) => {
-          // Sur desktop uniquement, empêcher le clic
-          // Sur mobile/tablette, laisser le comportement par défaut pour afficher les sous-menus
           if (window.innerWidth > 768) {
             e.preventDefault();
             e.stopPropagation();
@@ -267,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Close menu when clicking outside
   document.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     if (
@@ -279,14 +261,12 @@ document.addEventListener("DOMContentLoaded", () => {
       burger.classList.remove("active");
       menuContent.classList.remove("active");
 
-      // Restaurer le scroll du body
       if (window.innerWidth <= 1200) {
         document.body.style.overflow = "";
         document.body.style.position = "";
         document.body.style.width = "";
       }
 
-      // Réinitialiser tous les transforms et opacités
       const primaryMenu = document.querySelector(".primary-menu");
       if (primaryMenu) {
         const allItems = Array.from(primaryMenu.children).filter(
@@ -303,13 +283,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Close menu on window resize if switching to desktop
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768 && burger && menuContent) {
       burger.classList.remove("active");
       menuContent.classList.remove("active");
 
-      // Restaurer le scroll du body
       document.body.style.overflow = "";
       document.body.style.position = "";
       document.body.style.width = "";
@@ -325,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // Réinitialiser tous les transforms
       const primaryMenu = document.querySelector(".primary-menu");
       if (primaryMenu) {
         const allItems = Array.from(primaryMenu.children).filter(

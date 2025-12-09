@@ -1,26 +1,37 @@
 @import "../variables";
 @import "../breakpoints";
 
-.header {
+#header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   max-width: 100%;
   z-index: 1000;
-  background-color: $primary-dark-red;
+  background-color: transparent;
   box-sizing: border-box;
-  padding-top: 20px; // Ajouter un padding-top pour que le header soit entièrement visible
+  padding-top: 20px;
+  transition: background-color 0.3s ease;
 
-  // Ne pas afficher le header sur la page du carousel (single.php)
   body:has(.home-carousel-container) & {
     display: none;
   }
 
-  // En mobile/tablette, garder le padding-top pour que le menu burger reste à la même position au scroll
+  &.scrolled {
+    background-color: $primary-dark-red;
+    height: 100px;
+    min-height: 100px;
+  }
+
   @include respond-to-down(md) {
-    padding-top: 20px; // Même padding-top qu'en desktop pour que le menu burger reste à la même position
-    min-height: 90px; // Hauteur minimale pour que le header soit visible (20px padding-top + 50px logo + 20px espace)
+    padding-top: 20px;
+    min-height: 90px;
+    background-color: $primary-dark-red;
+
+    &.scrolled {
+      height: auto;
+      min-height: 90px;
+    }
   }
 
   .container {
@@ -36,13 +47,12 @@
     padding: 30px;
     margin: 0 auto;
     position: relative;
-    padding-top: 20px; // Ajouter un padding-top supplémentaire pour compenser le padding-top du header
+    padding-top: 20px;
 
     @include respond-to-down(md) {
-      // En mobile/tablette, réduire le padding pour que le header soit visible
       padding: 20px 30px 30px 30px;
-      padding-top: 20px; // Aligner avec le padding-top du header
-      min-height: 30px; // Hauteur minimale pour que le header soit visible (20px padding-top + 50px logo)
+      padding-top: 20px;
+      min-height: 30px;
     }
 
     @include respond-to-down(sm) {
@@ -73,8 +83,8 @@
       z-index: 1002;
       background-color: $primary-dark-red;
       padding: 0;
-      width: auto; // Largeur automatique pour que le logo ne prenne pas toute la largeur
-      max-width: 200px; // Limiter la largeur du logo en mobile
+      width: auto;
+      max-width: 200px;
       box-sizing: border-box;
 
       picture {
@@ -83,8 +93,8 @@
         justify-content: center;
 
         img {
-          width: 200px; // Taille fixe pour le logo en mobile
-          height: 50px; // Hauteur fixe pour le logo en mobile
+          width: 200px;
+          height: 50px;
           max-width: 100%;
           object-fit: contain;
           image-rendering: -webkit-optimize-contrast;
@@ -169,22 +179,20 @@
     }
 
     @include respond-to-down(md) {
-      display: flex; // Afficher le menu burger en mobile/tablette
+      display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
       width: auto;
       height: 13px;
       position: fixed;
-      left: 20px; // Aligné à gauche
-      top: 20px; // Aligné avec le logo (20px = padding-top du header)
+      left: 20px;
+      top: 20px;
       transform: none;
-      padding: 15px 20px; // Garder le padding pour le background
+      padding: 15px 20px;
       background-color: $primary-dark-red;
       z-index: 1003;
-      // Le menu burger reste à la même position car le header a aussi padding-top: 20px
 
-      // Créer un espace pour les barres qui sont en absolute
       &::before {
         content: "";
         display: block;
@@ -201,7 +209,7 @@
       }
 
       span:nth-child(1):not(.header-menu-burger-text) {
-        top: 5px; // Réduire l'espace depuis le haut
+        top: 5px;
       }
 
       span:nth-child(2):not(.header-menu-burger-text) {
@@ -210,7 +218,7 @@
       }
 
       span:nth-child(3):not(.header-menu-burger-text) {
-        bottom: 5px; // Réduire l'espace depuis le bas
+        bottom: 5px;
       }
 
       .header-menu-burger-text {
@@ -225,7 +233,7 @@
 
       &.active {
         transform: none;
-        top: 20px; // Rester aligné avec le logo même quand actif
+        top: 20px;
 
         span:nth-child(1):not(.header-menu-burger-text) {
           top: 50%;
@@ -242,7 +250,6 @@
       }
     }
 
-    // Masquer le texte "Menu" sur mobile (petits écrans)
     @include respond-to-down(sm) {
       .header-menu-burger-text {
         display: none !important;
@@ -290,7 +297,6 @@
       letter-spacing: 0.01em;
       text-transform: none;
 
-      // Sous-menus avec taille de police réduite
       .sub-menu {
         font-size: 12px;
         font-weight: 0;
@@ -339,7 +345,6 @@
           font-size: 20px;
         }
 
-        // Supprimer le border-bottom pour tous les li actifs en mobile/tablette
         @include respond-to-down(md) {
           &.active {
             border-bottom: none !important;
@@ -400,7 +405,6 @@
           }
         }
 
-        // Les 2 premiers éléments (La carte et Les territoires d'enquête) sans hover background
         &:nth-child(1),
         &:nth-child(2) {
           a {
@@ -415,10 +419,8 @@
           }
         }
 
-        // "Les territoires d'enquête" - garde le cursor pointer (le clic est désactivé en JS)
         &:nth-child(2) {
           @include respond-to-down(md) {
-            // Supprimer le border-bottom quand le sous-menu est ouvert
             &.active {
               border-bottom: none !important;
             }
@@ -448,7 +450,6 @@
             }
 
             @include respond-to-down(md) {
-              //   padding-right: 35px;
               padding-right: 0;
               position: relative;
 
@@ -463,7 +464,6 @@
             }
           }
 
-          // Rotation du chevron quand le menu s'ouvre (hover sur le li)
           &:hover {
             a {
               &::after {
@@ -471,7 +471,6 @@
               }
             }
 
-            // Désactiver le hover en version burger
             @include respond-to-down(md) {
               a {
                 &::after {
@@ -481,7 +480,6 @@
             }
           }
 
-          // Rotation du chevron en version menu burger (classe active)
           &.active {
             a {
               &::after {
@@ -491,7 +489,6 @@
           }
         }
 
-        // Supprimer le ::before sur tous les éléments sauf le premier
         &:not(:nth-child(1)) {
           a {
             &::before {
@@ -500,7 +497,6 @@
           }
         }
 
-        // Border-bottom blanc pour "La carte" (premier élément uniquement)
         &:nth-child(1) {
           @include respond-to-down(md) {
             border-top: 1px solid $primary-border-red;
@@ -539,7 +535,6 @@
           }
         }
 
-        // Sous-menu
         .sub-menu {
           display: none;
           position: absolute;
@@ -571,7 +566,6 @@
             transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
           }
 
-          // Quand le sous-menu est actif, l'afficher en flex et centré
           @include respond-to-down(md) {
             &.active {
               display: flex !important;
@@ -596,7 +590,6 @@
               border-top: none !important;
             }
 
-            // Supprimer le border-top du premier élément du sous-menu
             &:first-child {
               @include respond-to-down(md) {
                 border-top: none !important;
@@ -648,14 +641,12 @@
           }
         }
 
-        // Sur tablette/mobile, désactiver complètement le hover pour les sous-menus
         @include respond-to-down(md) {
           &:hover .sub-menu {
             display: none !important;
           }
         }
 
-        // Affichage du sous-menu sur mobile avec classe active
         @include respond-to-down(md) {
           &.menu-item-has-children {
             .sub-menu {
@@ -665,7 +656,6 @@
             }
           }
 
-          // S'assurer que le hover ne masque pas le sous-menu quand il est actif
           &:hover .sub-menu {
             &.active {
               display: block !important;
@@ -673,14 +663,12 @@
           }
         }
 
-        // Push "À propos" and following items to the right on desktop only
         @include respond-to(lg) {
           &:nth-child(3) {
             margin-left: auto;
           }
         }
 
-        // Animation pour faire descendre les éléments suivants "Les territoires d'enquête" en mobile/tablette
         @include respond-to-down(md) {
           &:nth-child(n + 3) {
             transition: transform 0.4s ease-in-out;

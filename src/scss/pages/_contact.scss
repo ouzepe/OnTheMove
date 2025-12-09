@@ -15,9 +15,10 @@
     padding: 0 40px 40px 40px;
 
     @include respond-to-down(sm) {
-      width: 100%;
+      width: 80%;
       margin: 0 auto;
       text-align: center;
+      padding-bottom: 30px;
     }
   }
 

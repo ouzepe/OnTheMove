@@ -126,11 +126,11 @@
         }
 
         @include respond-to-down(sm) {
-          width: 150px;
-          height: 150px;
+          width: 110px;
+          height: 130px;
         }
         @include respond-to-down(xs) {
-          width: 125px;
+          width: 110px;
           height: 130px;
         }
 
