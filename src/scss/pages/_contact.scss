@@ -205,14 +205,61 @@
         padding: 0;
         border: none;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+      }
+
+      // Wrapper pour le bouton et le SVG
+      .submit-button-wrapper {
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 150px;
+        height: 55px;
+        border: 1px solid #a5849133;
+        background-color: transparent;
+        box-sizing: border-box;
+        padding: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        // Le hover s'applique sur tout le wrapper (texte et SVG)
+        &:hover:has(.wpcf7-submit:not(:disabled)) {
+          background-color: rgba(165, 132, 145, 0.1);
+        }
+
+        &:has(.wpcf7-submit:disabled) {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+      // Styles pour la flèche SVG ajoutée via JavaScript
+      .submit-arrow {
+        display: inline-block !important;
+        width: 15px;
+        height: 12px;
+        margin-left: 8px;
+        flex-shrink: 0;
+
+        svg {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
       }
 
       // Styles pour le bouton "Envoyer"
       .wpcf7-submit {
-        width: 150px !important;
-        max-width: 150px !important;
+        width: auto !important;
+        max-width: none !important;
         height: 55px;
-        border: 1px solid #a5849133;
+        border: none !important;
+        outline: none !important;
         background-color: transparent;
         color: #4a0b24;
         font-family: "Commissioner", sans-serif;
@@ -224,28 +271,28 @@
         cursor: pointer;
         transition: all 0.3s ease;
         padding: 0;
-        padding-left: 10px;
-        padding-right: 10px;
         box-sizing: border-box;
-        display: inline-flex;
-        align-items: center;
-        justify-content: flex-start;
-        margin: 0 auto;
-        position: relative;
+        display: inline-block;
+        margin: 0;
         text-align: left;
+        flex: 1;
 
         // Ajouter la flèche à côté du texte
         &::after {
           content: "";
           display: inline-block;
           width: 15px;
+          min-width: 15px;
           height: 12px;
-          background-image: url("data:image/svg+xml,%3Csvg width='15' height='12' viewBox='0 0 15 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 12V0L15 6L0 12ZM1.5 9.77084L10.9583 6L1.5 2.22917V4.5L6 6L1.5 7.5V9.77084Z' fill='%23A58491'/%3E%3C/svg%3E");
-          background-size: contain;
+          min-height: 12px;
+          background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNSAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAxMlYwTDE1IDZMMCAxMlpNMS41IDkuNzcwODRMMTAuOTU4MyA2TDEuNSAyLjIyOTE3VjQuNUw2IDZMMS41IDcuNVY5Ljc3MDg0WiIgZmlsbD0iIzRhMGIyNCIvPjwvc3ZnPg==");
+          background-size: 15px 12px;
           background-repeat: no-repeat;
           background-position: center;
           margin-left: 8px;
           flex-shrink: 0;
+          opacity: 1 !important;
+          visibility: visible !important;
         }
 
         &:hover:not(:disabled) {
