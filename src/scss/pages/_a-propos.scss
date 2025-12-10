@@ -36,13 +36,112 @@
     }
 
     .a-propos-content {
-      width: 60vw;
-      max-width: 60vw;
-      margin: 0 auto;
       color: $primary-dark-red;
       font-size: 17px;
       line-height: 1.6;
       padding-top: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      // Cacher les 2ème et 3ème paragraphes initialement pour éviter le flash
+      > p:nth-of-type(2),
+      > p:nth-of-type(3) {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      // Afficher les paragraphes une fois dans le wrapper
+      .two-paragraphs-wrapper {
+        > p {
+          opacity: 1;
+        }
+      }
+
+      // Wrapper flex pour les deux paragraphes côte à côte
+      .two-paragraphs-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 40px;
+        width: 100%;
+        max-width: 100%;
+        margin: 20px auto;
+        padding-top: 40px;
+        position: relative;
+
+        @include respond-to-down(md) {
+          flex-direction: column;
+          gap: 20px;
+          align-items: center;
+          justify-content: center;
+        }
+
+        // Séparateur entre les deux paragraphes
+        .two-paragraphs-separator {
+          width: 1px;
+          background-color: #a5849133;
+          flex-shrink: 0;
+          align-self: stretch;
+
+          @include respond-to-down(sm) {
+            display: none;
+          }
+        }
+
+        // Le 2ème paragraphe (à gauche)
+        > p:nth-of-type(1) {
+          width: calc(40vw - 20px);
+          max-width: calc(40vw - 20px);
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          text-align: left;
+
+          // Tablette uniquement (entre sm et lg)
+          @include respond-to-between($breakpoint-sm, $breakpoint-lg) {
+            width: 80%;
+            max-width: 80%;
+            text-align: left;
+            margin: 0 auto;
+          }
+
+          // Mobile
+          @include respond-to-down(sm) {
+            width: 100%;
+            max-width: 100%;
+            text-align: left;
+          }
+        }
+
+        // Le 3ème paragraphe (à droite)
+        > p:nth-of-type(2) {
+          width: calc(40vw - 20px);
+          max-width: calc(40vw - 20px);
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          text-align: left;
+
+          // Tablette uniquement (entre sm et lg)
+          @include respond-to-between($breakpoint-sm, $breakpoint-lg) {
+            width: 80%;
+            max-width: 80%;
+            text-align: left;
+            margin: 0 auto;
+          }
+
+          // Mobile
+          @include respond-to-down(sm) {
+            width: 100%;
+            max-width: 100%;
+            text-align: left;
+          }
+        }
+      }
 
       @include respond-to-down(md) {
         width: 100%;
@@ -50,8 +149,8 @@
       }
 
       @include respond-to-down(sm) {
-        width: 80%;
-        max-width: 80%;
+        width: 100%;
+        max-width: 100%;
         margin: 0 auto;
       }
 
@@ -59,45 +158,48 @@
         margin: 0 0 20px 0;
         color: $primary-dark-red;
         font-family: "Newsreader", sans-serif;
-        font-size: 17px;
+        font-size: 20px;
         line-height: 1.6;
+        text-align: center;
 
         @include respond-to-down(sm) {
           font-size: 16px;
         }
       }
 
-      h2,
-      h3,
-      h4 {
+      h2 {
         color: $primary-dark-red;
         font-family: "Test Manuka", sans-serif;
         font-weight: bold;
         margin: 30px 0 20px 0;
-      }
-
-      h2 {
-        font-size: 40px;
+        font-size: clamp(40px, 2vw + 50px, 60px);
 
         @include respond-to-down(sm) {
-          font-size: 30px;
+          font-size: clamp(40px, 5vw, 40px);
         }
       }
 
-      h3 {
-        font-size: 30px;
-
-        @include respond-to-down(sm) {
-          font-size: 24px;
-        }
-      }
-
-      a {
+      p:first-of-type {
         color: $primary-dark-red;
-        text-decoration: underline;
-
-        &:hover {
-          opacity: 0.8;
+        width: 50vw;
+        max-width: 50vw;
+        margin: 0 auto;
+        text-align: center;
+        font-family: "Newsreader", sans-serif;
+        font-size: 20px;
+        line-height: 1.6;
+        @include respond-to-between($breakpoint-sm, $breakpoint-lg) {
+          width: 80%;
+          max-width: 80%;
+          margin: 0 auto;
+          text-align: center;
+        }
+        @include respond-to-down(sm) {
+          width: 100%;
+          max-width: 100%;
+          margin: 0 auto;
+          text-align: center;
+          font-size: 18px;
         }
       }
     }
