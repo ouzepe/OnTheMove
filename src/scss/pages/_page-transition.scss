@@ -1,0 +1,46 @@
+// Transitions de page
+
+.page-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $primary-dark-red;
+  z-index: 999999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+
+  .page-transition-logo {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 0;
+
+    picture {
+      display: block;
+      margin: 0;
+      padding: 0;
+
+      img {
+        width: 500px;
+        height: auto;
+        max-width: 90vw;
+        object-fit: contain;
+        display: block;
+        opacity: 1;
+
+        @include respond-to-down(md) {
+          width: 300px;
+        }
+
+        @include respond-to-down(sm) {
+          width: 200px;
+        }
+      }
+    }
+  }
+}

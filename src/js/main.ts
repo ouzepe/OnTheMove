@@ -3,5 +3,6 @@ import "./menu";
 import "./carousel";
 import "./carte";
 import "./contact";
+import "./page-transition";
 
-console.log("Thème OnTheMove prêt 🎉");
+console.info("Thème OnTheMove prêt 🎉");
