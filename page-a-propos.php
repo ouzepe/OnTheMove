@@ -27,6 +27,7 @@ while (have_posts()):
         </div>
     </div>
 
+
     <?php
 endwhile;
 ?>

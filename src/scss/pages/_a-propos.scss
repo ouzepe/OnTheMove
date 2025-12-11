@@ -211,6 +211,91 @@
         letter-spacing: 0%;
         text-align: center;
       }
+
+      // Wrapper flex pour les figures partenaires
+      .wp-block-group.is-nowrap.is-layout-flex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 89%;
+        max-width: 100%;
+        margin: 20px auto;
+
+        @include respond-to-down(sm) {
+          flex-direction: column;
+          width: 100%;
+          gap: 10px;
+        }
+
+        // Chaque figure avec background blanc
+        figure {
+          width: 451px;
+          height: 200px;
+          border-radius: 2px;
+          opacity: 0.9;
+          padding: 32px;
+          background-color: #ffffff;
+          margin: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+
+          @include respond-to-down(sm) {
+            width: 100%;
+            max-width: 451px;
+            height: auto;
+            min-height: 200px;
+          }
+
+          img {
+            width: 387px;
+            height: 136px;
+            opacity: 1;
+            object-fit: contain;
+            display: block;
+
+            @include respond-to-down(sm) {
+              width: 100%;
+              max-width: 387px;
+              height: auto;
+            }
+          }
+
+          // Deuxième figure - réduire la taille de l'image
+          &:nth-of-type(2) {
+            img {
+              width: 140px;
+              height: auto;
+              max-width: 150px;
+
+              @include respond-to-down(sm) {
+                width: 100%;
+                max-width: 150px;
+              }
+            }
+          }
+        }
+      }
+
+      // Partner big screen
+      .partner-big-screen {
+        padding-top: 40px;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        opacity: 1;
+        // margin: 20px auto;
+
+        // @include respond-to-down(sm) {
+        //   width: 100%;
+        //   max-width: 100%;
+        //   height: auto;
+        //   max-height: none;
+        // }
+      }
     }
   }
 }

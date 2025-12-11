@@ -53,4 +53,47 @@ document.addEventListener("DOMContentLoaded", () => {
     secondParagraph.style.opacity = "1";
     thirdParagraph.style.opacity = "1";
   });
+
+  // Créer un wrapper pour les 3 figures après le h6 avec la classe a-propos-partner
+  const partnerHeading = aProposContent.querySelector(
+    "h6.a-propos-partner"
+  ) as HTMLElement;
+
+  if (partnerHeading) {
+    // Récupérer les 3 figures qui suivent le h6
+    const figures: HTMLElement[] = [];
+    let nextElement = partnerHeading.nextElementSibling;
+
+    while (nextElement && figures.length < 3) {
+      if (nextElement.tagName === "FIGURE") {
+        figures.push(nextElement as HTMLElement);
+      }
+      nextElement = nextElement.nextElementSibling;
+    }
+
+    if (figures.length === 3) {
+      // Vérifier si le wrapper existe déjà
+      const existingWrapper = aProposContent.querySelector(
+        ".a-propos-partners-wrapper"
+      );
+      if (existingWrapper) {
+        return;
+      }
+
+      // Créer le wrapper
+      const partnersWrapper = document.createElement("div");
+      partnersWrapper.className = "a-propos-partners-wrapper";
+
+      // Insérer le wrapper après le h6
+      partnerHeading.parentNode?.insertBefore(
+        partnersWrapper,
+        partnerHeading.nextSibling
+      );
+
+      // Déplacer les figures dans le wrapper
+      figures.forEach((figure) => {
+        partnersWrapper.appendChild(figure);
+      });
+    }
+  }
 });
