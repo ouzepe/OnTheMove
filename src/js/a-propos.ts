@@ -96,4 +96,48 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+
+  // Corriger la structure des team-members-info
+  // Extraire tous les .team-members-info imbriqués et les rendre enfants directs de .team-members
+  const teamMembers = aProposContent.querySelector(
+    ".team-members"
+  ) as HTMLElement;
+
+  if (teamMembers) {
+    // Récupérer tous les .team-members-info, même ceux qui sont imbriqués
+    const allTeamMembersInfo = Array.from(
+      teamMembers.querySelectorAll(".team-members-info")
+    ) as HTMLElement[];
+
+    // Filtrer ceux qui ne sont pas déjà des enfants directs de .team-members
+    const nestedItems = allTeamMembersInfo.filter((item) => {
+      return item.parentElement !== teamMembers;
+    });
+
+    // Déplacer chaque élément imbriqué pour qu'il devienne un enfant direct
+    nestedItems.forEach((item) => {
+      teamMembers.appendChild(item);
+    });
+
+    // Supprimer les .team-members-info vides
+    const allDirectItems = Array.from(
+      teamMembers.querySelectorAll(".team-members-info")
+    ) as HTMLElement[];
+
+    allDirectItems.forEach((item) => {
+      // Vérifier si l'élément est vide (pas de contenu significatif)
+      const hasContent =
+        item.querySelector("figure") ||
+        item.querySelector("h3") ||
+        item.querySelector("h4") ||
+        item.querySelector("p") ||
+        item.querySelector(".team-members-contact") ||
+        (item.textContent && item.textContent.trim().length > 0);
+
+      // Si l'élément est vide, le supprimer
+      if (!hasContent) {
+        item.remove();
+      }
+    });
+  }
 });

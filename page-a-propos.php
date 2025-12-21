@@ -22,6 +22,39 @@ while (have_posts()):
             <div class="container">
                 <div class="a-propos-content">
                     <?php the_content(); ?>
+                    <?php
+                    $team_args = array(
+                        'category_name' => 'team',
+                        'posts_per_page' => -1,
+                        'orderby' => 'date',
+                        'order' => 'ASC'
+                    );
+
+                    $team_query = new WP_Query($team_args);
+
+                    if ($team_query->have_posts()):
+                        ?>
+                        <div class="team-members">
+                            <?php
+                            while ($team_query->have_posts()):
+                                $team_query->the_post();
+                                ?>
+                                <div class="team-members-info">
+                                    <?php if (has_post_thumbnail()): ?>
+                                        <?php the_post_thumbnail('medium'); ?>
+                                    <?php endif; ?>
+
+                                    <?php the_content(); ?>
+                                </div>
+                                <?php
+                            endwhile;
+                            ?>
+                        </div>
+                        <?php
+
+                        wp_reset_postdata();
+                    endif;
+                    ?>
                 </div>
             </div>
         </div>
