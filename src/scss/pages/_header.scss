@@ -523,15 +523,24 @@
             position: relative;
             width: auto;
 
+            // Le ::before ne s'affiche que sur la page carte
             &::before {
-              content: "";
-              position: absolute;
-              bottom: 8px;
-              left: 50%;
-              transform: translateX(-50%);
-              width: 65%;
-              height: 1px;
-              background-color: $primary-light-white;
+              display: none;
+            }
+
+            // Afficher le ::before uniquement sur la page carte
+            body.page-carte & {
+              &::before {
+                display: block;
+                content: "";
+                position: absolute;
+                bottom: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 65%;
+                height: 1px;
+                background-color: $primary-light-white;
+              }
             }
 
             @include respond-to-down(md) {
