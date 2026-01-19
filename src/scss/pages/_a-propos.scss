@@ -340,16 +340,24 @@
         box-sizing: border-box;
         gap: 24px;
 
-        // Mobile: colonne (un par ligne)
         @include respond-to-down(sm) {
           flex-direction: column;
-          //   gap: 20px;
-          width: 70%;
-          max-width: 70%;
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: 0 !important;
+          margin: 0 auto;
           justify-content: flex-start;
           align-items: flex-start;
           padding-left: 0;
           padding-right: 0;
+          overflow: visible;
+        }
+
+        @include respond-to-between($breakpoint-md, $breakpoint-lg) {
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: 0 !important;
+          gap: 12px;
         }
 
         // Desktop: deux par ligne
@@ -358,7 +366,7 @@
           width: calc(50% - 12px) !important;
           max-width: calc(50% - 12px) !important;
           flex: 0 0 calc(50% - 12px) !important;
-          min-width: 400px !important;
+          min-width: 500px !important;
           min-height: 500px;
           height: auto;
           gap: 10px;
@@ -378,7 +386,7 @@
           // Séparateur pour les articles de gauche (premier de chaque ligne)
           &:nth-child(odd) {
             position: relative;
-            padding-right: 40px;
+            padding-right: 30px;
 
             &::after {
               content: "";
@@ -390,16 +398,36 @@
               height: calc(100% - 80px);
               background-color: #a5849133;
               align-self: stretch;
+
+              @include respond-to-down(sm) {
+                display: none;
+              }
+            }
+          }
+
+          @include respond-to-between($breakpoint-md, $breakpoint-lg) {
+            width: calc(50% - 12px) !important;
+            max-width: calc(50% - 12px) !important;
+            flex: 0 0 calc(50% - 12px) !important;
+            min-width: 0 !important;
+            padding-left: 12px;
+            padding-right: 12px;
+          }
+
+          @include respond-to-between($breakpoint-md, $breakpoint-lg) {
+            &:nth-child(odd) {
+              padding-right: 10px;
             }
           }
 
           // Mobile: un par ligne
           @include respond-to-down(sm) {
-            width: 90%;
-            max-width: 90%;
-            min-width: auto;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
             min-height: auto;
             height: auto;
+            flex: 1 1 100%;
             border-right: none;
             padding-left: 0;
             padding-right: 0;
@@ -413,24 +441,36 @@
 
           img {
             width: 100%;
-            height: 300px;
+            height: 400px;
             opacity: 1;
             object-fit: cover;
             object-position: center 40%;
             display: block;
 
+            @include respond-to-between($breakpoint-md, $breakpoint-lg) {
+              width: 100%;
+              max-width: 100%;
+            }
+
             @include respond-to-down(sm) {
-              width: 90%;
-              height: 190px;
-              max-height: 190px;
+              width: 100%;
+              height: 250px;
+              max-height: 250px;
             }
           }
 
           // Tous les éléments enfants doivent avoir la même largeur que l'image (sauf h3 et p qui sont inline)
           > *:not(h3):not(p) {
-            width: 90%;
-            max-width: 90%;
+            width: 100%;
+            max-width: 100%;
             box-sizing: border-box;
+          }
+
+          @include respond-to-down(sm) {
+            > *:not(h3):not(p) {
+              width: 100%;
+              max-width: 100%;
+            }
           }
 
           h3 {
@@ -474,8 +514,8 @@
             text-align: left;
 
             @include respond-to-down(sm) {
-              width: 80%;
-              max-width: 80%;
+              width: 100%;
+              max-width: 100%;
               margin: 0;
               text-align: left;
             }

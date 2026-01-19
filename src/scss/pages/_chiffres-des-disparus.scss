@@ -1,0 +1,37 @@
+@import "../variables";
+@import "../breakpoints";
+
+.page-template-page-chiffres-disparus {
+  margin: 0;
+  padding: 0;
+
+  .chiffres-disparus-container-image {
+    width: 100%;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+
+    // @include respond-to-down(sm) {
+    //   top: -200px;
+    // }
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      margin: 0;
+      padding: 0;
+      image-rendering: auto;
+      -webkit-image-rendering: auto;
+      image-rendering: -webkit-optimize-contrast;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+  }
+}

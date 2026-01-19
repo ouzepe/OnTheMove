@@ -1,0 +1,544 @@
+@import "../variables";
+@import "../breakpoints";
+
+.page-template-page-disparus {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  h1 {
+    font-family: "Test Manuka", sans-serif;
+    font-weight: 600;
+    font-size: 75px;
+    color: $primary-light-white;
+    margin: 0 0 0 0;
+    text-align: left;
+    line-height: 90%;
+    padding: 0 40px 0 40px;
+    background-color: $primary-dark-red;
+    text-transform: none;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+
+    @include respond-to-down(sm) {
+      width: 55%;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 0 0 0;
+      font-size: 50px;
+    }
+  }
+
+  .h5-with-icon {
+    display: flex;
+    align-items: center;
+    padding: 2% 40px 40px 40px;
+    background-color: $primary-dark-red;
+
+    @include respond-to-down(sm) {
+      width: 80%;
+      margin: 0 auto;
+      flex-direction: column;
+      align-items: center;
+      padding: 2% 0 40px 0;
+    }
+
+    .position-icon {
+      width: 13.5px;
+      height: auto;
+      margin: 0;
+      padding-right: 10px;
+      flex-shrink: 0;
+
+      @include respond-to-down(sm) {
+        padding-right: 0;
+        padding-bottom: 10px;
+        padding-top: 20px;
+      }
+    }
+
+    h5 {
+      font-family: "Commissioner", sans-serif;
+      font-weight: 700;
+      font-size: 13.5px;
+      line-height: 130%;
+      letter-spacing: 10%;
+      vertical-align: middle;
+      text-transform: uppercase;
+      color: $primary-light-white;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      text-align: left;
+
+      @include respond-to-down(sm) {
+        width: 80%;
+        text-align: center;
+      }
+    }
+  }
+
+  .disparus-container {
+    background-color: #f6f6f6;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: visible;
+    padding: 0;
+
+    @include respond-to-down(sm) {
+      padding: 0;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0;
+    }
+
+    .disparus-content {
+      width: 100%;
+      color: $primary-dark-red;
+      font-family: "Newsreader", sans-serif;
+      line-height: 1.6;
+      padding-top: 0;
+      position: relative;
+
+      // Première image (figure.wp-block-image) - pleine largeur et collée au h5
+      > figure.wp-block-image:first-of-type {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+          margin: 0;
+        }
+      }
+
+      // Premier paragraphe après l'image - avec style spécifique
+      > figure.wp-block-image:first-of-type + p {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 145%;
+        letter-spacing: 1%;
+        color: #a58491;
+        padding: 8px 12px;
+        margin: 0;
+        margin-top: 0;
+        margin-bottom: 20px;
+        margin-left: 40px;
+        display: inline-block;
+
+        @include respond-to-down(sm) {
+          margin-left: 15px;
+          padding: 6px 10px;
+        }
+      }
+
+      p {
+        margin-bottom: 20px;
+        color: $primary-dark-red;
+        font-family: "Newsreader", sans-serif;
+        font-size: 17px;
+        padding: 40px 40px 0 40px;
+
+        @include respond-to-down(sm) {
+          padding: 40px 15px 0 15px;
+        }
+      }
+
+      h2,
+      h3,
+      h4 {
+        font-family: "Newsreader", sans-serif;
+        color: $primary-dark-red;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        padding: 0 40px;
+
+        @include respond-to-down(sm) {
+          padding: 0 15px;
+        }
+      }
+
+      h6 {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 140%;
+        letter-spacing: 0%;
+        color: $primary-dark-red;
+        padding-top: 8%;
+        width: 70%;
+        margin: 0 auto;
+        text-align: left;
+        @include respond-to-down(md) {
+          width: 90%;
+        }
+        @include respond-to-down(sm) {
+          font-size: 20px;
+          width: 90%;
+          padding-top: 15%;
+        }
+      }
+
+      .disparu-number {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        width: 78%;
+        margin: 0 auto;
+        position: relative;
+        left: 20%;
+        transform: translateX(-20%);
+        padding: 40px 0 0 0;
+        box-sizing: border-box;
+        text-align: center;
+        padding-bottom: 10%;
+
+        @include respond-to-down(md) {
+          width: 100%;
+          margin: 0 auto;
+          left: 0;
+          transform: none;
+          padding-left: 5%;
+        }
+        @include respond-to-down(sm) {
+          width: 90%;
+          flex-wrap: wrap;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 30px 0 0 0;
+          gap: 10px;
+        }
+
+        .wp-block-group {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          flex: 1 1 0;
+          min-width: 0;
+          width: 0;
+          box-sizing: border-box;
+          padding: 50px;
+          border-top: 1px solid #ff115466;
+          border-bottom: 1px solid #ff115466;
+
+          @include respond-to-down(sm) {
+            width: 100%;
+          }
+          @include respond-to-down(md) {
+            width: 100%;
+          }
+
+          &:nth-child(2) {
+            border-left: none;
+            border-right: none;
+          }
+
+          &:nth-child(1),
+          &:nth-child(2) {
+            position: relative;
+
+            &::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              right: -30px;
+              width: 1px;
+              background-color: #ff115466;
+            }
+
+            @include respond-to-down(sm) {
+              &::after {
+                display: none;
+              }
+            }
+          }
+
+          &:nth-child(3) {
+            border-right: none;
+          }
+
+          @include respond-to-down(sm) {
+            border-left: none;
+            border-right: none;
+            &:nth-child(2) {
+              border-top: none;
+              border-bottom: none;
+            }
+          }
+        }
+
+        .wp-block-group__inner-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          > p:first-of-type {
+            font-family: "Newsreader", sans-serif;
+            font-weight: 700;
+            font-size: 90px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            font-variant-numeric: lining-nums proportional-nums;
+            color: $primary-red;
+            margin: 0;
+            padding: 0;
+
+            @include respond-to-down(md) {
+              font-size: 60px;
+            }
+          }
+          > p:last-of-type {
+            font-family: "Commissioner", sans-serif;
+            font-weight: 500;
+            font-size: 13.5px;
+            line-height: 145%;
+            letter-spacing: 0%;
+            text-align: center;
+            color: #cc1347;
+            margin: 2px 0 0 0;
+            padding: 0;
+
+            @include respond-to-between($breakpoint-xl, $breakpoint-xxl) {
+              min-height: 40px;
+            }
+            @include respond-to-down(md) {
+              min-height: 60px;
+            }
+          }
+        }
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        margin: 20px 0;
+      }
+    }
+
+    .disparus-enquete {
+      width: 100%;
+      display: block;
+      text-align: center !important;
+      padding: 5px 0 0 0;
+      box-sizing: border-box;
+    }
+
+    .disparus-enquete-title {
+      display: block !important;
+      width: 100% !important;
+      font-family: "Newsreader", sans-serif;
+      font-weight: 500;
+      font-style: italic;
+      font-size: 25px;
+      line-height: 130%;
+      letter-spacing: 0%;
+      text-align: center !important;
+      margin: 0 auto !important;
+      padding: 0;
+      color: $primary-dark-red;
+    }
+
+    .disparus-enquete-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+      padding: 30px 0 0 0;
+      box-sizing: border-box;
+    }
+
+    .chapterCard {
+      display: flex;
+      align-items: stretch;
+      gap: 30px;
+      width: 100%;
+      background-color: #f6f6f6;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $primary-red;
+
+        .chapterCard-title,
+        .chapterCard-subtitle,
+        .chapterCard-text {
+          color: #ffffff;
+        }
+
+        .chapterCard-cta {
+          background-color: $primary-dark-red;
+          border-color: $primary-dark-red;
+
+          a {
+            color: #ffffff;
+          }
+
+          img {
+            filter: brightness(0) invert(1);
+          }
+        }
+      }
+    }
+
+    .chapterCard-left {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-left: 15%;
+      box-sizing: border-box;
+      padding-top: 5%;
+
+      @include respond-to-down(md) {
+        padding-left: 5%;
+        padding-top: 0 !important;
+      }
+    }
+
+    .chapterCard-title {
+      font-family: "Commissioner", sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 130%;
+      letter-spacing: 10%;
+      text-transform: uppercase;
+      color: $primary-red;
+      text-align: left;
+      transition: color 0.3s ease;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      @include respond-to-down(md) {
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 70%;
+        letter-spacing: 0%;
+      }
+    }
+
+    .chapterCard-subtitle {
+      font-family: "Test Manuka", sans-serif;
+      font-weight: 600;
+      font-size: 50px;
+      line-height: 100%;
+      letter-spacing: 0.3%;
+      color: $primary-dark-red;
+      text-transform: none;
+      text-align: left;
+      transition: color 0.3s ease;
+    }
+
+    .chapterCard-text {
+      font-family: "Newsreader", sans-serif;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 135%;
+      letter-spacing: 0%;
+      color: $primary-dark-red;
+      text-align: left;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+      overflow: hidden;
+      transition: color 0.3s ease;
+    }
+
+    .chapterCard-cta {
+      display: inline-flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      align-self: flex-start;
+      width: 250px;
+      padding: 20px;
+      padding-left: 20px;
+      border: 1px solid #ff115466;
+      font-family: "Commissioner", sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 140%;
+      letter-spacing: 0%;
+      color: $primary-dark-red;
+      box-sizing: border-box;
+      transition: padding-left 0.3s ease, background-color 0.3s ease,
+        border-color 0.3s ease;
+
+      &:hover {
+        padding-left: 40px;
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: inherit;
+        text-decoration: none;
+        gap: 10px;
+        transition: color 0.3s ease;
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+        display: block;
+        transition: filter 0.3s ease;
+      }
+    }
+
+    .chapterCard-right {
+      width: 60%;
+    }
+
+    .chapterCard-right img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    @include respond-to-down(sm) {
+      .chapterCard {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .chapterCard-left,
+      .chapterCard-right {
+        width: 100%;
+      }
+
+      .chapterCard-right {
+        order: 1;
+      }
+
+      .chapterCard-left {
+        order: 2;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
