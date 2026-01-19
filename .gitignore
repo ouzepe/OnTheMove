@@ -20,3 +20,8 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# Large exports
+*.wpress
+
+# Large exports
+*.wpress
