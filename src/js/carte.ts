@@ -1,146 +1,89 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const oceanImage = document.querySelector(
-    ".la-carte-ocean img"
-  ) as HTMLImageElement;
+/**
+ * Interactive Map TS
+ * Version TypeScript avec types Leaflet
+ */
 
-  if (!oceanImage) {
-    return;
+export {};
+
+declare const L: any;
+
+interface PinData {
+  x: number;
+  y: number;
+  title: string;
+  content: string;
+}
+
+interface IMSettings {
+  imagePath: string;
+}
+
+declare global {
+  interface Window {
+    IM_Settings: IMSettings;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const pinIcon: string =
+    '<svg class="pinIcon" width="60" height="68" viewBox="0 0 60 68" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_135_815)"><circle cx="30" cy="30.1667" r="15.5" stroke="#F6F6F6" stroke-width="10"/><path d="M30.0004 65.3336L22.2631 51.9323C24.6701 52.8368 27.2772 53.3336 30.0004 53.3336C32.7232 53.3336 35.3299 52.8366 37.7367 51.9323L30.0004 65.3336Z" fill="#F6F6F6"/></g><defs><clipPath id="clip0_135_815"><rect width="60" height="68" fill="white"/></clipPath></defs></svg>';
+
+  function initInteractiveMap(): void {
+    if (typeof L === "undefined") {
+      setTimeout(initInteractiveMap, 50);
+      return;
+    }
+
+    const map = L.map("im-map", {
+      crs: L.CRS.Simple,
+      minZoom: 0.9,
+      maxZoom: 0.9,
+      zoomControl: false,
+    });
+
+    const bounds = [
+      [0, 0],
+      [650, 1023],
+    ];
+    L.imageOverlay(window.IM_Settings.imagePath, bounds).addTo(map);
+    map.fitBounds(bounds);
+
+    map.setMaxBounds(bounds);
+    map.setMinZoom(map.getZoom());
+    map.options.maxBoundsViscosity = 1.0;
+
+    const pinsData: PinData[] = [
+      { x: 340, y: 440, title: "Pin 1", content: "Contenu du pin 1" },
+      { x: 650, y: 280, title: "Pin 2", content: "Contenu du pin 2" },
+      { x: 825, y: 155, title: "Pin 3", content: "Contenu du pin 3" },
+    ];
+
+    pinsData.forEach((pin: PinData) => {
+      const icon = L.divIcon({
+        className: "",
+        html: '<div class="pin">' + pinIcon + "</div>",
+        iconSize: [20, 20],
+        iconAnchor: [10, 10],
+      });
+
+      const marker = L.marker([pin.y, pin.x], { icon }).addTo(map);
+
+      marker.on("click", () => {
+        const drawerTitle = document.getElementById("drawer-title");
+        const drawerContent = document.getElementById("drawer-content");
+        const drawer = document.getElementById("im-drawer");
+
+        if (drawerTitle) drawerTitle.textContent = pin.title;
+        if (drawerContent) drawerContent.textContent = pin.content;
+        if (drawer) drawer.classList.add("open");
+      });
+    });
+
+    map.on("click", () => {
+      const drawer = document.getElementById("im-drawer");
+      if (drawer) drawer.classList.remove("open");
+    });
   }
 
-  let isDragging = false;
-  let startX = 0;
-  let startY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let translateX = 0;
-  let translateY = 0;
-  let scale = 1;
-
-  // Calculer le zoom initial pour que l'image remplisse l'écran
-  function calculateInitialZoom() {
-    const img = oceanImage;
-    const container = img.parentElement;
-
-    if (!container) return;
-
-    // Attendre que l'image soit chargée
-    if (img.complete) {
-      setInitialZoom();
-    } else {
-      img.addEventListener("load", setInitialZoom);
-    }
-  }
-
-  function setInitialZoom() {
-    const img = oceanImage;
-    const container = img.parentElement;
-
-    if (!container) return;
-
-    const containerWidth = window.innerWidth;
-    const containerHeight = window.innerHeight;
-    const imgWidth = img.naturalWidth || img.width;
-    const imgHeight = img.naturalHeight || img.height;
-
-    if (imgWidth && imgHeight) {
-      // Calculer le zoom pour remplir l'écran (prendre le plus grand ratio)
-      const scaleX = containerWidth / imgWidth;
-      const scaleY = containerHeight / imgHeight;
-      scale = Math.max(scaleX, scaleY) * 1.1; // 1.1 pour avoir un peu de zoom supplémentaire
-
-      // Centrer l'image initialement
-      currentX = 0;
-      currentY = 0;
-      translateX = 0;
-      translateY = 0;
-
-      // Appliquer le zoom et la position initiale
-      img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-      img.style.transition = "transform 0.3s ease";
-    }
-  }
-
-  // Calculer le zoom initial au chargement
-  calculateInitialZoom();
-
-  // Recalculer le zoom au redimensionnement de la fenêtre
-  window.addEventListener("resize", () => {
-    calculateInitialZoom();
-  });
-
-  // Gérer le début du drag (mousedown)
-  oceanImage.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    oceanImage.style.cursor = "grabbing";
-    e.preventDefault();
-  });
-
-  // Gérer le mouvement de la souris (mousemove)
-  document.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-
-    const deltaX = e.clientX - startX;
-    const deltaY = e.clientY - startY;
-    translateX = currentX + deltaX;
-    translateY = currentY + deltaY;
-
-    oceanImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-    oceanImage.style.transition = "none"; // Désactiver la transition pendant le drag
-  });
-
-  // Gérer la fin du drag (mouseup)
-  document.addEventListener("mouseup", () => {
-    if (isDragging) {
-      isDragging = false;
-      currentX = translateX;
-      currentY = translateY;
-      oceanImage.style.cursor = "grab";
-      oceanImage.style.transition = "transform 0.3s ease"; // Réactiver la transition
-    }
-  });
-
-  // Gérer le survol pour changer le curseur
-  oceanImage.addEventListener("mouseenter", () => {
-    if (!isDragging) {
-      oceanImage.style.cursor = "grab";
-    }
-  });
-
-  oceanImage.addEventListener("mouseleave", () => {
-    if (!isDragging) {
-      oceanImage.style.cursor = "default";
-    }
-  });
-
-  // Support tactile (touch events) pour mobile
-  oceanImage.addEventListener("touchstart", (e) => {
-    isDragging = true;
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    e.preventDefault();
-  });
-
-  document.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-
-    const deltaX = e.touches[0].clientX - startX;
-    const deltaY = e.touches[0].clientY - startY;
-    translateX = currentX + deltaX;
-    translateY = currentY + deltaY;
-
-    oceanImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-    oceanImage.style.transition = "none";
-    e.preventDefault();
-  });
-
-  document.addEventListener("touchend", () => {
-    if (isDragging) {
-      isDragging = false;
-      currentX = translateX;
-      currentY = translateY;
-      oceanImage.style.transition = "transform 0.3s ease";
-    }
-  });
+  initInteractiveMap();
 });

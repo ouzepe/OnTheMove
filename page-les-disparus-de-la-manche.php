@@ -70,8 +70,10 @@ while (have_posts()):
                                         </div>
                                         <div class="chapterCard-subtitle">
                                             <?php
+                                            $subtitle = '';
                                             if (preg_match('/<h3[^>]*>(.*?)<\/h3>/is', $post_content, $h3_matches)) {
-                                                echo strip_tags($h3_matches[1]);
+                                                $subtitle = strip_tags($h3_matches[1]);
+                                                echo $subtitle;
                                             }
                                             ?>
                                         </div>
@@ -84,7 +86,11 @@ while (have_posts()):
                                             ?>
                                         </div>
                                         <div class="chapterCard-cta">
-                                            <a href="<?php echo esc_url(get_permalink()); ?>">
+                                            <?php
+                                            $target_page = get_page_by_title($subtitle);
+                                            $target_url = $target_page ? get_permalink($target_page) : get_permalink();
+                                            ?>
+                                            <a href="<?php echo esc_url($target_url); ?>">
                                                 <span><?php echo (function_exists('pll_current_language') && pll_current_language() === 'en') ? 'Read more' : 'Lire la suite'; ?></span>
                                                 <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-right.svg"
                                                     alt="" />

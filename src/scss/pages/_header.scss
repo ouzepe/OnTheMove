@@ -7,7 +7,7 @@
   left: 0;
   width: 100%;
   max-width: 100%;
-  z-index: 1000;
+  z-index: 100;
   background-color: transparent;
   box-sizing: border-box;
   padding-top: 20px;
@@ -26,11 +26,26 @@
   @include respond-to-down(md) {
     padding-top: 20px;
     min-height: 90px;
-    background-color: $primary-dark-red;
+    background-color: transparent;
 
     &.scrolled {
       height: auto;
       min-height: 90px;
+      background-color: $primary-dark-red;
+    }
+  }
+
+  &:has(.header-menu-content.active) {
+    @include respond-to-down(md) {
+      background-color: $primary-dark-red;
+    }
+  }
+
+  body.page-template-page-les-chiffres-des-disparus & {
+    background-color: transparent;
+
+    @include respond-to-down(md) {
+      background-color: transparent;
     }
   }
 
@@ -96,7 +111,7 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 1002;
-      background-color: $primary-dark-red;
+      background-color: transparent;
       padding: 0;
       width: auto;
       max-width: 200px;
@@ -129,6 +144,12 @@
         object-fit: cover;
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
+      }
+    }
+
+    #header:has(.header-menu-content.active) & {
+      @include respond-to-down(md) {
+        background-color: $primary-dark-red;
       }
     }
   }
@@ -205,7 +226,7 @@
       top: 20px;
       transform: none;
       padding: 15px 20px;
-      background-color: $primary-dark-red;
+      background-color: transparent;
       z-index: 1003;
 
       &::before {
@@ -262,6 +283,12 @@
           top: 50%;
           transform: translateY(-50%) rotate(-45deg);
         }
+      }
+    }
+
+    #header:has(.header-menu-content.active) & {
+      @include respond-to-down(md) {
+        background-color: $primary-dark-red;
       }
     }
 

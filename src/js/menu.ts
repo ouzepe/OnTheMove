@@ -92,28 +92,20 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", removeAccentOnTabletAndMobile);
 
   const header = document.querySelector("#header") as HTMLElement;
-  if (header && window.innerWidth > 1200) {
-    let lastScrollTop = 0;
-    window.addEventListener(
-      "scroll",
-      () => {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > 50) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-        lastScrollTop = scrollTop;
-      },
-      false
-    );
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth <= 1200) {
+  if (header) {
+    const toggleScrolled = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 50) {
+        header.classList.add("scrolled");
+      } else {
         header.classList.remove("scrolled");
       }
-    });
+    };
+
+    toggleScrolled();
+    window.addEventListener("scroll", toggleScrolled, false);
+    window.addEventListener("resize", toggleScrolled);
   }
 
   if (burger && menuContent) {

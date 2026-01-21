@@ -1,62 +1,67 @@
 @import "../variables";
 @import "../breakpoints";
 
-.la-carte-container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
+#im-map { width: 100%; height: 100vh; }
+
+
+#im-drawer {
+    position: fixed;
+    bottom:  -100%;
+    width: 100%;
+    height: 40%;
+    border-top: 1px solid #444746;
+    background: #1F1F1F;
+    color: lab(98.26% 0 0);
+    box-shadow: -2px 0 8px rgba(0,0,0,0.2);
+    transition: bottom 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
 }
+#im-drawer.open { bottom: 0; }
 
-.la-carte-ocean {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  overflow: visible;
+.pin {
+    width: 40px;
+    height: 40px;
 
-  img {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    cursor: grab;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     position: relative;
-    transform-origin: center center;
-    will-change: transform;
-
-    &:active {
-      cursor: grabbing;
-    }
-  }
+    animation: bounce 0.8s infinite alternate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.la-carte-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  min-height: 100vh;
-  padding: 40px;
-  box-sizing: border-box;
+.pin::after {
+    content: '';
+    position: absolute;
+    width: 170%; 
+    height: 170%;
+    top: 1px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.6) 60%);
+    box-shadow: 0 0 15px 10px rgba(255,255,255,0.2);
+    animation: pulse 1.6s infinite;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: -1;
+}
 
-  h1 {
-    margin: 0 0 30px 0;
-    font-family: "Test Manuka", sans-serif;
-    font-weight: bold;
-    font-size: 50px;
-    color: $primary-light-white;
-  }
 
-  .la-carte-body {
-    color: $primary-light-white;
-    font-size: 17px;
-    line-height: 1.6;
-  }
+.pinIcon {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-7px); }
+}
+
+
+@keyframes pulse {
+    0% { transform: scale(0.5); opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
 }
