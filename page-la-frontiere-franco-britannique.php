@@ -102,7 +102,7 @@ while (have_posts()):
                 'category_name' => 'chapitre',
                 'orderby' => 'date',
                 'order' => 'ASC',
-                's' => 'Le contexte des disparitions'
+                's' => 'Le chiffres des disparus'
             );
             $chapter_query = new WP_Query($chapter_args);
             if ($chapter_query->have_posts()):
@@ -136,7 +136,7 @@ while (have_posts()):
                             </div>
                             <div class="chapterCard-cta">
                                 <?php
-                                $contexte_page = get_page_by_title('Le contexte des disparitions');
+                                $contexte_page = get_page_by_title('les chiffres des disparus');
                                 $contexte_url = $contexte_page ? get_permalink($contexte_page) : get_permalink();
                                 ?>
                                 <a href="<?php echo esc_url($contexte_url); ?>">
