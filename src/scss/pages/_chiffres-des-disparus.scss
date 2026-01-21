@@ -561,6 +561,44 @@
     }
   }
 
+  .disparus-drawer {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    border-top: 1px solid #444746;
+    background: #fefefe;
+    color: #4a0b24;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .disparus-drawer.open {
+    right: 0;
+  }
+
+  .disparus-drawer-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #4a0b24;
+  }
+
+  @include respond-to-down(md) {
+    .disparus-drawer {
+      width: 100%;
+    }
+  }
+
   .disparus-enquete-cards {
     display: flex;
     flex-direction: column;

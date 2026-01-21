@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "[data-disparus-show-all]"
   ) as HTMLButtonElement | null;
 
-  if (!button) return;
-
   const updateSeparators = () => {
     const items = Array.from(
       document.querySelectorAll(".disparus-article")
@@ -29,22 +27,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateSeparators();
 
-  button.addEventListener("click", () => {
-    const items = document.querySelectorAll(
-      ".disparus-article"
-    ) as NodeListOf<HTMLElement>;
+  if (button) {
+    button.addEventListener("click", () => {
+      const items = document.querySelectorAll(
+        ".disparus-article"
+      ) as NodeListOf<HTMLElement>;
 
-    const isExpanded = button.getAttribute("data-expanded") === "true";
+      const isExpanded = button.getAttribute("data-expanded") === "true";
 
-    items.forEach((item, index) => {
-      if (isExpanded && index >= 8) {
-        item.classList.add("is-hidden");
-      } else if (!isExpanded && index >= 8) {
-        item.classList.remove("is-hidden");
-      }
+      items.forEach((item, index) => {
+        if (isExpanded && index >= 8) {
+          item.classList.add("is-hidden");
+        } else if (!isExpanded && index >= 8) {
+          item.classList.remove("is-hidden");
+        }
+      });
+
+      button.setAttribute("data-expanded", isExpanded ? "false" : "true");
+      updateSeparators();
+    });
+  }
+
+  const drawer = document.querySelector(
+    "#disparus-drawer"
+  ) as HTMLElement | null;
+  const drawerTitle = document.querySelector(
+    "#disparus-drawer-title"
+  ) as HTMLElement | null;
+  const drawerContent = document.querySelector(
+    "#disparus-drawer-content"
+  ) as HTMLElement | null;
+  const drawerClose = document.querySelector(
+    ".disparus-drawer-close"
+  ) as HTMLButtonElement | null;
+
+  if (drawer && drawerTitle && drawerContent) {
+    const links = document.querySelectorAll(
+      ".disparus-link"
+    ) as NodeListOf<HTMLAnchorElement>;
+
+    links.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const article = link.closest(".disparus-article") as HTMLElement | null;
+        const data = article?.querySelector(
+          ".disparus-drawer-data"
+        ) as HTMLElement | null;
+        const title =
+          data?.dataset.drawerTitle ||
+          article?.querySelector(".disparus-title")?.textContent ||
+          "";
+        const body =
+          data?.querySelector(".disparus-drawer-body")?.innerHTML || "";
+
+        drawerTitle.textContent = title;
+        drawerContent.innerHTML = body;
+        drawer.classList.add("open");
+        drawer.setAttribute("aria-hidden", "false");
+      });
     });
 
-    button.setAttribute("data-expanded", isExpanded ? "false" : "true");
-    updateSeparators();
-  });
+    if (drawerClose) {
+      drawerClose.addEventListener("click", () => {
+        drawer.classList.remove("open");
+        drawer.setAttribute("aria-hidden", "true");
+      });
+    }
+  }
 });

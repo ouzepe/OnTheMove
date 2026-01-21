@@ -171,6 +171,14 @@ while (have_posts()):
                             <?php echo $is_en ? 'Read the biography in English' : 'Lire la biographie'; ?>
                         </a>
                         <?php
+                        $drawer_content = apply_filters('the_content', get_the_content());
+                        ?>
+                        <div class="disparus-drawer-data" data-drawer-title="<?php echo esc_attr(get_the_title()); ?>" hidden>
+                            <div class="disparus-drawer-body">
+                                <?php echo wp_kses_post($drawer_content); ?>
+                            </div>
+                        </div>
+                        <?php
                         ?>
                     </div>
                     <?php
@@ -193,6 +201,11 @@ while (have_posts()):
                 <button class="disparus-view-all-button" type="button" data-disparus-show-all>
                     Voir tout les biographies
                 </button>
+            </div>
+            <div id="disparus-drawer" class="disparus-drawer" aria-hidden="true">
+                <button type="button" class="disparus-drawer-close" aria-label="Fermer">×</button>
+                <h2 id="disparus-drawer-title"></h2>
+                <div id="disparus-drawer-content"></div>
             </div>
         </div>
         <div class="disparus-enquete-cards">

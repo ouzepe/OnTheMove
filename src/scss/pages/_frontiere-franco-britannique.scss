@@ -2,48 +2,786 @@
 @import "../breakpoints";
 
 .page-template-page-frontiere-franco-britannique {
-  h1 {
-    font-family: "Test Manuka", sans-serif;
-    font-weight: bold;
-    font-size: 75px;
-    color: $primary-light-white;
-    margin: 0 0 0 0;
-    text-align: left;
-    line-height: 90%;
-    text-transform: uppercase;
-    padding: 0 40px 40px 40px;
-    background-color: $primary-dark-red;
+  margin: 0;
+  padding: 0;
 
-    @include respond-to-down(sm) {
-      width: 80%;
-      margin: 0 auto;
-      text-align: center;
-      padding: 0 0 40px 0;
+  .chiffres-disparus-container-image {
+    width: 100%;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+
+    // @include respond-to-down(sm) {
+    //   top: -200px;
+    // }
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      margin: 0;
+      padding: 0;
+      image-rendering: auto;
+      -webkit-image-rendering: auto;
+      image-rendering: -webkit-optimize-contrast;
+      transform: translateZ(0);
+      backface-visibility: hidden;
     }
   }
 
-  .frontiere-franco-britannique-container {
-    background-color: #f6f6f6;
+  .chiffres-disparus-container-carousel {
+    margin: 0;
+    padding: 0;
+    height: 90px;
     width: 100%;
-    min-height: 100vh;
-    padding: 40px 40px;
+    background-color: #cc1347;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    margin-top: -160px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    @include respond-to-down(sm) {
+      margin-top: -200px;
+      height: 130px;
+    }
+
+    .chiffres-disparus-container-carousel-text {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+      }
+    }
+
+    .chiffres-disparus-container-carousel-title {
+      color: #f6f6f6;
+      padding-left: 40px;
+      padding-right: 10px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-family: "Newsreader", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 16px;
+
+      @include respond-to-down(sm) {
+        font-size: 12px;
+        padding-left: 20px;
+        padding-bottom: 0 !important;
+      }
+    }
+
+    .chiffres-disparus-container-carousel-chapter {
+      color: #f6f6f68c;
+      font-family: "Commissioner", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 13.5px;
+      line-height: 130%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+
+      @include respond-to-down(sm) {
+        padding-left: 20px;
+        font-size: 16px;
+      }
+    }
+
+    .chiffres-disparus-container-carousel-arrow {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-right: 40px;
+      cursor: pointer;
+
+      @include respond-to-down(sm) {
+        padding-right: 20px;
+      }
+
+      .carousel-arrow-icon {
+        border: 1px solid #ff1154;
+        border-radius: 50%;
+        padding: 15px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+      }
+
+      img {
+        display: block;
+        filter: brightness(0) invert(1);
+        width: 16px;
+        height: 16px;
+      }
+
+      .carousel-arrow-icon:hover {
+        background-color: #ff1154;
+      }
+
+      .carousel-arrow-icon.is-disabled {
+        pointer-events: none;
+        opacity: 0.4;
+      }
+    }
+  }
+
+  .chiffres-disparus-container-content {
+    width: 100%;
+    padding: 40px;
     box-sizing: border-box;
-    overflow: visible;
+    overflow: hidden;
+    background-color: #f6f6f6;
 
     @include respond-to-down(sm) {
-      padding: 0;
+      padding-top: 40px;
+      padding-left: 10px;
     }
 
-    .container {
-      max-width: 100%;
-      margin: 0 auto;
-      width: 100%;
-    }
+    h1 {
+      font-family: "Test Manuka", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 70px;
+      line-height: 90%;
+      letter-spacing: 0%;
+      color: #4a0b24;
 
-    .frontiere-franco-britannique-content {
-      width: 100%;
-      color: $primary-dark-red;
+      @include respond-to-down(sm) {
+        font-size: 30px;
+      }
+    }
+    .description {
+      width: 50%;
       font-family: "Newsreader", sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 108%;
+
+      @include respond-to-down(md) {
+        width: 80%;
+      }
+      @include respond-to-down(sm) {
+        width: 100%;
+        font-size: 16px;
+      }
+    }
+    .written-by {
+      padding-top: 20px;
+      font-family: "Newsreader", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 108%;
+
+      a {
+        color: #ff1154;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    .chiffres-disparus-container-content-middle {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin: 0 auto;
+      align-items: center;
+      padding-top: 8%;
+      color: #4a0b24;
+      position: relative;
+
+      @include respond-to-down(sm) {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      @include respond-to-down(md) {
+        width: 70%;
+      }
+      .chiffres-disparus-container-content-middle-paragraph-3 {
+        font-family: "Newsreader", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 108%;
+      }
+      .chiffres-disparus-container-content-middle-paragraph-4 {
+        font-family: "Newsreader", sans-serif;
+        font-size: 18px;
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: #ff115466;
+          margin-top: 4%;
+        }
+      }
+      .chiffres-disparus-container-content-middle-paragraph-5 {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 100px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        font-variant-numeric: lining-nums proportional-nums;
+        color: #ff1154;
+        align-self: flex-start;
+        margin-top: 5px;
+        margin-bottom: 0;
+        position: relative;
+        padding-top: 2%;
+
+        @include respond-to-down(sm) {
+          font-size: 70px;
+        }
+      }
+      .chiffres-disparus-container-content-middle-paragraph-6 {
+        color: #cc1347;
+        font-family: "Commissioner", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 108%;
+        margin: 0;
+        padding: 0;
+        margin-top: 0;
+        width: 100%;
+
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: #ff115466;
+          margin-top: 4%;
+        }
+      }
+
+      .chiffres-disparus-container-content-middle-paragraph-7,
+      .chiffres-disparus-container-content-middle-paragraph-8,
+      .chiffres-disparus-container-content-middle-paragraph-9 {
+        font-family: "Newsreader", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 108%;
+        margin: 0;
+        padding: 0;
+        margin-top: 4%;
+      }
+    }
+    .chiffres-disparus-container-content-bottom {
+      width: 70%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 8%;
+      color: #4a0b24;
+      margin-top: 5%;
+      @include respond-to-down(sm) {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      h5 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 40px;
+        line-height: 100%;
+        letter-spacing: 0.3%;
+        text-align: center;
+        margin: 0;
+      }
+
+      p {
+        padding-top: 1%;
+        font-family: "Newsreader", sans-serif;
+        font-weight: 500;
+        font-style: italic;
+        font-size: 18px;
+        line-height: 130%;
+        letter-spacing: 0%;
+        text-align: center;
+        margin: 0;
+        padding-bottom: 5%;
+      }
+    }
+  }
+  .chiffres-disparus-container-content-people-missing {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #f6f6f6;
+    gap: 40px;
+    justify-content: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+
+    @include respond-to-down(sm) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .disparus-article {
+      flex: 0 0 calc(25% - 30px);
+      max-width: calc(25% - 30px);
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      position: relative;
+      padding-right: 30px;
+
+      &.is-hidden {
+        display: none;
+      }
+
+      .disparus-image img {
+        width: 280px;
+        height: 420px;
+        object-fit: cover;
+        display: block;
+        opacity: 1;
+
+        @include respond-to-between($breakpoint-md, $breakpoint-lg) {
+          width: 160px;
+          height: 300px;
+        }
+
+        @include respond-to-down(sm) {
+          height: 200px;
+          width: 150px;
+        }
+      }
+
+      .disparus-title {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 21px;
+        line-height: 130%;
+        letter-spacing: 0%;
+        color: #4a0b24;
+
+        @include respond-to-down(sm) {
+          font-size: 16px;
+          text-align: left;
+        }
+      }
+
+      p {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 13px;
+        line-height: 145%;
+        letter-spacing: 0%;
+        color: #4a0b24;
+
+        @include respond-to-down(sm) {
+          text-align: left;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 10px;
+        bottom: 10px;
+        width: 1px;
+        background-color: #a5849133;
+        display: none;
+      }
+
+      &:nth-child(4n) {
+        padding-right: 0;
+
+        &::after {
+          display: none;
+          height: 100%;
+        }
+      }
+
+      &.has-separator {
+        &::after {
+          display: block;
+        }
+      }
+    }
+
+    .disparus-link {
+      font-family: "Commissioner", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 13.5px;
+      line-height: 145%;
+      letter-spacing: 0%;
+      color: #a5849180;
+      text-decoration: underline;
+      text-decoration-style: solid;
+      text-underline-offset: 25%;
+      text-decoration-thickness: 8%;
+      text-decoration-skip-ink: auto;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+
+      @include respond-to-down(sm) {
+        text-align: left;
+      }
+
+      &:hover {
+        color: $primary-red;
+      }
+    }
+
+    @include respond-to-down(sm) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 20px;
+
+      .disparus-article {
+        flex: 0 0 164.5px;
+        width: 164.5px;
+        height: 400px;
+        max-width: 90%;
+        gap: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-right: 20px;
+        opacity: 1;
+        border-left: none;
+
+        .disparus-title {
+          margin-top: 6px;
+          margin-bottom: 4px;
+        }
+
+        p {
+          margin-top: 0;
+        }
+
+        .disparus-link {
+          margin-top: 10px;
+        }
+
+        &::after {
+          display: none;
+        }
+
+        &:nth-child(2n) {
+          padding-right: 0;
+
+          &::after {
+            display: none;
+          }
+        }
+
+        &:nth-child(2n + 1) {
+          border-left: none;
+        }
+
+        &.has-separator {
+          &::after {
+            display: block;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .disparus-view-all {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 0 0;
+    padding-bottom: 40px;
+  }
+
+  .disparus-view-all-button {
+    position: relative;
+    font-family: "Commissioner", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: $primary-red;
+    text-decoration: none;
+    border: 1px solid #ff11541a;
+    padding: 10px 36px 10px 24px;
+    border-radius: 999px;
+    padding-right: 34px;
+    display: inline-flex;
+    align-items: center;
+    background-color: #ff11541a;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 12px;
+      top: 55%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 7px;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z' fill='%23ff1154'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+      transform: translateY(-50%) rotate(-180deg);
+    }
+
+    &:hover {
+      border-color: $primary-red;
+    }
+  }
+
+  .disparus-drawer {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    border-top: 1px solid #444746;
+    background: #fefefe;
+    color: #4a0b24;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .disparus-drawer.open {
+    right: 0;
+  }
+
+  .disparus-drawer-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #4a0b24;
+  }
+
+  @include respond-to-down(md) {
+    .disparus-drawer {
+      width: 100%;
+    }
+  }
+
+  .disparus-enquete-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    padding: 30px 0 0 0;
+    box-sizing: border-box;
+    background-color: #f6f6f6;
+  }
+
+  .chapterCard {
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+    width: 100%;
+    background-color: #f6f6f6;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $primary-red;
+
+      .chapterCard-title,
+      .chapterCard-subtitle,
+      .chapterCard-text {
+        color: #ffffff;
+      }
+
+      .chapterCard-cta {
+        background-color: $primary-dark-red;
+        border-color: $primary-dark-red;
+
+        a {
+          color: #ffffff;
+        }
+
+        img {
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
+  }
+
+  .chapterCard-left {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 15%;
+    box-sizing: border-box;
+    padding-top: 5%;
+
+    @include respond-to-down(md) {
+      padding-left: 5%;
+      padding-top: 0 !important;
+    }
+  }
+
+  .chapterCard-title {
+    font-family: "Commissioner", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 10%;
+    text-transform: uppercase;
+    color: $primary-red;
+    text-align: left;
+    transition: color 0.3s ease;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @include respond-to-down(md) {
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 70%;
+      letter-spacing: 0%;
+    }
+  }
+
+  .chapterCard-subtitle {
+    font-family: "Test Manuka", sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 100%;
+    letter-spacing: 0.3%;
+    color: $primary-dark-red;
+    text-transform: none;
+    text-align: left;
+    transition: color 0.3s ease;
+  }
+
+  .chapterCard-text {
+    font-family: "Newsreader", sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 135%;
+    letter-spacing: 0%;
+    color: $primary-dark-red;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+    transition: color 0.3s ease;
+  }
+
+  .chapterCard-cta {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: flex-start;
+    width: 250px;
+    padding: 20px;
+    padding-left: 20px;
+    border: 1px solid #ff115466;
+    font-family: "Commissioner", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    color: $primary-dark-red;
+    box-sizing: border-box;
+    transition: padding-left 0.3s ease, background-color 0.3s ease,
+      border-color 0.3s ease;
+
+    &:hover {
+      padding-left: 40px;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: inherit;
+      text-decoration: none;
+      gap: 10px;
+      transition: color 0.3s ease;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      display: block;
+      transition: filter 0.3s ease;
+    }
+  }
+
+  .chapterCard-right {
+    width: 60%;
+  }
+
+  .chapterCard-right img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  @include respond-to-down(sm) {
+    .chapterCard {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .chapterCard-left,
+    .chapterCard-right {
+      width: 100%;
+    }
+
+    .chapterCard-right {
+      order: 1;
+    }
+
+    .chapterCard-left {
+      order: 2;
+      padding-bottom: 10px;
     }
   }
 }
