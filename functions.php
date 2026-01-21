@@ -6,6 +6,26 @@ function mon_theme_enqueue_assets()
 }
 add_action('wp_enqueue_scripts', 'mon_theme_enqueue_assets');
 
+function onthemove_enqueue_interactive_map_assets()
+{
+    if (!is_page_template('page-la-carte.php') && !is_page('la-carte')) {
+        return;
+    }
+
+    $plugin_base = plugins_url('interactive-map/assets/');
+
+    wp_enqueue_style('leaflet-css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+    wp_enqueue_script('leaflet-js', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', [], null, false);
+
+    wp_enqueue_style('im-style', $plugin_base . 'style.css');
+    wp_enqueue_script('im-script', $plugin_base . 'script.js', ['leaflet-js'], null, false);
+
+    wp_localize_script('im-script', 'IM_Settings', [
+        'imagePath' => get_template_directory_uri() . '/src/assets/Map.svg'
+    ]);
+}
+add_action('wp_enqueue_scripts', 'onthemove_enqueue_interactive_map_assets');
+
 function register_my_menus()
 {
     register_nav_menus(
