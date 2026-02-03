@@ -51,18 +51,29 @@ while (have_posts()):
                         if ($featured_posts->have_posts()):
                             while ($featured_posts->have_posts()):
                                 $featured_posts->the_post();
+                                $press_content = apply_filters('the_content', get_the_content());
+                                $press_link_url = get_permalink();
+                                if (preg_match_all('/<a[^>]+href=["\']([^"\']+)["\'][^>]*>.*?<\/a>/is', $press_content, $link_matches, PREG_SET_ORDER)) {
+                                    $last_link = end($link_matches);
+                                    if (!empty($last_link[1])) {
+                                        $press_link_url = $last_link[1];
+                                    }
+                                    if (!empty($last_link[0])) {
+                                        $press_content = str_replace($last_link[0], '', $press_content);
+                                    }
+                                }
                                 ?>
-                                <div class="press-item">
+                                <div class="press-item" data-press-link="<?php echo esc_url($press_link_url); ?>">
                                     <?php if (has_post_thumbnail()): ?>
                                         <div class="press-item-image">
-                                            <a href="<?php the_permalink(); ?>">
+                                            <a target="_blank" href="<?php echo esc_url($press_link_url); ?>">
                                                 <?php the_post_thumbnail('large'); ?>
                                             </a>
                                         </div>
                                     <?php endif; ?>
 
                                     <div class="press-item-content">
-                                        <?php the_content(); ?>
+                                        <?php echo $press_content; ?>
                                     </div>
                                 </div>
                                 <?php
@@ -76,6 +87,19 @@ while (have_posts()):
                         endif;
                         ?>
                     </div>
+                    <script>
+                        document.querySelectorAll(".press-item").forEach(function (item) {
+                            item.addEventListener("click", function (event) {
+                                if (event.target.closest("a")) {
+                                    return;
+                                }
+                                var link = item.getAttribute("data-press-link");
+                                if (link) {
+                                    window.open(link, "_blank", "noopener,noreferrer");
+                                }
+                            });
+                        });
+                    </script>
 
                     <h2 class="press-all-articles-title">
                         <?php echo (function_exists('pll_current_language') && pll_current_language() === 'en') ? 'All our articles' : 'Tous nos articles'; ?>
@@ -98,18 +122,29 @@ while (have_posts()):
                         if ($all_posts->have_posts()):
                             while ($all_posts->have_posts()):
                                 $all_posts->the_post();
+                                $press_content = apply_filters('the_content', get_the_content());
+                                $press_link_url = get_permalink();
+                                if (preg_match_all('/<a[^>]+href=["\']([^"\']+)["\'][^>]*>.*?<\/a>/is', $press_content, $link_matches, PREG_SET_ORDER)) {
+                                    $last_link = end($link_matches);
+                                    if (!empty($last_link[1])) {
+                                        $press_link_url = $last_link[1];
+                                    }
+                                    if (!empty($last_link[0])) {
+                                        $press_content = str_replace($last_link[0], '', $press_content);
+                                    }
+                                }
                                 ?>
-                                <div class="press-mini-item">
+                                <div class="press-mini-item" data-press-link="<?php echo esc_url($press_link_url); ?>">
                                     <?php if (has_post_thumbnail()): ?>
                                         <div class="press-mini-item-image">
-                                            <a href="<?php the_permalink(); ?>">
+                                            <a target="_blank" href="<?php echo esc_url($press_link_url); ?>">
                                                 <?php the_post_thumbnail('large'); ?>
                                             </a>
                                         </div>
                                     <?php endif; ?>
 
                                     <div class="press-mini-item-content">
-                                        <?php the_content(); ?>
+                                        <?php echo $press_content; ?>
                                     </div>
                                 </div>
                                 <?php
@@ -228,6 +263,19 @@ while (have_posts()):
                         <?php
                     endif;
                     ?>
+                    <script>
+                        document.querySelectorAll(".press-mini-item").forEach(function (item) {
+                            item.addEventListener("click", function (event) {
+                                if (event.target.closest("a")) {
+                                    return;
+                                }
+                                var link = item.getAttribute("data-press-link");
+                                if (link) {
+                                    window.open(link, "_blank", "noopener,noreferrer");
+                                }
+                            });
+                        });
+                    </script>
                 </div>
             </div>
         </div>

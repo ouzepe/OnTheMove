@@ -4,19 +4,81 @@
 @import "pages/header";
 @import "pages/single";
 @import "pages/carte";
+@import "pages/interactive-map";
 @import "pages/contact";
 @import "pages/a-propos";
 @import "pages/press";
 @import "pages/disparus";
 @import "pages/chiffres-des-disparus";
+@import "pages/morts-de-la-manche";
 @import "pages/frontiere-franco-britannique";
 @import "pages/contexte-des-disparitions";
+@import "pages/aux-frontieres-de-la-bulgarie";
+@import "pages/au-depart-de-la-syrie";
 @import "pages/page-transition";
 
 @import "~swiper/css";
 @import "~swiper/css/pagination";
 @import "~swiper/css/autoplay";
 @import "~swiper/css/effect-fade";
+
+// Styles globaux pour tous les boutons play des vidéos Presto Player
+// Utilisation des variables CSS pour pénétrer le Shadow DOM
+presto-player,
+.presto-player,
+figure.presto-block-video,
+.wp-block-video.presto-block-video {
+  --plyr-color-main: #{$primary-dark-red} !important;
+  --plyr-control-radius: 50% !important;
+
+  // Variables personnalisées pour le bouton play overlaid
+  .plyr__control--overlaid,
+  button[data-plyr="play"] {
+    border-radius: 50% !important;
+  }
+}
+
+// Tentative de forcer le style au niveau global
+.plyr__control--overlaid,
+button.plyr__control--overlaid,
+.plyr__control[data-plyr="play"].plyr__control--overlaid {
+  background: $primary-dark-red !important;
+  background-color: $primary-dark-red !important;
+  border-radius: 50% !important;
+  border: none !important;
+  width: 80px !important;
+  height: 80px !important;
+  min-width: 80px !important;
+  min-height: 80px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  aspect-ratio: 1 / 1 !important;
+  overflow: hidden !important;
+
+  svg {
+    fill: #ffffff !important;
+    color: #ffffff !important;
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+presto-player {
+  --plyr-color-main: #{$primary-dark-red} !important;
+  --plyr-audio-controls-background: #{$primary-dark-red} !important;
+  --plyr-audio-control-color: #ffffff !important;
+  --plyr-range-thumb-background: #ffffff !important;
+  --plyr-range-fill-background: #ffffff !important;
+  --plyr-audio-progress-buffered-background: rgba(74, 11, 36, 0.25) !important;
+}
+
+// Ciblage spécifique pour Presto Player
+presto-player::part(play-button),
+presto-player::part(control) {
+  background: $primary-dark-red !important;
+  border-radius: 50% !important;
+}
 
 html {
   height: 100%;
@@ -32,6 +94,28 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: visible;
+
+  // Force immediate loading of all media globally
+  img,
+  video,
+  iframe,
+  .leaflet-container {
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  // Disable fade-in animations on Leaflet tiles
+  .leaflet-tile {
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .leaflet-fade-anim .leaflet-tile {
+    transition: none !important;
+  }
 }
 
 html {

@@ -1,10 +1,10 @@
 <?php
 /**
- * Template Name: Les chiffres des disparus
- * Template pour la page "Les chiffres des disparus"
+ * Template Name: Les morts de la manche
+ * Template pour la page "Les morts de la manche"
  *
  * Ce template sera automatiquement utilisé par WordPress
- * si le slug de la page est "les-chiffres-des-disparus"
+ * si le slug de la page est "les-morts-de-la-manche"
  */
 get_header();
 ?>
@@ -14,7 +14,7 @@ while (have_posts()):
     the_post();
     ?>
 
-    <div class="page-template-page-chiffres-disparus">
+    <div class="page-template-page-morts-de-la-manche">
         <div class="chiffres-disparus-container-image">
             <?php
             $post_content = get_the_content();
@@ -52,10 +52,10 @@ while (have_posts()):
                 </div>
             </div>
             <div class="chiffres-disparus-container-carousel-arrow">
-                <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/la-frontiere-franco-britannique/')); ?>">
+                <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/le-contexte-des-disparitions/')); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-left.svg" alt="" />
                 </a>
-                <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/le-contexte-des-disparitions/')); ?>">
+                <a class="carousel-arrow-icon is-disabled" href="#" aria-disabled="true" tabindex="-1">
                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-right.svg" alt="" />
                 </a>
             </div>
@@ -75,53 +75,42 @@ while (have_posts()):
                 }
             }
             ?>
-            <div class="chiffres-disparus-container-content-middle">
+            <div class="morts-de-la-manche-container-content-middle">
                 <?php
                 if (preg_match_all('/<p[^>]*>(.*?)<\/p>/is', $post_content, $p_matches)) {
                     if (isset($p_matches[1][2])) {
-                        echo '<p class="chiffres-disparus-container-content-middle-paragraph-3">' . wp_kses_post($p_matches[1][2]) . '</p>';
+                        echo '<p>' . wp_kses_post($p_matches[1][2]) . '</p>';
                     }
                     if (isset($p_matches[1][3])) {
-                        echo '<p class="chiffres-disparus-container-content-middle-paragraph-4">' . wp_kses_post($p_matches[1][3]) . '</p>';
+                        echo '<p>' . wp_kses_post($p_matches[1][3]) . '</p>';
                     }
                     if (isset($p_matches[1][4])) {
-                        echo '<p class="chiffres-disparus-container-content-middle-paragraph-5">' . wp_kses_post($p_matches[1][4]) . '</p>';
-                    }
-                    if (isset($p_matches[1][5])) {
-                        echo '<p class="chiffres-disparus-container-content-middle-paragraph-6">' . wp_kses_post($p_matches[1][5]) . '</p>';
-                    }
-                    if (isset($p_matches[1][6])) {
-                        echo '<p class="chiffres-disparus-container-content-middle-paragraph-7">' . wp_kses_post($p_matches[1][6]) . '</p>';
-                    }
-                    if (isset($p_matches[1][7])) {
-                        echo '<p class="chiffres-disparus-container-content-middle-paragraph-8">' . wp_kses_post($p_matches[1][7]) . '</p>';
-                    }
-                    if (isset($p_matches[1][8])) {
-                        echo '<p class="chiffres-disparus-container-content-middle-paragraph-9">' . wp_kses_post($p_matches[1][8]) . '</p>';
+                        echo '<p>' . wp_kses_post($p_matches[1][4]) . '</p>';
                     }
                 }
                 ?>
-
             </div>
-            <div class="chiffres-disparus-container-content-bottom">
+            <div class="list-des-morts-de-la-manche">
+                <figure contenteditable="false" data-original-src="https://apps.lesjours.fr/morts-calais/"
+                    data-protected-src="https://apps.lesjours.fr/morts-calais/">
+                    <iframe src="https://apps.lesjours.fr/morts-calais/" frameborder="0" allowfullscreen></iframe>
+                </figure>
+            </div>
+        </div>
+        <div class="les-morts-de-la-manche-title">
+            <div class="les-morts-de-la-manche-title">
                 <?php
-                if (preg_match_all('/<h5[^>]*>(.*?)<\/h5>/is', $post_content, $h5_matches)) {
-                    if (isset($h5_matches[1][0])) {
-                        echo '<h5>' . wp_kses_post($h5_matches[1][0]) . '</h5>';
-                    }
-                }
-                if (preg_match_all('/<p[^>]*>(.*?)<\/p>/is', $post_content, $p_matches)) {
-                    if (isset($p_matches[1][9])) {
-                        echo '<p>' . wp_kses_post($p_matches[1][9]) . '</p>';
-                    }
-                }
+                $is_en = (function_exists('pll_current_language') && pll_current_language() === 'en')
+                    || (strpos(home_url('/'), '/en/') !== false);
+                echo $is_en ? 'Biographies of the Channel deaths' : 'Biographies des morts de la manche';
                 ?>
             </div>
         </div>
         <div class="chiffres-disparus-container-content-people-missing">
+
             <?php
             $args = array(
-                'category_name' => 'disparus',
+                'category_name' => 'mort-de-la-manche',
                 'posts_per_page' => -1,
                 'post_status' => 'publish',
                 'orderby' => 'date',
@@ -225,75 +214,6 @@ while (have_posts()):
                 <button type="button" class="disparus-drawer-close" aria-label="Fermer">×</button>
                 <div id="disparus-drawer-content"></div>
             </div>
-        </div>
-        <div class="disparus-enquete-cards">
-            <div class="disparus-enquete-cards-title">
-                <?php echo (function_exists('pll_current_language') && pll_current_language() === 'en') ? 'Read the next chapter' : 'Lire le chapitre suivant'; ?>
-            </div>
-            <?php
-            $chapter_args = array(
-                'post_type' => 'post',
-                'posts_per_page' => 1,
-                'category_name' => 'chapitre',
-                'orderby' => 'date',
-                'order' => 'ASC',
-                's' => 'Le contexte des disparitions'
-            );
-            $chapter_query = new WP_Query($chapter_args);
-            if ($chapter_query->have_posts()):
-                while ($chapter_query->have_posts()):
-                    $chapter_query->the_post();
-                    ?>
-                    <div class="chapterCard">
-                        <div class="chapterCard-left">
-                            <div class="chapterCard-title">
-                                <?php
-                                $post_content = get_the_content();
-                                if (preg_match('/<h2[^>]*>(.*?)<\/h2>/is', $post_content, $h2_matches)) {
-                                    echo strip_tags($h2_matches[1]);
-                                }
-                                ?>
-                            </div>
-                            <div class="chapterCard-subtitle">
-                                <?php
-                                if (preg_match('/<h3[^>]*>(.*?)<\/h3>/is', $post_content, $h3_matches)) {
-                                    echo strip_tags($h3_matches[1]);
-                                }
-                                ?>
-                            </div>
-                            <div class="chapterCard-text">
-                                <?php
-                                $post_content = get_the_content();
-                                if (preg_match('/<p[^>]*>(.*?)<\/p>/is', $post_content, $p_matches)) {
-                                    echo strip_tags($p_matches[1]);
-                                }
-                                ?>
-                            </div>
-                            <div class="chapterCard-cta">
-                                <?php
-                                $contexte_page = get_page_by_title('Le contexte des disparitions');
-                                $contexte_url = $contexte_page ? get_permalink($contexte_page) : get_permalink();
-                                ?>
-                                <a href="<?php echo esc_url($contexte_url); ?>">
-                                    <span><?php echo (function_exists('pll_current_language') && pll_current_language() === 'en') ? 'Read more' : 'Lire la suite'; ?></span>
-                                    <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-right.svg" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                        <div class="chapterCard-right">
-                            <?php
-                            $post_content = get_the_content();
-                            if (preg_match('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $post_content, $img_matches)) {
-                                echo '<img src="' . esc_url($img_matches[1]) . '" alt="" />';
-                            }
-                            ?>
-                        </div>
-                    </div>
-                    <?php
-                endwhile;
-                wp_reset_postdata();
-            endif;
-            ?>
         </div>
         <?php
 endwhile;

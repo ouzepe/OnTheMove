@@ -1,0 +1,160 @@
+@import "../variables";
+@import "../breakpoints";
+
+// Styles spécifiques pour la page carte
+body.page-carte {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: $primary-dark-red;
+
+  // Afficher le header par-dessus la carte
+  .header,
+  #header,
+  header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
+
+.la-carte-container {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: $primary-dark-red;
+}
+
+#im-map {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+  background-color: $primary-dark-red;
+
+
+  .leaflet-container {
+    width: 100%;
+    height: 100%;
+    background-color: $primary-dark-red;
+  }
+}
+
+#im-drawer {
+  position: fixed;
+  right: -100%;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  border-top: 1px solid #444746;
+  background-color: #fefefe;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+  color: $primary-dark-red;
+  box-sizing: border-box;
+
+  &.open {
+    right: 0;
+  }
+
+  @include respond-to-down(md) {
+    width: 60%;
+  }
+
+  @include respond-to-down(sm) {
+    width: 80%;
+  }
+}
+
+.pin {
+  width: 90px !important;
+  height: 90px !important;
+
+  position: relative;
+  animation: bounce 0.8s infinite alternate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 170%;
+    height: 170%;
+    top: 1px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    background: radial-gradient(
+      circle,
+      rgba(255, 17, 84, 0.3) 0%,
+      rgba(255, 17, 84, 0.7) 40%,
+      rgba(255, 17, 84, 0.2) 70%,
+      rgba(255, 17, 84, 0) 100%
+    );
+    box-shadow: 0 0 20px 15px rgba(255, 17, 84, 0.7) !important;
+    animation: pulse 1.6s infinite;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+.pinIcon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.leaflet-control {
+  display: none;
+}
+
+.card-txt-slt {
+  position: fixed;
+  color: white;
+  z-index: 4;
+  bottom: 20px;
+  left: 40px;
+  font-size: 21px;
+}
+
+.card-txt-src {
+  position: fixed;
+  color: #f6f6f68c;
+  z-index: 4;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-200%) rotate(-90deg);
+  transform-origin: top right;
+}

@@ -97,6 +97,7 @@
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           border: 2px solid transparent;
           transition: border-color 0.3s ease;
+          cursor: pointer;
 
           @include respond-to-down(sm) {
             background-color: transparent;
@@ -596,6 +597,7 @@
         max-width: 320px;
         margin: 0 auto;
         box-shadow: none;
+        cursor: pointer;
 
         &:nth-child(3n) {
           border-right: none;

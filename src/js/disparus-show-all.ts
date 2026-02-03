@@ -51,9 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawer = document.querySelector(
     "#disparus-drawer"
   ) as HTMLElement | null;
-  const drawerTitle = document.querySelector(
-    "#disparus-drawer-title"
-  ) as HTMLElement | null;
   const drawerContent = document.querySelector(
     "#disparus-drawer-content"
   ) as HTMLElement | null;
@@ -61,34 +58,56 @@ document.addEventListener("DOMContentLoaded", () => {
     ".disparus-drawer-close"
   ) as HTMLButtonElement | null;
 
-  if (drawer && drawerTitle && drawerContent) {
-    const links = document.querySelectorAll(
-      ".disparus-link"
-    ) as NodeListOf<HTMLAnchorElement>;
+  if (drawerContent) {
+    document.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement | null;
+      const link = target?.closest(".disparus-link") as HTMLElement | null;
+      if (!link) return;
 
-    links.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const article = link.closest(".disparus-article") as HTMLElement | null;
-        const data = article?.querySelector(
-          ".disparus-drawer-data"
-        ) as HTMLElement | null;
-        const title =
-          data?.dataset.drawerTitle ||
-          article?.querySelector(".disparus-title")?.textContent ||
-          "";
-        const body =
-          data?.querySelector(".disparus-drawer-body")?.innerHTML || "";
+      event.preventDefault();
+      if (!drawer) return;
 
-        drawerTitle.textContent = title;
-        drawerContent.innerHTML = body;
-        drawer.classList.add("open");
-        drawer.setAttribute("aria-hidden", "false");
-      });
+      const article = link.closest(".disparus-article") as HTMLElement | null;
+      const data = article?.querySelector(
+        ".disparus-drawer-data"
+      ) as HTMLElement | null;
+      const title =
+        data?.dataset.drawerTitle ||
+        article?.querySelector(".disparus-title")?.textContent ||
+        "";
+      const image =
+        data?.querySelector(".disparus-drawer-image")?.outerHTML || "";
+      const body =
+        data?.querySelector(".disparus-drawer-body")?.innerHTML || "";
+
+      drawerContent.innerHTML = `${image}<h2 class="disparus-drawer-title">${title}</h2>${body}`;
+      drawerContent
+        .querySelectorAll(".disparus-drawer-divider")
+        .forEach((divider) => divider.remove());
+      const titleEl = drawerContent.querySelector(".disparus-drawer-title");
+      if (titleEl) {
+        const divider = document.createElement("div");
+        divider.className = "disparus-drawer-divider";
+        titleEl.insertAdjacentElement("afterend", divider);
+      }
+      const paragraphs = drawerContent.querySelectorAll("p");
+      if (paragraphs.length >= 1) {
+        const divider = document.createElement("div");
+        divider.className = "disparus-drawer-divider";
+        paragraphs[0].insertAdjacentElement("afterend", divider);
+      }
+      if (paragraphs.length >= 2) {
+        const divider = document.createElement("div");
+        divider.className = "disparus-drawer-divider";
+        paragraphs[1].insertAdjacentElement("afterend", divider);
+      }
+      drawer.classList.add("open");
+      drawer.setAttribute("aria-hidden", "false");
     });
 
     if (drawerClose) {
       drawerClose.addEventListener("click", () => {
+        if (!drawer) return;
         drawer.classList.remove("open");
         drawer.setAttribute("aria-hidden", "true");
       });

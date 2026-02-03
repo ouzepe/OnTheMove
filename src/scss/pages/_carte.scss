@@ -1,67 +1,85 @@
 @import "../variables";
 @import "../breakpoints";
 
-#im-map { width: 100%; height: 100vh; }
-
+#im-map {
+  width: 100%;
+  height: 100vh;
+}
 
 #im-drawer {
-    position: fixed;
-    bottom:  -100%;
-    width: 100%;
-    height: 40%;
-    border-top: 1px solid #444746;
-    background: #1F1F1F;
-    color: lab(98.26% 0 0);
-    box-shadow: -2px 0 8px rgba(0,0,0,0.2);
-    transition: bottom 0.3s ease;
-    padding: 20px;
-    overflow-y: auto;
-    z-index: 1000;
+  position: fixed;
+  right: -100%;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  border-top: 1px solid #444746;
+  background: #fefefe;
+  color: #4a0b24;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-sizing: border-box;
 }
-#im-drawer.open { bottom: 0; }
+#im-drawer.open {
+  right: 0;
+}
 
 .pin {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 
-    position: relative;
-    animation: bounce 0.8s infinite alternate;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  animation: bounce 0.8s infinite alternate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pin::after {
-    content: '';
-    position: absolute;
-    width: 170%; 
-    height: 170%;
-    top: 1px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.6) 60%);
-    box-shadow: 0 0 15px 10px rgba(255,255,255,0.2);
-    animation: pulse 1.6s infinite;
-    box-sizing: border-box;
-    pointer-events: none;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  width: 170%;
+  height: 170%;
+  top: 1px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.6) 60%
+  );
+  box-shadow: 0 0 15px 10px rgba(255, 255, 255, 0.2);
+  animation: pulse 1.6s infinite;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: -1;
 }
 
-
 .pinIcon {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
 }
 
 @keyframes bounce {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-7px); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-7px);
+  }
 }
 
-
 @keyframes pulse {
-    0% { transform: scale(0.5); opacity: 0.5; }
-    100% { transform: scale(1.5); opacity: 0; }
+  0% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
 }

@@ -2,48 +2,2397 @@
 @import "../breakpoints";
 
 .page-template-page-contexte-des-disparitions {
-  h1 {
-    font-family: "Test Manuka", sans-serif;
-    font-weight: bold;
-    font-size: 75px;
-    color: $primary-light-white;
-    margin: 0 0 0 0;
-    text-align: left;
-    line-height: 90%;
-    text-transform: uppercase;
-    padding: 0 40px 40px 40px;
-    background-color: $primary-dark-red;
+  margin: 0;
+  padding: 0;
 
-    @include respond-to-down(sm) {
-      width: 80%;
-      margin: 0 auto;
-      text-align: center;
-      padding: 0 0 40px 0;
+  .chiffres-disparus-container-image {
+    width: 100%;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+
+    // @include respond-to-down(sm) {
+    //   top: -200px;
+    // }
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      margin: 0;
+      padding: 0;
+      image-rendering: auto;
+      -webkit-image-rendering: auto;
+      image-rendering: -webkit-optimize-contrast;
+      transform: translateZ(0);
+      backface-visibility: hidden;
     }
   }
 
-  .contexte-des-disparitions-container {
-    background-color: #f6f6f6;
+  .chiffres-disparus-container-carousel {
+    margin: 0;
+    padding: 0;
+    height: 90px;
     width: 100%;
-    min-height: 100vh;
-    padding: 40px 40px;
+    background-color: #cc1347;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    margin-top: -160px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    @include respond-to-down(sm) {
+      margin-top: -200px;
+      height: 130px;
+    }
+
+    .chiffres-disparus-container-carousel-text {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+      }
+    }
+
+    .chiffres-disparus-container-carousel-title {
+      color: #f6f6f6;
+      padding-left: 40px;
+      padding-right: 10px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-family: "Newsreader", sans-serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 16px;
+
+      @include respond-to-down(sm) {
+        font-size: 12px;
+        padding-left: 20px;
+        padding-bottom: 0 !important;
+      }
+    }
+
+    .chiffres-disparus-container-carousel-chapter {
+      color: #f6f6f68c;
+      font-family: "Commissioner", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 13.5px;
+      line-height: 130%;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+
+      @include respond-to-down(sm) {
+        padding-left: 20px;
+        font-size: 16px;
+      }
+    }
+
+    .chiffres-disparus-container-carousel-arrow {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-right: 40px;
+      cursor: pointer;
+
+      @include respond-to-down(sm) {
+        padding-right: 20px;
+      }
+
+      .carousel-arrow-icon {
+        border: 1px solid #ff1154;
+        border-radius: 50%;
+        padding: 15px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+      }
+
+      img {
+        display: block;
+        filter: brightness(0) invert(1);
+        width: 16px;
+        height: 16px;
+      }
+
+      .carousel-arrow-icon:hover {
+        background-color: #ff1154;
+      }
+    }
+  }
+
+  .chiffres-disparus-container-content {
+    width: 100%;
+    padding: 40px;
     box-sizing: border-box;
-    overflow: visible;
+    overflow: hidden;
+    background-color: #f6f6f6;
 
     @include respond-to-down(sm) {
-      padding: 0;
+      padding-top: 40px;
+      padding-left: 10px;
     }
 
-    .container {
-      max-width: 100%;
-      margin: 0 auto;
-      width: 100%;
-    }
+    h1 {
+      font-family: "Test Manuka", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 70px;
+      line-height: 90%;
+      letter-spacing: 0%;
+      color: #4a0b24;
 
-    .contexte-des-disparitions-content {
-      width: 100%;
-      color: $primary-dark-red;
+      @include respond-to-down(sm) {
+        font-size: 30px;
+      }
+    }
+    .description {
+      width: 50%;
       font-family: "Newsreader", sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 108%;
+
+      @include respond-to-down(md) {
+        width: 80%;
+      }
+      @include respond-to-down(sm) {
+        width: 100%;
+        font-size: 16px;
+      }
+    }
+    .written-by {
+      padding-top: 20px;
+      font-family: "Newsreader", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 108%;
+
+      a {
+        color: #ff1154;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    }
+    .chiffres-disparus-container-content-middle {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin: 0 auto;
+      align-items: center;
+      padding-top: 8%;
+      color: #4a0b24;
+      position: relative;
+
+      @include respond-to-down(sm) {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      @include respond-to-down(md) {
+        width: 70%;
+      }
+      .chiffres-disparus-container-content-middle-paragraph-3 {
+        font-family: "Newsreader", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 108%;
+      }
+      .chiffres-disparus-container-content-middle-paragraph-4 {
+        font-family: "Newsreader", sans-serif;
+        font-size: 18px;
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: #ff115466;
+          margin-top: 4%;
+        }
+      }
+      .chiffres-disparus-container-content-middle-paragraph-5 {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 100px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        font-variant-numeric: lining-nums proportional-nums;
+        color: #ff1154;
+        align-self: flex-start;
+        margin-top: 5px;
+        margin-bottom: 0;
+        position: relative;
+        padding-top: 2%;
+
+        @include respond-to-down(sm) {
+          font-size: 70px;
+        }
+      }
+      .chiffres-disparus-container-content-middle-paragraph-6 {
+        color: #cc1347;
+        font-family: "Commissioner", sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 108%;
+        margin: 0;
+        padding: 0;
+        margin-top: 0;
+        width: 100%;
+
+        &::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: #ff115466;
+          margin-top: 4%;
+        }
+      }
+
+      .chiffres-disparus-container-content-middle-paragraph-7,
+      .chiffres-disparus-container-content-middle-paragraph-8,
+      .chiffres-disparus-container-content-middle-paragraph-9 {
+        font-family: "Newsreader", sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 108%;
+        margin: 0;
+        padding: 0;
+        margin-top: 4%;
+      }
+    }
+    .chiffres-disparus-container-content-bottom {
+      width: 70%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 8%;
+      color: #4a0b24;
+      margin-top: 5%;
+      @include respond-to-down(sm) {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      h5 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 40px;
+        line-height: 100%;
+        letter-spacing: 0.3%;
+        text-align: center;
+        margin: 0;
+      }
+
+      p {
+        padding-top: 1%;
+        font-family: "Newsreader", sans-serif;
+        font-weight: 500;
+        font-style: italic;
+        font-size: 18px;
+        line-height: 130%;
+        letter-spacing: 0%;
+        text-align: center;
+        margin: 0;
+        padding-bottom: 5%;
+      }
+    }
+  }
+  .chiffres-disparus-container-content-people-missing {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #f6f6f6;
+    gap: 40px;
+    justify-content: center;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+
+    @include respond-to-down(sm) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .disparus-article {
+      flex: 0 0 calc(25% - 30px);
+      max-width: calc(25% - 30px);
+      box-sizing: border-box;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      position: relative;
+      padding-right: 30px;
+
+      &.is-hidden {
+        display: none;
+      }
+
+      .disparus-image img {
+        width: 280px;
+        height: 420px;
+        object-fit: cover;
+        display: block;
+        opacity: 1;
+
+        @include respond-to-between($breakpoint-md, $breakpoint-lg) {
+          width: 160px;
+          height: 300px;
+        }
+
+        @include respond-to-down(sm) {
+          height: 200px;
+          width: 150px;
+        }
+      }
+
+      .disparus-title {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 21px;
+        line-height: 130%;
+        letter-spacing: 0%;
+        color: #4a0b24;
+
+        @include respond-to-down(sm) {
+          font-size: 16px;
+          text-align: left;
+        }
+      }
+
+      p {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 13px;
+        line-height: 145%;
+        letter-spacing: 0%;
+        color: #4a0b24;
+
+        @include respond-to-down(sm) {
+          text-align: left;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 10px;
+        bottom: 10px;
+        width: 1px;
+        background-color: #a5849133;
+        display: none;
+      }
+
+      &:nth-child(4n) {
+        padding-right: 0;
+
+        &::after {
+          display: none;
+          height: 100%;
+        }
+      }
+
+      &.has-separator {
+        &::after {
+          display: block;
+        }
+      }
+    }
+
+    .disparus-link {
+      font-family: "Commissioner", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 13.5px;
+      line-height: 145%;
+      letter-spacing: 0%;
+      color: #a5849180;
+      text-decoration: underline;
+      text-decoration-style: solid;
+      text-underline-offset: 25%;
+      text-decoration-thickness: 8%;
+      text-decoration-skip-ink: auto;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+
+      @include respond-to-down(sm) {
+        text-align: left;
+      }
+
+      &:hover {
+        color: $primary-red;
+      }
+    }
+
+    @include respond-to-down(sm) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 20px;
+
+      .disparus-article {
+        flex: 0 0 164.5px;
+        width: 164.5px;
+        height: 400px;
+        max-width: 90%;
+        gap: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-right: 20px;
+        opacity: 1;
+        border-left: none;
+
+        .disparus-title {
+          margin-top: 6px;
+          margin-bottom: 4px;
+        }
+
+        p {
+          margin-top: 0;
+        }
+
+        .disparus-link {
+          margin-top: 10px;
+        }
+
+        &::after {
+          display: none;
+        }
+
+        &:nth-child(2n) {
+          padding-right: 0;
+
+          &::after {
+            display: none;
+          }
+        }
+
+        &:nth-child(2n + 1) {
+          border-left: none;
+        }
+
+        &.has-separator {
+          &::after {
+            display: block;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .disparus-view-all {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 0 0;
+    padding-bottom: 40px;
+  }
+
+  .disparus-view-all-button {
+    position: relative;
+    font-family: "Commissioner", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: $primary-red;
+    text-decoration: none;
+    border: 1px solid #ff11541a;
+    padding: 10px 36px 10px 24px;
+    border-radius: 999px;
+    padding-right: 34px;
+    display: inline-flex;
+    align-items: center;
+    background-color: #ff11541a;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 12px;
+      top: 55%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 7px;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 6.0625L0 1.0625L1.0625 0L5 3.9375L8.9375 0L10 1.0625L5 6.0625Z' fill='%23ff1154'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover::after {
+      transform: translateY(-50%) rotate(-180deg);
+    }
+
+    &:hover {
+      border-color: $primary-red;
+    }
+  }
+
+  .disparus-drawer {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 40%;
+    --drawer-width: 40%;
+    height: 100%;
+    border-top: 1px solid #444746;
+    background: #fefefe;
+    color: #4a0b24;
+    // box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    padding: 70px 40px 40px 40px;
+    padding-bottom: 70px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    z-index: 1000;
+    box-sizing: border-box;
+
+    &::before {
+      content: "";
+      position: fixed;
+      left: calc(100% - var(--drawer-width));
+      width: var(--drawer-width);
+      bottom: 0;
+      height: 90px;
+      background: linear-gradient(
+        to bottom,
+        rgba(254, 254, 254, 0) 0%,
+        rgba(254, 254, 254, 0.8) 80%,
+        rgba(254, 254, 254, 1) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    &::after {
+      content: "";
+      position: fixed;
+      left: calc(100% - (var(--drawer-width) / 2));
+      bottom: 20px;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 8px;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='18' height='10' viewBox='0 0 18 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9 10L0 1.8L1.8 0L9 6.4L16.2 0L18 1.8L9 10Z' fill='%234A0B24'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      pointer-events: none;
+      z-index: 1001;
+      opacity: 0;
+    }
+
+    @include respond-to-down(md) {
+      width: 60%;
+      --drawer-width: 60%;
+    }
+    @include respond-to-down(sm) {
+      width: 80%;
+      --drawer-width: 80%;
+    }
+  }
+
+  .disparus-drawer.open {
+    right: 0;
+
+    &::after {
+      opacity: 1;
+    }
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  .disparus-drawer::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+  .disparus-drawer-image {
+    width: 500px;
+    height: 600px;
+
+    @include respond-to-down(md) {
+      width: 400px;
+      height: 500px;
+    }
+    @include respond-to(xl) {
+      @media (max-height: 800px) {
+        width: 350px;
+        height: 450px;
+      }
+    }
+    @include respond-to-down(sm) {
+      width: 250px;
+      height: 400px;
+    }
+  }
+
+  .disparus-drawer-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover;
+    display: block;
+  }
+
+  .disparus-drawer-close {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: $primary-dark-red;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #fefefe;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .disparus-drawer-title {
+    margin: 12px 0 16px;
+    padding-top: 2%;
+  }
+
+  .disparus-drawer a {
+    color: #4a0b24;
+    &:hover {
+      color: $primary-red;
+    }
+  }
+
+  .disparus-drawer-divider {
+    width: 100%;
+    height: 1px;
+    background-color: $primary-red;
+    margin: 12px 0 16px;
+  }
+
+  .contexte-disparus-container-content-middle {
+    width: 100%;
+    padding: 40px 0;
+    padding-top: 8%;
+
+    .contexte-groups-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      width: 100%;
+      align-items: flex-start;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        gap: 30px;
+      }
+    }
+
+    .contexte-group-left,
+    .contexte-group-right {
+      flex: 1;
+      width: 50%;
+
+      @include respond-to-down(sm) {
+        width: 100%;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-video {
+        margin: 20px 0;
+
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        presto-player {
+          --plyr-color-main: #e3dcdc !important;
+          --plyr-video-controls-background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.75)
+          ) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-bottom-wrapper {
+    width: 100%;
+    background-color: #ffffff !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-groups-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      width: 100%;
+      align-items: flex-start;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+      }
+    }
+
+    .contexte-group-left,
+    .contexte-group-right {
+      flex: 1;
+      width: 50%;
+
+      @include respond-to-down(sm) {
+        width: 100%;
+      }
+    }
+
+    // Styles pour les groupes 11 et 12 (indices 10 et 11) en row
+    .contexte-groups-bottom {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      width: 100%;
+      align-items: flex-start;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+      }
+    }
+
+    .contexte-group-bottom-left,
+    .contexte-group-bottom-right {
+      flex: 1;
+      width: 50%;
+
+      @include respond-to-down(sm) {
+        width: 100%;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-video {
+        margin: 20px 0;
+
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        presto-player {
+          --plyr-color-main: #e3dcdc !important;
+          --plyr-video-controls-background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.75)
+          ) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-bottom-wrapper-group-10 {
+    width: 100%;
+    background-color: #fefefe !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-group-quinary-wrapper-group-10 {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      width: 100%;
+      align-items: flex-start;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+      }
+    }
+
+    .contexte-group-quinary-left,
+    .contexte-group-quinary-right {
+      flex: 1;
+      width: 50%;
+
+      @include respond-to-down(sm) {
+        width: 100%;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-image {
+        margin: 0;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      figure.wp-block-video {
+        margin: 20px 0;
+
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        presto-player {
+          --plyr-color-main: #e3dcdc !important;
+          --plyr-video-controls-background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.75)
+          ) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-bottom-wrapper-group-11 {
+    width: 100%;
+    background-color: #fefefe !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-group-quinary {
+      width: 100%;
+      max-width: 100%;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        padding: 20px;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-image {
+        margin: 20px 0;
+
+        img {
+          width: 100%;
+          height: 800px;
+          object-fit: cover;
+          display: block;
+          object-position: center;
+
+          @include respond-to-down(sm) {
+            height: auto;
+          }
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        presto-player {
+          --plyr-color-main: #e3dcdc !important;
+          --plyr-video-controls-background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.75)
+          ) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-bottom-wrapper-group-12 {
+    width: 100%;
+    background-color: #fefefe !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-group-quinary-wrapper-group-12 {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      width: 100%;
+      align-items: flex-start;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+      }
+    }
+
+    .contexte-group-quinary-left,
+    .contexte-group-quinary-right {
+      flex: 1;
+      width: 50%;
+
+      @include respond-to-down(sm) {
+        width: 100%;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: $primary-dark-red;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: $primary-dark-red;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: $primary-dark-red;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-image {
+        margin: 20px 0;
+
+        img {
+          width: 100%;
+          height: 800px;
+          object-fit: cover;
+          display: block;
+          object-position: center;
+
+          @include respond-to-down(sm) {
+            height: auto;
+          }
+        }
+      }
+
+      figure.wp-block-video {
+        margin: 20px 0;
+
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        presto-player {
+          --plyr-color-main: #{$primary-dark-red} !important;
+          --plyr-audio-controls-background: #{$primary-dark-red} !important;
+          --plyr-audio-control-color: #ffffff !important;
+          --plyr-range-thumb-background: #ffffff !important;
+          --plyr-range-fill-background: #ffffff !important;
+          --plyr-audio-progress-buffered-background: rgba(
+            74,
+            11,
+            36,
+            0.25
+          ) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-secondary-wrapper {
+    width: 100%;
+    background-color: #fefefe !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-groups-secondary {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      width: 100%;
+      align-items: flex-start;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+      }
+    }
+
+    .contexte-group-secondary-left,
+    .contexte-group-secondary-right {
+      flex: 1;
+      width: 50%;
+
+      @include respond-to-down(sm) {
+        width: 100%;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-video {
+        margin: 20px 0;
+
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        presto-player {
+          --plyr-color-main: #e3dcdc !important;
+          --plyr-video-controls-background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.75)
+          ) !important;
+        }
+      }
+
+      // Styles pour Presto Player Audio (rouge foncé)
+      figure.wp-block-video.presto-block-video {
+        margin: 20px 0;
+        background: transparent !important;
+
+        presto-player {
+          --plyr-color-main: #{$primary-dark-red} !important;
+          --plyr-audio-controls-background: #{$primary-dark-red} !important;
+          --plyr-audio-control-color: #ffffff !important;
+          --plyr-range-thumb-background: #ffffff !important;
+          --plyr-range-fill-background: #ffffff !important;
+          --plyr-audio-progress-buffered-background: rgba(
+            74,
+            11,
+            36,
+            0.25
+          ) !important;
+        }
+
+        .presto-audio__wrapper {
+          background: transparent !important;
+        }
+
+        .presto-audio__controls-wrapper {
+          background: #{$primary-dark-red} !important;
+          border-radius: 8px;
+        }
+
+        .presto-audio__poster-wrapper {
+          background: #{$primary-dark-red} !important;
+        }
+
+        .presto-audio__large-play-button {
+          background: rgba(255, 255, 255, 0.9) !important;
+
+          svg {
+            fill: #{$primary-dark-red} !important;
+          }
+        }
+
+        .plyr__controls {
+          background: #{$primary-dark-red} !important;
+          color: #ffffff !important;
+        }
+
+        .plyr__control {
+          color: #ffffff !important;
+
+          svg {
+            fill: #ffffff !important;
+          }
+        }
+
+        .plyr__progress__buffer {
+          background: rgba(255, 255, 255, 0.25) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-tertiary-wrapper {
+    width: 100%;
+    background-color: #fefefe !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-group-tertiary {
+      width: 100%;
+      max-width: 100%;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        padding: 20px;
+      }
+    }
+
+    .contexte-groups-tertiary {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      width: 100%;
+      align-items: flex-start;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+      }
+    }
+
+    .contexte-group-tertiary-left,
+    .contexte-group-tertiary-right {
+      flex: 1;
+      width: 50%;
+
+      @include respond-to-down(sm) {
+        width: 100%;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-video {
+        margin: 20px 0;
+
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      figure.wp-block-image {
+        margin: 20px 0;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        // presto-player {
+        //   --plyr-color-main: #e3dcdc !important;
+        //   --plyr-video-controls-background: linear-gradient(
+        //     rgba(0, 0, 0, 0),
+        //     rgba(0, 0, 0, 0.75)
+        //   ) !important;
+        // }
+      }
+
+      // Styles pour Presto Player Audio
+      figure.wp-block-video.presto-block-video {
+        margin: 20px 0;
+        // background: transparent !important;
+
+        // presto-player {
+        //   --plyr-color-main: #{$primary-dark-red} !important;
+        //   --plyr-audio-controls-background: #{$primary-dark-red} !important;
+        //   --plyr-audio-control-color: #ffffff !important;
+        //   --plyr-range-thumb-background: #ffffff !important;
+        //   --plyr-range-fill-background: #ffffff !important;
+        //   --plyr-audio-progress-buffered-background: rgba(
+        //     74,
+        //     11,
+        //     36,
+        //     0.25
+        //   ) !important;
+        // }
+
+        .presto-audio__wrapper {
+          background: transparent !important;
+        }
+
+        .presto-audio__controls-wrapper {
+          background: #{$primary-dark-red} !important;
+          border-radius: 8px;
+        }
+
+        .presto-audio__poster-wrapper {
+          background: #{$primary-dark-red} !important;
+        }
+
+        .presto-audio__large-play-button {
+          background: rgba(255, 255, 255, 0.9) !important;
+
+          svg {
+            fill: #{$primary-dark-red} !important;
+          }
+        }
+
+        .plyr__controls {
+          background: #{$primary-dark-red} !important;
+          color: #ffffff !important;
+        }
+
+        .plyr__control {
+          color: #ffffff !important;
+
+          svg {
+            fill: #ffffff !important;
+          }
+        }
+
+        .plyr__progress__buffer {
+          background: rgba(255, 255, 255, 0.25) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-quaternary-wrapper {
+    width: 100%;
+    background-color: #fefefe !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-groups-quaternary {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      width: 100%;
+      align-items: flex-start;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+      }
+    }
+
+    .contexte-group-quaternary-left,
+    .contexte-group-quaternary-right {
+      flex: 1;
+      width: 50%;
+
+      @include respond-to-down(sm) {
+        width: 100%;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-video {
+        margin: 20px 0;
+
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      figure.wp-block-image {
+        margin: 20px 0;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        presto-player {
+          --plyr-color-main: #e3dcdc !important;
+          --plyr-video-controls-background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.75)
+          ) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-big-screen-wrapper {
+    width: 100%;
+    background-color: #fefefe !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-group-big-screen {
+      width: 100%;
+      max-width: 100%;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        padding: 20px;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-image {
+        margin: 20px 0;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        // Styles pour les vidéos Presto Player (gris par défaut)
+        presto-player {
+          --plyr-color-main: #e3dcdc !important;
+          --plyr-video-controls-background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.75)
+          ) !important;
+        }
+      }
+    }
+  }
+
+  .contexte-group-quinary-wrapper {
+    width: 100%;
+    background-color: #fefefe !important;
+    padding: 0;
+    margin: 0;
+    display: block;
+
+    .contexte-group-quinary {
+      width: 100%;
+      max-width: 100%;
+      padding: 40px;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        padding: 20px;
+      }
+    }
+
+    .wp-block-group {
+      h3 {
+        font-family: "Test Manuka", sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 110%;
+        color: #4a0b24;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 140%;
+        color: #4a0b24;
+        margin-top: 12px;
+      }
+
+      p {
+        font-family: "Newsreader", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+        color: #4a0b24;
+        margin: 16px 0;
+      }
+
+      figure.wp-block-image {
+        margin: 20px 0;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .wp-block-presto-player-reusable-display {
+        width: 100%;
+        margin: 20px 0;
+
+        iframe,
+        video {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+
+        presto-player {
+          --plyr-color-main: #e3dcdc !important;
+          --plyr-video-controls-background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0.75)
+          ) !important;
+        }
+      }
+
+      // Styles pour Presto Player Audio (rouge foncé)
+      figure.wp-block-video.presto-block-video {
+        margin: 20px 0;
+        background: transparent !important;
+
+        presto-player {
+          --plyr-color-main: #{$primary-dark-red} !important;
+          --plyr-audio-controls-background: #{$primary-dark-red} !important;
+          --plyr-audio-control-color: #ffffff !important;
+          --plyr-range-thumb-background: #ffffff !important;
+          --plyr-range-fill-background: #ffffff !important;
+          --plyr-audio-progress-buffered-background: rgba(
+            74,
+            11,
+            36,
+            0.25
+          ) !important;
+        }
+
+        .presto-audio__wrapper {
+          background: transparent !important;
+        }
+
+        .presto-audio__controls-wrapper {
+          background: #{$primary-dark-red} !important;
+          border-radius: 8px;
+        }
+
+        .presto-audio__poster-wrapper {
+          background: #{$primary-dark-red} !important;
+        }
+
+        .presto-audio__large-play-button {
+          background: rgba(255, 255, 255, 0.9) !important;
+
+          svg {
+            fill: #{$primary-dark-red} !important;
+          }
+        }
+
+        .plyr__controls {
+          background: #{$primary-dark-red} !important;
+          color: #ffffff !important;
+        }
+
+        .plyr__control {
+          color: #ffffff !important;
+
+          svg {
+            fill: #ffffff !important;
+          }
+        }
+
+        .plyr__progress__buffer {
+          background: rgba(255, 255, 255, 0.25) !important;
+        }
+      }
+    }
+
+    // Styles pour la zone rouge
+    .wp-block-group-red-zone {
+      background-color: #ffffff !important;
+      padding: 40px;
+      margin: 40px 0;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        padding: 20px;
+        margin: 20px 0;
+      }
+
+      h2,
+      h2.wp-block-heading {
+        font-family: "Newsreader", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 50px !important;
+        line-height: 90% !important;
+        letter-spacing: 0%;
+        color: #ff1154 !important;
+        margin: 0 0 20px 0 !important;
+
+        @include respond-to-down(sm) {
+          font-size: 30px !important;
+        }
+      }
+
+      p {
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 140%;
+        color: #ff1154 !important;
+        margin: 16px 0;
+
+        &:first-of-type {
+          display: inline-block;
+          padding: 16px 20px;
+          border-top: 1px solid $primary-red;
+          border-bottom: 1px solid $primary-red;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  .contexte-group-bottom {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    padding-bottom: 10%;
+    padding-top: 5%;
+    color: #ff1154;
+
+    @include respond-to-down(sm) {
+      padding: 20px;
+    }
+
+    h2,
+    h2.wp-block-heading,
+    .wp-block-group h2,
+    .wp-block-group h2.wp-block-heading {
+      font-family: "Newsreader", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 50px;
+      line-height: 90%;
+      letter-spacing: 0%;
+      color: #ff1154;
+      margin: 0 0 20px 0;
+      @include respond-to-down(sm) {
+        font-size: 30px;
+      }
+
+      + p {
+        display: inline-block;
+        margin-right: 20px;
+        padding: 16px 20px;
+        border-top: 1px solid $primary-red;
+        border-bottom: 1px solid $primary-red;
+        font-family: "Commissioner", sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 13.5px;
+        line-height: 145%;
+        letter-spacing: 0%;
+        max-width: 45%;
+        box-sizing: border-box;
+        color: #ff1154;
+
+        @include respond-to-down(sm) {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          margin-right: 0;
+          margin-bottom: 10px;
+          padding: 16px 20px;
+        }
+
+        + p {
+          display: inline-block;
+          padding: 16px 20px;
+          border-top: 1px solid $primary-red;
+          border-bottom: 1px solid $primary-red;
+          position: relative;
+          font-family: "Commissioner", sans-serif;
+          font-weight: 500;
+          font-style: normal;
+          font-size: 13.5px;
+          line-height: 145%;
+          letter-spacing: 0%;
+          max-width: auto;
+          box-sizing: border-box;
+          color: #ff1154;
+
+          @include respond-to-down(sm) {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            padding: 16px 20px;
+            border-top: none;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background-color: $primary-red;
+
+            @include respond-to-down(sm) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    // Styles pour la zone rouge avec wp-block-group__inner-container
+    .contexte-group-bottom--first {
+      background-color: #ffffff !important;
+      padding: 40px;
+      margin: 0;
+      box-sizing: border-box;
+
+      @include respond-to-down(sm) {
+        padding: 20px;
+      }
+
+      .wp-block-group__inner-container {
+        h2,
+        h2.wp-block-heading {
+          font-family: "Newsreader", sans-serif;
+          font-weight: 700;
+          font-style: normal;
+          font-size: 50px;
+          line-height: 90%;
+          letter-spacing: 0%;
+          color: #ff1154;
+          margin: 0 0 20px 0;
+
+          @include respond-to-down(sm) {
+            font-size: 30px;
+          }
+        }
+
+        p {
+          display: inline-block !important;
+          padding: 16px 20px !important;
+          border-top: 1px solid $primary-red !important;
+          border-bottom: 1px solid $primary-red !important;
+          font-family: "Commissioner", sans-serif !important;
+          font-weight: 500 !important;
+          font-style: normal !important;
+          font-size: 13.5px !important;
+          line-height: 145% !important;
+          letter-spacing: 0% !important;
+          box-sizing: border-box !important;
+          color: #ff1154 !important;
+          margin: 0 !important;
+          vertical-align: top !important;
+
+          @include respond-to-down(sm) {
+            display: block !important;
+            width: 100% !important;
+            margin-bottom: 10px !important;
+          }
+
+          &:first-of-type {
+            margin-right: 20px !important;
+            max-width: 45% !important;
+
+            @include respond-to-down(sm) {
+              max-width: 100% !important;
+              margin-right: 0 !important;
+            }
+          }
+
+          &:last-of-type {
+            position: relative !important;
+            max-width: auto !important;
+            padding-left: 30px !important;
+
+            @include respond-to-down(sm) {
+              border-top: none !important;
+              padding-left: 20px !important;
+            }
+
+            &::before {
+              content: "" !important;
+              position: absolute !important;
+              left: -10px !important;
+              top: 0 !important;
+              bottom: 0 !important;
+              width: 1px !important;
+              background-color: $primary-red !important;
+
+              @include respond-to-down(sm) {
+                display: none !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .disparus-enquete {
+    width: 100%;
+    display: block;
+    text-align: center !important;
+    padding: 5px 0 0 0;
+    box-sizing: border-box;
+  }
+
+  .disparus-enquete-title {
+    display: block !important;
+    width: 100% !important;
+    font-family: "Newsreader", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 25px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    text-align: center !important;
+    margin: 0 auto !important;
+    padding: 0;
+    color: $primary-dark-red;
+  }
+
+  .disparus-enquete-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    padding: 30px 0 0 0;
+    box-sizing: border-box;
+  }
+  .disparus-enquete-cards-title {
+    font-family: "Newsreader", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    color: $primary-dark-red;
+    text-align: center;
+  }
+
+  .chapterCard {
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+    width: 100%;
+    background-color: #f6f6f6;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $primary-red;
+
+      .chapterCard-title,
+      .chapterCard-subtitle,
+      .chapterCard-text {
+        color: #ffffff;
+      }
+
+      .chapterCard-cta {
+        background-color: $primary-dark-red;
+        border-color: $primary-dark-red;
+
+        a {
+          color: #ffffff;
+        }
+
+        img {
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
+  }
+
+  .chapterCard-left {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 15%;
+    box-sizing: border-box;
+    padding-top: 5%;
+
+    @include respond-to-down(md) {
+      padding-left: 5%;
+      padding-top: 0 !important;
+    }
+  }
+
+  .chapterCard-title {
+    font-family: "Commissioner", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 10%;
+    text-transform: uppercase;
+    color: $primary-red;
+    text-align: left;
+    transition: color 0.3s ease;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @include respond-to-down(md) {
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 70%;
+      letter-spacing: 0%;
+    }
+  }
+
+  .chapterCard-subtitle {
+    font-family: "Test Manuka", sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 100%;
+    letter-spacing: 0.3%;
+    color: $primary-dark-red;
+    text-transform: none;
+    text-align: left;
+    transition: color 0.3s ease;
+  }
+
+  .chapterCard-text {
+    font-family: "Newsreader", sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 135%;
+    letter-spacing: 0%;
+    color: $primary-dark-red;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+    transition: color 0.3s ease;
+  }
+
+  .chapterCard-cta {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: flex-start;
+    width: 250px;
+    padding: 20px;
+    padding-left: 20px;
+    border: 1px solid #ff115466;
+    font-family: "Commissioner", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    color: $primary-dark-red;
+    box-sizing: border-box;
+    transition: padding-left 0.3s ease, background-color 0.3s ease,
+      border-color 0.3s ease;
+
+    &:hover {
+      padding-left: 40px;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: inherit;
+      text-decoration: none;
+      gap: 10px;
+      transition: color 0.3s ease;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      display: block;
+      transition: filter 0.3s ease;
+    }
+  }
+
+  .chapterCard-right {
+    width: 60%;
+  }
+
+  .chapterCard-right img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  @include respond-to-down(sm) {
+    .chapterCard {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .chapterCard-left,
+    .chapterCard-right {
+      width: 100%;
+    }
+
+    .chapterCard-right {
+      order: 1;
+    }
+
+    .chapterCard-left {
+      order: 2;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.wp-block-group-red-zone-2 {
+  background-color: #ffffff !important;
+  padding: 40px;
+  margin: 0;
+  box-sizing: border-box;
+
+  @include respond-to-down(sm) {
+    padding: 20px;
+  }
+
+  .wp-block-group__inner-container {
+    h2,
+    h2.wp-block-heading {
+      font-family: "Newsreader", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 50px;
+      line-height: 90%;
+      letter-spacing: 0%;
+      color: #ff1154;
+      margin: 0 0 20px 0;
+
+      @include respond-to-down(sm) {
+        font-size: 30px;
+      }
+    }
+
+    p {
+      display: inline-block !important;
+      padding: 16px 20px !important;
+      border-top: 1px solid $primary-red !important;
+      border-bottom: 1px solid $primary-red !important;
+      font-family: "Commissioner", sans-serif !important;
+      font-weight: 500 !important;
+      font-style: normal !important;
+      font-size: 13.5px !important;
+      line-height: 145% !important;
+      letter-spacing: 0% !important;
+      box-sizing: border-box !important;
+      color: #ff1154 !important;
+      margin: 0 !important;
+      vertical-align: top !important;
+
+      @include respond-to-down(sm) {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 10px !important;
+      }
+
+      &:first-of-type {
+        margin-right: 20px !important;
+        max-width: 45% !important;
+
+        @include respond-to-down(sm) {
+          max-width: 100% !important;
+          margin-right: 0 !important;
+        }
+      }
+
+      &:last-of-type {
+        position: relative !important;
+        max-width: auto !important;
+        padding-left: 30px !important;
+
+        @include respond-to-down(sm) {
+          border-top: none !important;
+          padding-left: 20px !important;
+        }
+
+        &::before {
+          content: "" !important;
+          position: absolute !important;
+          left: -10px !important;
+          top: 0 !important;
+          bottom: 0 !important;
+          width: 1px !important;
+          background-color: $primary-red !important;
+
+          @include respond-to-down(sm) {
+            display: none !important;
+          }
+        }
+      }
     }
   }
 }
