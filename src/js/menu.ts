@@ -257,20 +257,39 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = "";
         document.body.style.position = "";
         document.body.style.width = "";
-      }
 
-      const primaryMenu = document.querySelector(".primary-menu");
-      if (primaryMenu) {
-        const allItems = Array.from(primaryMenu.children).filter(
-          (el): el is HTMLElement => el instanceof HTMLElement
-        );
-        allItems.forEach((item) => {
-          item.style.transform = "translateY(0)";
-          const submenu = item.querySelector(".sub-menu") as HTMLElement;
-          if (submenu) {
-            submenu.style.opacity = "0";
-          }
-        });
+        const primaryMenu = document.querySelector(".primary-menu");
+        if (primaryMenu) {
+          const allItems = Array.from(primaryMenu.children).filter(
+            (el): el is HTMLElement => el instanceof HTMLElement
+          );
+          allItems.forEach((item) => {
+            item.classList.remove("active");
+            item.style.transform = "translateY(0)";
+            const submenu = item.querySelector(".sub-menu") as HTMLElement;
+            if (submenu) {
+              submenu.classList.remove("active");
+              submenu.style.opacity = "0";
+            }
+          });
+        }
+      } else {
+        // Sur desktop, retirer les classes active mais ne pas toucher à l'opacity
+        // (le CSS hover gère l'affichage)
+        const primaryMenu = document.querySelector(".primary-menu");
+        if (primaryMenu) {
+          const allItems = Array.from(primaryMenu.children).filter(
+            (el): el is HTMLElement => el instanceof HTMLElement
+          );
+          allItems.forEach((item) => {
+            item.classList.remove("active");
+            const submenu = item.querySelector(".sub-menu") as HTMLElement;
+            if (submenu) {
+              submenu.classList.remove("active");
+              submenu.style.opacity = "";
+            }
+          });
+        }
       }
     }
   });

@@ -447,7 +447,31 @@
           }
         }
 
-        &:nth-child(1),
+        &:nth-child(1) {
+          a {
+            &:hover {
+              background-color: transparent;
+
+              @include respond-to-down(md) {
+                color: $primary-red;
+                opacity: 0.8;
+              }
+            }
+
+            &::before {
+              @include respond-to-down(md) {
+                display: none !important;
+              }
+            }
+
+            &::after {
+              @include respond-to-down(md) {
+                display: none !important;
+              }
+            }
+          }
+        }
+
         &:nth-child(2) {
           a {
             &:hover {

@@ -18,8 +18,7 @@ while (have_posts()):
     <div class="la-carte-container">
         <div id="im-map"></div>
         <div id="im-drawer">
-            <h2 id="drawer-title"></h2>
-            <p id="drawer-content"></p>
+            <div id="drawer-content"></div>
         </div>
         <p class="card-txt-slt">Sélectionnez un territoire d'enquête sur la carte.</p>
         <p class="card-txt-src">Source : Natural Earth. Réalisé avec Graticule</p>

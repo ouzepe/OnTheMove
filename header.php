@@ -72,13 +72,13 @@
                             </div>
                             <div class="header-menu-lang-mobile">
                                 <div class="header-menu-lang-fr">
-                                    <a href="<?php echo home_url(); ?>/"
+                                    <a href="<?php echo function_exists('pll_home_url') ? pll_home_url('fr') : home_url('/'); ?>"
                                         style="<?php echo (get_locale() == 'en_US') ? 'color: #A58491;' : ''; ?>">FR</a>
                                 </div>
                                 <!-- Separator -->
                                 <span class="header-menu-lang-separator">/</span>
                                 <div class="header-menu-lang-en">
-                                    <a href="<?php echo home_url(); ?>/en"
+                                    <a href="<?php echo function_exists('pll_home_url') ? pll_home_url('en') : home_url('/en'); ?>"
                                         style="<?php echo (get_locale() == 'en_US') ? '' : 'color: #A58491;'; ?>">EN</a>
                                 </div>
                             </div>
@@ -86,13 +86,13 @@
                     </div>
                     <div class="header-menu-lang">
                         <div class="header-menu-lang-fr">
-                            <a href="<?php echo home_url(); ?>/"
+                            <a href="<?php echo function_exists('pll_home_url') ? pll_home_url('fr') : home_url('/'); ?>"
                                 style="<?php echo (get_locale() == 'en_US') ? 'color: #A58491;' : ''; ?>">FR</a>
                         </div>
                         <!-- Separator -->
                         <span class="header-menu-lang-separator">/</span>
                         <div class="header-menu-lang-en">
-                            <a href="<?php echo home_url(); ?>/en"
+                            <a href="<?php echo function_exists('pll_home_url') ? pll_home_url('en') : home_url('/en'); ?>"
                                 style="<?php echo (get_locale() == 'en_US') ? '' : 'color: #A58491;'; ?>">EN</a>
                         </div>
                     </div>

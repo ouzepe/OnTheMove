@@ -39,11 +39,47 @@ body.page-carte {
   z-index: 2;
   background-color: $primary-dark-red;
 
-
   .leaflet-container {
     width: 100%;
     height: 100%;
     background-color: $primary-dark-red;
+  }
+
+  // Container du pin avec tooltip
+  .pin-container {
+    position: relative;
+    cursor: pointer;
+    width: 60px;
+    height: 68px;
+
+    .pin-tooltip {
+      position: absolute;
+      bottom: calc(100% + 5px); // 5px au-dessus du pin
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffffff;
+      color: $primary-dark-red;
+      padding: 8px 12px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 500;
+      display: none; // Caché par défaut
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .pin {
+      width: 60px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:hover .pin-tooltip {
+      display: block; // Affiché au hover instantanément, sans animation
+    }
   }
 }
 
@@ -57,7 +93,7 @@ body.page-carte {
   background-color: #fefefe;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease;
-  padding: 20px;
+  padding: 0;
   overflow-y: auto;
   z-index: 1000;
   color: $primary-dark-red;
@@ -72,7 +108,185 @@ body.page-carte {
   }
 
   @include respond-to-down(sm) {
-    width: 80%;
+    width: 90%;
+  }
+
+  // Style pour le contenu du drawer
+  #drawer-content {
+    // L'image doit prendre toute la largeur sans padding
+    figure.wp-block-image {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-height: 300px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    // Wrapper pour le titre avec icône
+    .drawer-title-wrapper {
+      display: flex;
+      align-items: center;
+      padding: 20px 20px 10px 20px;
+      gap: 10px;
+
+      .drawer-title-icon {
+        width: 14px;
+        height: auto;
+        flex-shrink: 0;
+
+        @include respond-to-down(sm) {
+          width: 10px;
+        }
+      }
+
+      h1 {
+        margin: 0;
+        padding: 0;
+        font-size: 28px;
+        font-weight: 700;
+        color: $primary-dark-red;
+        line-height: 1.3;
+
+        @include respond-to-down(sm) {
+          font-size: 20px;
+        }
+      }
+    }
+
+    // Le h2 dans les groupes
+    h2 {
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      font-size: 24px;
+      font-weight: 600;
+      color: $primary-dark-red;
+    }
+
+    // Le h6
+    h6 {
+      padding-left: 20px;
+      padding-right: 20px;
+      font-family: "Commissioner", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 13.5px;
+      line-height: 145%;
+      letter-spacing: 0%;
+      color: #a58491;
+    }
+
+    // Le reste du contenu a du padding
+    p,
+    ol,
+    .wp-block-buttons,
+    .wp-block-group {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    // Style pour la liste
+    ol.wp-block-list {
+      padding-bottom: 20px;
+
+      li {
+        font-family: "Newsreader", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 17px;
+        line-height: 135%;
+        letter-spacing: 0%;
+        color: #4a0b24;
+
+        a {
+          color: #4a0b24;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    // Style pour le bouton
+    .wp-block-buttons {
+      margin-top: auto;
+      padding-bottom: 20px;
+
+      .wp-block-button {
+        a.wp-block-button__link {
+          width: 392px;
+          height: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-family: "Commissioner", sans-serif;
+          font-weight: 500;
+          font-style: normal;
+          font-size: 16px;
+          line-height: 140%;
+          letter-spacing: 0%;
+          color: #4a0b24;
+          opacity: 1;
+          text-decoration: none;
+          background-color: transparent;
+          border: 1px solid #ff1154;
+          padding: 30px;
+          box-sizing: border-box;
+          border-radius: 0;
+          position: relative;
+
+          @include respond-to-down(sm) {
+            width: 98%;
+            max-width: 350px;
+          }
+
+          // Flèche à droite
+          &::after {
+            content: "→";
+            color: #ff1154;
+            font-size: 20px;
+            margin-left: 10px;
+          }
+
+          &:hover {
+            background-color: $primary-dark-red;
+            border-color: $primary-dark-red;
+            color: #ffffff;
+
+            &::after {
+              color: #ffffff;
+            }
+          }
+
+          // Style pour le bouton désactivé (sans lien)
+          &.disabled-button {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+
+            &:hover {
+              background-color: transparent;
+              border-color: #ff1154;
+              color: #4a0b24;
+
+              &::after {
+                color: #ff1154;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 

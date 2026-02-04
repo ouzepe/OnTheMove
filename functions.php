@@ -58,18 +58,126 @@ add_action('wp_enqueue_scripts', 'theme_leaflet_script', 5); // Priority 5 to lo
 function add_im_settings_to_head()
 {
     if (is_page_template('page-la-carte.php') || is_page('la-carte')) {
+        // Chercher la catégorie "carte" dans toutes les langues
+        $carte_category = get_category_by_slug('carte');
+
+        // Si Polylang est actif, récupérer aussi les traductions de la catégorie
+        $category_ids = array();
+        if ($carte_category) {
+            $category_ids[] = $carte_category->term_id;
+
+            // Ajouter les traductions si Polylang est actif
+            if (function_exists('pll_get_term_translations')) {
+                $translations = pll_get_term_translations($carte_category->term_id);
+                if ($translations) {
+                    $category_ids = array_merge($category_ids, array_values($translations));
+                }
+            }
+        }
+
+        $args = array(
+            'post_type' => 'post',
+            'posts_per_page' => -1,
+            'category__in' => $category_ids,
+        );
+
+        $pins_query = new WP_Query($args);
+        $pins_data = [];
+
+        if ($pins_query->have_posts()) {
+            while ($pins_query->have_posts()) {
+                $pins_query->the_post();
+
+                // Récupérer le contenu de l'article
+                $content = get_the_content();
+
+                // Extraire le premier h2
+                preg_match('/<h2[^>]*>(.*?)<\/h2>/is', $content, $h2_match);
+                $h2_title = !empty($h2_match[1]) ? strip_tags($h2_match[1]) : get_the_title();
+
+                // Extraire tous les paragraphes <p>
+                preg_match_all('/<p[^>]*>(.*?)<\/p>/is', $content, $p_matches);
+
+                $x = null;
+                $y = null;
+
+                // Si on a au moins 2 paragraphes, les 2 derniers sont x et y
+                if (!empty($p_matches[1]) && count($p_matches[1]) >= 2) {
+                    $paragraphs = $p_matches[1];
+                    $total = count($paragraphs);
+
+                    // Avant-dernier paragraphe = x
+                    $x_text = strip_tags($paragraphs[$total - 2]);
+                    $x = (float) $x_text;
+
+                    // Dernier paragraphe = y
+                    $y_text = strip_tags($paragraphs[$total - 1]);
+                    $y = (float) $y_text;
+                }
+
+                // Ajouter le pin seulement si x et y sont définis et valides
+                if ($x !== null && $y !== null && $x > 0 && $y > 0) {
+                    // Trouver la position du dernier groupe wp:group pour le retirer
+                    $last_group_pos = strrpos($content, '<!-- wp:group');
+
+                    if ($last_group_pos !== false) {
+                        // Retirer seulement à partir du dernier groupe
+                        $content_without_coords = substr($content, 0, $last_group_pos);
+                    } else {
+                        $content_without_coords = $content;
+                    }
+
+                    // Appliquer les filtres WordPress pour transformer TOUT le contenu Gutenberg en HTML
+                    $full_html = apply_filters('the_content', $content_without_coords);
+
+                    // ENSUITE, extraire l'image du HTML généré
+                    preg_match('/<figure[^>]*class="[^"]*wp-block-image[^"]*"[^>]*>.*?<\/figure>/is', $full_html, $image_match);
+                    $image_html = $image_match[0] ?? '';
+
+                    // Retirer l'image du HTML pour avoir le reste du contenu
+                    $content_html = preg_replace('/<figure[^>]*class="[^"]*wp-block-image[^"]*"[^>]*>.*?<\/figure>/is', '', $full_html, 1);
+
+                    // Vérifier si le bouton a un href vide ou inexistant
+                    $has_button_link = true;
+                    if (preg_match('/<a[^>]*class="[^"]*wp-block-button__link[^"]*"[^>]*href="([^"]*)"/', $content_html, $href_match)) {
+                        $href = trim($href_match[1]);
+                        if (empty($href) || $href === '#') {
+                            $has_button_link = false;
+                            // Ajouter la classe disabled au bouton
+                            $content_html = preg_replace(
+                                '/(<a[^>]*class="[^"]*wp-block-button__link[^"]*")/',
+                                '$1 disabled-button',
+                                $content_html
+                            );
+                        }
+                    }
+
+                    $pins_data[] = [
+                        'x' => $x,
+                        'y' => $y,
+                        'site_title' => get_the_title(), // Titre du site (titre de l'article)
+                        'tooltip_title' => $h2_title, // Titre du tooltip (h2)
+                        'image' => $image_html, // Image extraite
+                        'groups' => [$content_html], // Tout le contenu restant (h2, paragraphes, liste, bouton)
+                    ];
+                }
+            }
+            wp_reset_postdata();
+        }
+
         ?>
         <script type="text/javascript">
             var IM_Settings = {
-                imagePath: '<?php echo get_template_directory_uri() . '/src/assets/Map.svg'; ?>'
+                imagePath: '<?php echo get_template_directory_uri() . '/src/assets/Map.svg'; ?>',
+                pins: <?php echo json_encode($pins_data); ?>
             };
-            console.log('IM_Settings defined in head:', IM_Settings);
-            console.log('Waiting for scripts to load...');
+
+            console.log('IM_Settings pins:', IM_Settings.pins);
+            console.log('Nombre de pins trouvés:', IM_Settings.pins.length);
 
             // Check if Leaflet loads
             setTimeout(function () {
-                console.log('After 2 seconds - Leaflet loaded?', typeof L);
-                console.log('After 2 seconds - Map element exists?', !!document.getElementById('im-map'));
+
             }, 2000);
         </script>
         <?php

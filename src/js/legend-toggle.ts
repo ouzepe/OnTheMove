@@ -3,11 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleButton = document.querySelector(".legend-scroll-indicator");
 
   if (!legendContainer || !toggleButton) {
-    console.log("Legend elements not found");
     return;
   }
-
-  console.log("Legend toggle initialized");
 
   // Only enable toggle functionality on mobile
   const isMobile = () => window.innerWidth <= 576;
@@ -20,14 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   toggleButton.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("Button clicked, isMobile:", isMobile());
 
     if (!isMobile()) return; // Only work on mobile
 
     const isExpanded = legendContainer.classList.toggle("expanded");
     toggleButton.classList.toggle("expanded");
-
-    console.log("Toggled expanded:", isExpanded);
   });
 
   // Handle window resize

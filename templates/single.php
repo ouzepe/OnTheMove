@@ -5,14 +5,34 @@
 get_header();
 
 // Récupérer les données de la page d'accueil
-$home_page = get_page_by_path('home');
+// $home_page = get_page_by_path('home' || 'homepage');
+// Récupérer la page d'accueil correctement avec Polylang
+$home_page = null;
+
+// Récupérer la langue courante avec Polylang
+$current_lang = function_exists('pll_current_language') ? pll_current_language() : 'fr';
+
+// Déterminer le slug de la page selon la langue
+$page_slug = ($current_lang === 'en') ? 'homepage' : 'home';
+
+// Récupérer la page par son slug
+$home_page = get_page_by_path($page_slug);
+
+// Si la page n'est pas trouvée, fallback sur la page d'accueil par défaut
 if (!$home_page) {
-    // Si pas trouvé par slug, essayer de récupérer la page définie comme page d'accueil
     $home_page_id = get_option('page_on_front');
     if ($home_page_id) {
-        $home_page = get_post($home_page_id);
+        if (function_exists('pll_get_post')) {
+            $translated_home_id = pll_get_post($home_page_id);
+            if ($translated_home_id) {
+                $home_page = get_post($translated_home_id);
+            }
+        } else {
+            $home_page = get_post($home_page_id);
+        }
     }
 }
+
 
 // Debug: afficher les données dans la console
 if ($home_page) {
@@ -74,13 +94,9 @@ if ($home_page && !empty($home_page->post_content)) {
                 preg_match('/<h2[^>]*>(.*?)<\/h2>/is', $home_page->post_content, $h2_match);
                 if (!empty($h2_match[1])) {
                     $h2_text = $h2_match[1];
-                    // Remplacer la virgule suivie d'un espace par virgule + saut de ligne
-                    $h2_text = preg_replace('/,\s+/', ',<br>', $h2_text);
                     echo '<h1>' . $h2_text . '</h1>';
                 } else {
                     $title_text = $home_page->post_title;
-                    // Remplacer la virgule suivie d'un espace par virgule + saut de ligne
-                    $title_text = preg_replace('/,\s+/', ',<br>', $title_text);
                     echo '<h1>' . $title_text . '</h1>';
                 }
 
