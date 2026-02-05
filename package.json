@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch",
+    "build": "webpack --mode production --env output=build",
+    "build:dist": "webpack --mode production --env output=dist",
+    "build:all": "npm run build:dist && npm run build",
+    "watch": "webpack --mode development --env output=dist --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

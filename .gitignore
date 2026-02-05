@@ -1,9 +1,7 @@
 # Dependencies
 node_modules/
 
-# Build outputs
-dist/
-build/
+# Build outputs (we DO push dist/ and build/, so don't ignore them)
 *.map
 
 # OS files

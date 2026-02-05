@@ -1,15 +1,24 @@
 <?php
 function mon_theme_enqueue_assets()
 {
-    wp_enqueue_style('mon-theme-style', get_template_directory_uri() . '/dist/css/style.css', [], '1.0');
+    // Prefer build/ (push) if it exists, fallback to dist/ (dev)
+    $asset_dir = file_exists(get_template_directory() . '/build/js/main.js') ? 'build' : 'dist';
+
+    $css_file = get_template_directory() . '/' . $asset_dir . '/css/style.css';
+    $js_file = get_template_directory() . '/' . $asset_dir . '/js/main.js';
+
+    $css_ver = file_exists($css_file) ? filemtime($css_file) : '1.0';
+    $js_ver = file_exists($js_file) ? filemtime($js_file) : '1.0';
+
+    wp_enqueue_style('mon-theme-style', get_template_directory_uri() . '/' . $asset_dir . '/css/style.css', [], $css_ver);
 
     // Charger main.js avec version dynamique pour forcer le rechargement
     // Charger main.js dans le HEAD pour ne pas dépendre du footer
-    wp_enqueue_script('mon-theme-script', get_template_directory_uri() . '/dist/js/main.js', [], time(), false);
+    wp_enqueue_script('mon-theme-script', get_template_directory_uri() . '/' . $asset_dir . '/js/main.js', [], $js_ver, false);
     wp_script_add_data('mon-theme-script', 'defer', true);
 
     // Debug: afficher dans la console PHP si le script est bien enqueued
-    error_log('Main.js enqueued: ' . get_template_directory_uri() . '/dist/js/main.js');
+    error_log('Main.js enqueued: ' . get_template_directory_uri() . '/' . $asset_dir . '/js/main.js');
 }
 add_action('wp_enqueue_scripts', 'mon_theme_enqueue_assets');
 
