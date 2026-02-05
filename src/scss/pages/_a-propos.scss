@@ -357,13 +357,15 @@
         gap: 24px;
 
         @include respond-to-down(sm) {
-          flex-direction: column;
+          // Force single column on mobile (override the desktop !important rules)
+          flex-direction: column !important;
+          flex-wrap: nowrap !important;
           width: 100% !important;
           max-width: 100% !important;
           min-width: 0 !important;
           margin: 0 auto;
           justify-content: flex-start;
-          align-items: flex-start;
+          align-items: stretch;
           padding-left: 0;
           padding-right: 0;
           overflow: visible;
@@ -438,17 +440,18 @@
 
           // Mobile: un par ligne
           @include respond-to-down(sm) {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 0 !important;
             min-height: auto;
             height: auto;
             flex: 1 1 100%;
             border-right: none;
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
             margin-right: 0;
             margin-left: 0;
+            box-sizing: border-box;
 
             &::after {
               display: none;
