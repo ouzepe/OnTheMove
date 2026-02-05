@@ -172,8 +172,6 @@ function add_im_settings_to_head()
                 pins: <?php echo json_encode($pins_data); ?>
             };
 
-            console.log('IM_Settings pins:', IM_Settings.pins);
-            console.log('Nombre de pins trouvés:', IM_Settings.pins.length);
 
             // Check if Leaflet loads
             setTimeout(function () {
