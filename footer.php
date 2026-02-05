@@ -30,7 +30,7 @@
                     <picture>
                         <source media="(max-width: 600px)"
                             srcset="<?php echo get_template_directory_uri(); ?>/src/assets/LogoMobile.svg">
-                        <img src="<?php echo get_template_directory_uri(); ?>/src/assets/headerLogoWithText.svg"
+                        <img src="<?php echo get_template_directory_uri(); ?>/src/assets/HeaderLogoWithText.svg"
                             alt="Logo OnTheMove">
                     </picture>
                 </div>
