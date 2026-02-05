@@ -216,15 +216,14 @@
       .submit-button-wrapper {
         display: inline-flex;
         align-items: center;
-        justify-content: flex-start;
-        width: 150px;
+        justify-content: space-between;
+        width: auto;
         height: 55px;
         border: 1px solid #a5849133;
         background-color: transparent;
         box-sizing: border-box;
-        padding: 0;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 0 18px;
+        gap: 10px;
         transition: all 0.3s ease;
         cursor: pointer;
 
@@ -276,7 +275,8 @@
         display: inline-block;
         margin: 0;
         text-align: left;
-        flex: 1;
+        flex: 0 0 auto;
+        white-space: nowrap;
 
         // Ajouter la flèche à côté du texte
         &::after {
@@ -311,7 +311,7 @@
         // The wrapper owns the border/width; keep the input flexible so the arrow stays inside the border
         width: auto !important;
         max-width: none !important;
-        min-width: 0 !important;
+        min-width: max-content !important;
       }
     }
   }
