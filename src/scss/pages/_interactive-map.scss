@@ -103,6 +103,26 @@ body.page-carte {
     right: 0;
   }
 
+  // Croix de fermeture (même style que "Lire la biographie")
+  .im-drawer-close {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: $primary-dark-red;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    color: #fefefe;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
   @include respond-to-down(md) {
     width: 60%;
   }
@@ -113,10 +133,12 @@ body.page-carte {
 
   // Style pour le contenu du drawer
   #drawer-content {
+    padding-top: 0 !important;
+
     // L'image doit prendre toute la largeur sans padding
     figure.wp-block-image {
-      margin: 0;
-      padding: 0;
+      margin: 0 !important;
+      padding: 0 !important;
       width: 100%;
       max-height: 300px;
       overflow: hidden;
@@ -127,6 +149,11 @@ body.page-carte {
         object-fit: cover;
         display: block;
       }
+    }
+
+    // Si l'image est le premier bloc, elle doit coller en haut
+    > figure.wp-block-image:first-child {
+      margin-top: 0 !important;
     }
 
     // Wrapper pour le titre avec icône

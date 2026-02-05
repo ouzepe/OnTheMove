@@ -101,7 +101,3 @@
         </header>
 
         <main id="main" class="site-main">
-            <div id="im-drawer">
-                <h2 id="drawer-title"></h2>
-                <p id="drawer-content"></p>
-            </div>

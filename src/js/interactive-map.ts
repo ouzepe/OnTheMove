@@ -17,6 +17,33 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  const drawer = document.getElementById("im-drawer");
+  const drawerContent = document.getElementById("drawer-content");
+  const drawerClose = drawer?.querySelector(
+    ".im-drawer-close"
+  ) as HTMLButtonElement | null;
+
+  const closeDrawer = () => {
+    if (!drawer) return;
+    drawer.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true");
+  };
+
+  const openDrawer = () => {
+    if (!drawer) return;
+    drawer.classList.add("open");
+    drawer.setAttribute("aria-hidden", "false");
+    drawerClose?.focus?.();
+  };
+
+  if (drawerClose) {
+    drawerClose.addEventListener("click", closeDrawer);
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDrawer();
+  });
+
   const imgWidth = 1023;
   const imgHeight = 650;
 
@@ -118,9 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }).addTo(map);
 
         marker.on("click", () => {
-          const drawerContent = document.getElementById("drawer-content");
-          const drawer = document.getElementById("im-drawer");
-
           if (drawerContent) {
             // Construire le contenu : Image -> H1 avec SVG (site_title) -> Premier groupe uniquement
             let content = "";
@@ -147,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             drawerContent.innerHTML = content;
           }
-          if (drawer) drawer.classList.add("open");
+          openDrawer();
         });
 
         markers.push(marker);
@@ -166,8 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Debug: afficher les coordonnées Leaflet au clic (AVANT scale/offset)
   map.on("click", (e: any) => {
-    const drawer = document.getElementById("im-drawer");
-    if (drawer) drawer.classList.remove("open");
+    closeDrawer();
 
     const latlng = e.latlng;
 

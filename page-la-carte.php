@@ -17,7 +17,8 @@ while (have_posts()):
 
     <div class="la-carte-container">
         <div id="im-map"></div>
-        <div id="im-drawer">
+        <div id="im-drawer" aria-hidden="true">
+            <button type="button" class="im-drawer-close" aria-label="Fermer">×</button>
             <div id="drawer-content"></div>
         </div>
         <p class="card-txt-slt">Sélectionnez un territoire d'enquête sur la carte.</p>
