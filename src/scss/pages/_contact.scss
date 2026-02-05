@@ -308,8 +308,10 @@
 
       // S'assurer que .wpcf7-form-control ne force pas la largeur à 100% pour le submit
       .wpcf7-form-control.wpcf7-submit {
-        width: 150px !important;
-        max-width: 150px !important;
+        // The wrapper owns the border/width; keep the input flexible so the arrow stays inside the border
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
       }
     }
   }
