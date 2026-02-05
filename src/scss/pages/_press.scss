@@ -2,6 +2,13 @@
 @import "../breakpoints";
 
 .page-template-page-press {
+  // Avoid mobile width differences between environments (scrollbars/vw quirks)
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   h1,
   h2.press-title {
     font-family: "Test Manuka", sans-serif;
@@ -63,7 +70,7 @@
       }
 
       @include respond-to-down(sm) {
-        width: 100vw;
+        width: 100%;
         max-width: 100%;
         margin: 0 auto;
         padding-left: 10px;
@@ -104,7 +111,8 @@
             gap: 0;
             box-shadow: none;
             border: none;
-            width: 99vw;
+            width: 100%;
+            max-width: 100%;
             margin: 0 auto;
           }
 
@@ -609,7 +617,7 @@
         }
 
         @include respond-to-down(sm) {
-          width: 99vw;
+          width: 100%;
           max-width: 100%;
           border-right: none;
           padding-right: 0;
@@ -625,7 +633,8 @@
           flex-shrink: 0;
 
           @include respond-to-down(sm) {
-            width: 320px;
+            width: 100%;
+            max-width: 100%;
             height: 200px !important;
           }
 

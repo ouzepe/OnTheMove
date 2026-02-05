@@ -2,6 +2,13 @@
 @import "../breakpoints";
 
 .page-template-page-a-propos {
+  // Avoid mobile width differences between environments (scrollbars/vw quirks)
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   h1 {
     font-family: "Test Manuka", sans-serif;
     font-weight: bold;
@@ -29,6 +36,10 @@
     box-sizing: border-box;
     overflow: visible;
 
+    @include respond-to-down(sm) {
+      padding: 0;
+    }
+
     .container {
       max-width: 100%;
       margin: 0 auto;
@@ -46,6 +57,11 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+
+      @include respond-to-down(sm) {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
 
       // Cacher les 2ème et 3ème paragraphes initialement pour éviter le flash
       > p:nth-of-type(2),
