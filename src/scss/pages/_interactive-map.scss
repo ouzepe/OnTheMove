@@ -209,9 +209,9 @@ body.page-carte:not(.admin-bar) {
     // Améliorer le scroll sur mobile
     touch-action: pan-y; // Permet uniquement le scroll vertical
     
-    // Padding bottom plus important sur mobile
+    // Padding bottom plus important sur mobile pour voir le bouton entier
     @include respond-to-down(sm) {
-      padding-bottom: 10%;
+      padding-bottom: 20%;
     }
 
     // L'image doit prendre toute la largeur sans padding
@@ -397,8 +397,8 @@ body.page-carte:not(.admin-bar) {
 }
 
 .pin {
-  width: 90px !important;
-  height: 90px !important;
+  width: 50px !important;
+  height: 50px !important;
 
   position: relative;
   animation: bounce 0.8s infinite alternate;
