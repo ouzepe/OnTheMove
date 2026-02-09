@@ -200,6 +200,11 @@ body.page-carte:not(.admin-bar) {
     
     // Améliorer le scroll sur mobile
     touch-action: pan-y; // Permet uniquement le scroll vertical
+    
+    // Padding bottom plus important sur mobile
+    @include respond-to-down(sm) {
+      padding-bottom: 10%;
+    }
 
     // L'image doit prendre toute la largeur sans padding
     figure.wp-block-image {
