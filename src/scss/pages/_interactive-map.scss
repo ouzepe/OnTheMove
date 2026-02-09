@@ -144,9 +144,8 @@ body.page-carte:not(.admin-bar) {
   box-sizing: border-box;
   
   // Hardware acceleration pour éviter les sauts - IMPORTANT
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   
@@ -474,7 +473,7 @@ body.page-carte:not(.admin-bar) {
   left: 40px;
   font-size: 21px;
   @include respond-to-down(sm) {
-    bottom: 13%;
+    bottom: 11%;
     font-size: 16px;
     left: 20px;
   }
