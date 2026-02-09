@@ -136,21 +136,22 @@ body.page-carte:not(.admin-bar) {
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
   transition: right 0.3s ease-in-out;
   padding: 0;
-  overflow-y: auto;
+  overflow-y: scroll; // Force le scroll pour être sûr qu'il fonctionne
   overflow-x: hidden;
   // Doit passer au-dessus du header (header.scss monte jusqu'à ~1004)
   z-index: 9999;
   color: $primary-dark-red;
   box-sizing: border-box;
   
-  // Hardware acceleration pour éviter les sauts
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  
-  // Améliorer le scroll sur mobile
+  // Améliorer le scroll sur mobile - le rendre très réactif
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: auto; // Permet le scroll libre vertical
-  overscroll-behavior-x: none; // Bloque uniquement le scroll horizontal
+  overscroll-behavior: auto; // Scroll complètement libre
+  
+  // Sur mobile, s'assurer que le scroll est toujours possible
+  @include respond-to-down(sm) {
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
   
   // Cacher la scrollbar tout en gardant le scroll
   scrollbar-width: none; // Firefox
@@ -207,9 +208,9 @@ body.page-carte:not(.admin-bar) {
     min-height: 100%; // S'assure que le contenu prend au moins toute la hauteur
     position: relative; // Pour s'assurer que le contenu est bien positionné
     
-    // Padding bottom plus important sur mobile pour voir le bouton entier
+    // Padding bottom beaucoup plus important sur mobile pour voir le bouton entier
     @include respond-to-down(sm) {
-      padding-bottom: 20%;
+      padding-bottom: 30vh; // 30% de la hauteur de viewport
     }
 
     // L'image doit prendre toute la largeur sans padding
