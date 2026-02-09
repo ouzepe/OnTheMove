@@ -8,6 +8,17 @@ body.page-carte {
   height: 100%;
   overflow: hidden;
   background-color: $primary-dark-red !important;
+  
+  // Forcer une scrollbar invisible pour éviter les sauts de layout
+  overflow-y: scroll;
+  
+  // La cacher
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 // Styles spécifiques Samsung Internet (uniquement quand pas connecté)
@@ -50,8 +61,11 @@ body.page-carte:not(.admin-bar) {
   // Empêcher tout overlay blanc sur Samsung Internet
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  
+  // IMPORTANT: Ne pas utiliser transform ici, ça cause des sauts
+  // Commenté pour éviter l'effet bizarre d'ouverture du drawer
+  // -webkit-transform: translateZ(0);
+  // transform: translateZ(0);
   
   // Force le background sur tous les pseudo-éléments
   &,
@@ -79,8 +93,11 @@ body.page-carte:not(.admin-bar) {
   // Hardware acceleration pour Samsung Internet
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  
+  // IMPORTANT: Ne pas utiliser transform ici non plus
+  // Commenté pour éviter l'effet bizarre d'ouverture du drawer
+  // -webkit-transform: translateZ(0);
+  // transform: translateZ(0);
 
   .leaflet-container {
     width: 100%;
@@ -92,8 +109,11 @@ body.page-carte:not(.admin-bar) {
     // Hardware acceleration pour Samsung Internet
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    
+    // IMPORTANT: Ne pas utiliser transform ici non plus
+    // Commenté pour éviter l'effet bizarre d'ouverture du drawer
+    // -webkit-transform: translateZ(0);
+    // transform: translateZ(0);
   }
 
   // Container du pin avec tooltip
