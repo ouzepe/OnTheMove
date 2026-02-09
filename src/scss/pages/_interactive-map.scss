@@ -8,6 +8,10 @@ body.page-carte {
   height: 100%;
   overflow: hidden;
   background-color: $primary-dark-red !important;
+}
+
+// Styles spécifiques Samsung Internet (uniquement quand pas connecté)
+body.page-carte:not(.admin-bar) {
   background: $primary-dark-red !important;
   
   // Force le fond sur Samsung Internet et autres navigateurs webkit
@@ -17,7 +21,6 @@ body.page-carte {
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  will-change: transform;
 
   // Afficher le header par-dessus la carte
   .header,
@@ -49,7 +52,6 @@ body.page-carte {
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  will-change: transform;
   
   &::before,
   &::after {
@@ -70,7 +72,6 @@ body.page-carte {
   backface-visibility: hidden;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  will-change: transform;
 
   .leaflet-container {
     width: 100%;
@@ -133,13 +134,18 @@ body.page-carte {
   border-top: 1px solid #444746;
   background-color: #fefefe;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
-  transition: right 0.3s ease;
+  transition: right 0.3s ease-in-out;
   padding: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   // Doit passer au-dessus du header (header.scss monte jusqu'à ~1004)
   z-index: 9999;
   color: $primary-dark-red;
   box-sizing: border-box;
+  
+  // Hardware acceleration pour éviter les sauts
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 
   &.open {
     right: 0;

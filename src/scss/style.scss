@@ -81,17 +81,15 @@ presto-player::part(control) {
   border-radius: 50% !important;
 }
 
-html {
-  height: 100%;
-  background-color: $primary-dark-red;
-  background: $primary-dark-red;
-}
-
 body {
   background-color: $primary-dark-red;
-  background: $primary-dark-red;
   margin: 0;
   padding: 0;
+}
+
+// Styles spécifiques pour le front-end (pas l'admin WordPress)
+body:not(.wp-admin) {
+  background: $primary-dark-red;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -130,7 +128,7 @@ html {
   overflow-x: hidden;
   overflow-y: visible;
   width: 100%;
-  max-width: 100%;
+  // max-width: 100%;
 
   // Personnalisation de la scrollbar
   scrollbar-width: thin;

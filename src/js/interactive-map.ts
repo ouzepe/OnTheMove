@@ -21,12 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Force les styles sur Samsung Internet pour éviter l'overlay blanc
-  if (document.body.classList.contains('page-carte')) {
+  // Uniquement si pas d'admin bar (utilisateur non connecté)
+  if (document.body.classList.contains('page-carte') && !document.body.classList.contains('admin-bar')) {
     document.body.style.setProperty('background-color', '#4a0b24', 'important');
     document.body.style.setProperty('background', '#4a0b24', 'important');
     document.body.style.setProperty('overflow', 'hidden', 'important');
-    document.documentElement.style.setProperty('background-color', '#4a0b24', 'important');
-    document.documentElement.style.setProperty('background', '#4a0b24', 'important');
   }
 
   const drawer = document.getElementById("im-drawer");
