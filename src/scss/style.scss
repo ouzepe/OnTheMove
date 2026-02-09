@@ -83,10 +83,13 @@ presto-player::part(control) {
 
 html {
   height: 100%;
+  background-color: $primary-dark-red;
+  background: $primary-dark-red;
 }
 
 body {
   background-color: $primary-dark-red;
+  background: $primary-dark-red;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -95,6 +98,10 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: visible;
+  
+  // Force le fond sur Samsung Internet
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
 
   // Force immediate loading of all media globally
   img,
