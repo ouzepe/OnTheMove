@@ -467,7 +467,7 @@ body.page-carte:not(.admin-bar) {
   left: 40px;
   font-size: 21px;
   @include respond-to-down(sm) {
-    bottom: 5%;
+    bottom: 10%;
     font-size: 16px;
     left: 20px;
   }
@@ -483,5 +483,6 @@ body.page-carte:not(.admin-bar) {
   transform-origin: top right;
   @include respond-to-down(sm) {
     top: 30%;
+    font-size: 16px;
   }
 }
