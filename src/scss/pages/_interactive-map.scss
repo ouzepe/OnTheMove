@@ -506,7 +506,7 @@ body.page-carte:not(.admin-bar) {
   left: 40px;
   font-size: 21px;
   @include respond-to-down(sm) {
-    bottom: 11%;
+    bottom: 13%;
     font-size: 16px;
     left: 20px;
   }
