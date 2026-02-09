@@ -156,14 +156,13 @@ body.page-carte:not(.admin-bar) {
 
 #im-drawer {
   position: fixed;
-  right: -100%;
+  right: 0;
   top: 0;
   width: 40%;
   height: 100%;
   border-top: 1px solid #444746;
   background-color: #fefefe;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
-  transition: right 0.3s ease-in-out;
   padding: 0;
   overflow-y: scroll; // Force le scroll pour être sûr qu'il fonctionne
   overflow-x: hidden;
@@ -172,11 +171,16 @@ body.page-carte:not(.admin-bar) {
   color: $primary-dark-red;
   box-sizing: border-box;
   
-  // Hardware acceleration pour éviter les sauts - IMPORTANT
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  // Utiliser transform au lieu de right pour éviter les repaints
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  
+  // Hardware acceleration
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  
+  // Isolation pour ne pas affecter les autres éléments
+  isolation: isolate;
   
   // Améliorer le scroll sur mobile - le rendre très réactif
   -webkit-overflow-scrolling: touch;
@@ -197,7 +201,7 @@ body.page-carte:not(.admin-bar) {
   }
 
   &.open {
-    right: 0;
+    transform: translateX(0);
   }
 
   // Croix de fermeture (même style que "Lire la biographie")
