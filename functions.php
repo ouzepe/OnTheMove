@@ -10,6 +10,10 @@ function mon_theme_enqueue_assets()
     $css_ver = file_exists($css_file) ? filemtime($css_file) : '1.0';
     $js_ver = file_exists($js_file) ? filemtime($js_file) : '1.0';
 
+    // Force version update pour bust le cache
+    $css_ver .= '.2';
+    $js_ver .= '.2';
+
     wp_enqueue_style('mon-theme-style', get_template_directory_uri() . '/' . $asset_dir . '/css/style.css', [], $css_ver);
 
     // Charger main.js avec version dynamique pour forcer le rechargement
