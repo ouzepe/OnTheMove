@@ -53,8 +53,17 @@ body.page-carte:not(.admin-bar) {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   
+  // Force le background sur tous les pseudo-éléments
+  &,
   &::before,
   &::after {
+    background-color: $primary-dark-red !important;
+    background: $primary-dark-red !important;
+  }
+  
+  &::before,
+  &::after {
+    content: none !important;
     display: none !important;
   }
 }

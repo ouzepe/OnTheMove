@@ -26,6 +26,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.setProperty('background-color', '#4a0b24', 'important');
     document.body.style.setProperty('background', '#4a0b24', 'important');
     document.body.style.setProperty('overflow', 'hidden', 'important');
+    
+    // Force aussi sur le container
+    const carteContainer = document.querySelector('.la-carte-container') as HTMLElement;
+    if (carteContainer) {
+      carteContainer.style.setProperty('background-color', '#4a0b24', 'important');
+      carteContainer.style.setProperty('background', '#4a0b24', 'important');
+    }
+    
+    // Force sur la map
+    const imMap = document.getElementById('im-map');
+    if (imMap) {
+      imMap.style.setProperty('background-color', '#4a0b24', 'important');
+      imMap.style.setProperty('background', '#4a0b24', 'important');
+    }
   }
 
   const drawer = document.getElementById("im-drawer");
