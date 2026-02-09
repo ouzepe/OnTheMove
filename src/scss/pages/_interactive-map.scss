@@ -151,6 +151,14 @@ body.page-carte:not(.admin-bar) {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   scroll-behavior: smooth;
+  
+  // Cacher la scrollbar tout en gardant le scroll
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE et Edge
+  
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Opera
+  }
 
   &.open {
     right: 0;
@@ -471,7 +479,7 @@ body.page-carte:not(.admin-bar) {
   color: #f6f6f68c;
   z-index: 4;
   right: 40px;
-  top: 50%;
+  top: 40%;
   transform: translateY(-200%) rotate(-90deg);
   transform-origin: top right;
   @include respond-to-down(sm) {
