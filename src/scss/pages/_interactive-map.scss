@@ -146,6 +146,11 @@ body.page-carte:not(.admin-bar) {
   // Hardware acceleration pour éviter les sauts
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  
+  // Améliorer le scroll sur mobile
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
 
   &.open {
     right: 0;
@@ -190,6 +195,11 @@ body.page-carte:not(.admin-bar) {
   // Style pour le contenu du drawer
   #drawer-content {
     padding-top: 0 !important;
+    padding-bottom: 40px; // Espace en bas pour faciliter le scroll
+    min-height: 100%; // S'assure que le contenu prend au moins toute la hauteur
+    
+    // Améliorer le scroll sur mobile
+    touch-action: pan-y; // Permet uniquement le scroll vertical
 
     // L'image doit prendre toute la largeur sans padding
     figure.wp-block-image {
