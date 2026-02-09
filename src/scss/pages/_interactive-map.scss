@@ -143,6 +143,13 @@ body.page-carte:not(.admin-bar) {
   color: $primary-dark-red;
   box-sizing: border-box;
   
+  // Hardware acceleration pour éviter les sauts - IMPORTANT
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  
   // Améliorer le scroll sur mobile - le rendre très réactif
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: auto; // Scroll complètement libre
@@ -467,7 +474,7 @@ body.page-carte:not(.admin-bar) {
   left: 40px;
   font-size: 21px;
   @include respond-to-down(sm) {
-    bottom: 14%;
+    bottom: 15%;
     font-size: 16px;
     left: 20px;
   }
