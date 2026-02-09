@@ -7,12 +7,17 @@ body.page-carte {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  background-color: $primary-dark-red;
-  background: $primary-dark-red;
+  background-color: $primary-dark-red !important;
+  background: $primary-dark-red !important;
   
   // Force le fond sur Samsung Internet et autres navigateurs webkit
   -webkit-background-clip: border-box;
   background-clip: border-box;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 
   // Afficher le header par-dessus la carte
   .header,
@@ -36,10 +41,16 @@ body.page-carte {
   // Important: pas de z-index ici, sinon ça crée un stacking context
   // et le drawer (#im-drawer) ne pourra jamais passer au-dessus du header.
   z-index: auto;
-  background-color: $primary-dark-red;
-  background: $primary-dark-red;
+  background-color: $primary-dark-red !important;
+  background: $primary-dark-red !important;
   
   // Empêcher tout overlay blanc sur Samsung Internet
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  
   &::before,
   &::after {
     display: none !important;
@@ -51,14 +62,28 @@ body.page-carte {
   height: 100vh;
   position: relative;
   z-index: 2;
-  background-color: $primary-dark-red;
-  background: $primary-dark-red;
+  background-color: $primary-dark-red !important;
+  background: $primary-dark-red !important;
+  
+  // Hardware acceleration pour Samsung Internet
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
 
   .leaflet-container {
     width: 100%;
     height: 100%;
-    background-color: $primary-dark-red;
+    background-color: $primary-dark-red !important;
     background: $primary-dark-red !important;
+    filter: none !important; // Enlever tout filtre potentiel
+    
+    // Hardware acceleration pour Samsung Internet
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   // Container du pin avec tooltip
