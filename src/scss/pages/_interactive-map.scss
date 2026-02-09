@@ -149,8 +149,8 @@ body.page-carte:not(.admin-bar) {
   
   // Améliorer le scroll sur mobile
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
+  overscroll-behavior-y: auto; // Permet le scroll libre vertical
+  overscroll-behavior-x: none; // Bloque uniquement le scroll horizontal
   
   // Cacher la scrollbar tout en gardant le scroll
   scrollbar-width: none; // Firefox
@@ -205,9 +205,7 @@ body.page-carte:not(.admin-bar) {
     padding-top: 0 !important;
     padding-bottom: 40px; // Espace en bas pour faciliter le scroll
     min-height: 100%; // S'assure que le contenu prend au moins toute la hauteur
-    
-    // Améliorer le scroll sur mobile
-    touch-action: pan-y; // Permet uniquement le scroll vertical
+    position: relative; // Pour s'assurer que le contenu est bien positionné
     
     // Padding bottom plus important sur mobile pour voir le bouton entier
     @include respond-to-down(sm) {
