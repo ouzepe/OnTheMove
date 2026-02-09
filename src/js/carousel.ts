@@ -61,8 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.position = "";
     document.body.style.width = "";
     document.body.style.height = "";
+    document.body.style.backgroundColor = "";
     document.documentElement.style.overflow = "";
     document.documentElement.style.height = "";
+    document.documentElement.style.backgroundColor = "";
     return;
   }
 
@@ -71,8 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.style.position = "fixed";
   document.body.style.width = "100%";
   document.body.style.height = "100%";
+  document.body.style.backgroundColor = "#000";
   document.documentElement.style.overflow = "hidden";
   document.documentElement.style.height = "100%";
+  document.documentElement.style.backgroundColor = "#000";
 
   // Restaurer l'overflow quand on quitte la page
   window.addEventListener("beforeunload", function () {
@@ -80,8 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.style.position = "";
     document.body.style.width = "";
     document.body.style.height = "";
+    document.body.style.backgroundColor = "";
     document.documentElement.style.overflow = "";
     document.documentElement.style.height = "";
+    document.documentElement.style.backgroundColor = "";
   });
 
   // Restaurer l'overflow si la page devient invisible (changement d'onglet, etc.)

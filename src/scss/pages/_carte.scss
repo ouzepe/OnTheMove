@@ -19,7 +19,8 @@
   transition: right 0.3s ease;
   padding: 20px;
   overflow-y: auto;
-  z-index: 1000;
+  // Doit passer au-dessus du header (header.scss monte jusqu'à ~1004)
+  z-index: 2000;
   box-sizing: border-box;
 }
 #im-drawer.open {

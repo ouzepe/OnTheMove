@@ -22,7 +22,20 @@ module.exports = (env = {}, argv = {}) => {
         },
         {
           test: /\.scss$/,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+          use: [
+            MiniCssExtractPlugin.loader,
+            "css-loader",
+            {
+              loader: "sass-loader",
+              options: {
+                sassOptions: {
+                  quietDeps: true,
+                },
+                // Supprime tous les warnings de dépréciation Sass
+                warnRuleAsWarning: false,
+              },
+            },
+          ],
         },
         {
           test: /\.css$/,

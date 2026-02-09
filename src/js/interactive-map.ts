@@ -1,6 +1,9 @@
 declare const L: any;
 declare const IM_Settings: any;
 
+// Force ce fichier à être un module TS (évite les collisions globales lors de la compilation)
+export {};
+
 interface PinData {
   x: number;
   y: number;

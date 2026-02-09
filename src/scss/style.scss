@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import "variables";
 @import "breakpoints";
 @import "pages/footer";
@@ -15,7 +17,6 @@
 @import "pages/contexte-des-disparitions";
 @import "pages/aux-frontieres-de-la-bulgarie";
 @import "pages/au-depart-de-la-syrie";
-@import "pages/page-transition";
 
 @import "~swiper/css";
 @import "~swiper/css/pagination";
@@ -145,7 +146,7 @@ html {
   border: 2px solid rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background-color: darken($primary-dark-red, 5%);
+    background-color: color.adjust($primary-dark-red, $lightness: -5%);
   }
 }
 

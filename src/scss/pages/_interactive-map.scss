@@ -28,7 +28,9 @@ body.page-carte {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  // Important: pas de z-index ici, sinon ça crée un stacking context
+  // et le drawer (#im-drawer) ne pourra jamais passer au-dessus du header.
+  z-index: auto;
   background-color: $primary-dark-red;
 }
 
@@ -95,7 +97,8 @@ body.page-carte {
   transition: right 0.3s ease;
   padding: 0;
   overflow-y: auto;
-  z-index: 1000;
+  // Doit passer au-dessus du header (header.scss monte jusqu'à ~1004)
+  z-index: 9999;
   color: $primary-dark-red;
   box-sizing: border-box;
 
@@ -106,7 +109,8 @@ body.page-carte {
   // Croix de fermeture (même style que "Lire la biographie")
   .im-drawer-close {
     position: absolute;
-    top: 60px;
+    // Descendu de 30px pour éviter le header
+    top: 99px;
     right: 20px;
     background: $primary-dark-red;
     border: none;
@@ -120,7 +124,14 @@ body.page-carte {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    // S'assure de rester au-dessus du contenu (ex: image Gutenberg)
+    z-index: 9999;
+    @include respond-to-down(md) {
+      top: 50px;
+    }
+    @include respond-to-down(sm) {
+      top: 30px;
+    }
   }
 
   @include respond-to-down(md) {
@@ -388,6 +399,11 @@ body.page-carte {
   bottom: 20px;
   left: 40px;
   font-size: 21px;
+  @include respond-to-down(sm) {
+    bottom: 5%;
+    font-size: 16px;
+    left: 20px;
+  }
 }
 
 .card-txt-src {
@@ -398,4 +414,7 @@ body.page-carte {
   top: 50%;
   transform: translateY(-200%) rotate(-90deg);
   transform-origin: top right;
+  @include respond-to-down(sm) {
+    top: 30%;
+  }
 }
