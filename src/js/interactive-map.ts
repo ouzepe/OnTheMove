@@ -70,6 +70,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.classList.remove("im-drawer-open");
   };
 
+  const buttons = document.querySelectorAll(".wp-block-button__link");
+
+  buttons.forEach((btn) => {
+    // Si le lien n'a pas d'attribut href ou est vide
+    if (!btn.getAttribute("href") || btn.getAttribute("href")?.trim() === "") {
+      btn.classList.add("disabled-button");
+    }
+  });
   const openDrawer = () => {
     if (!drawer) return;
     drawer.classList.add("open");
