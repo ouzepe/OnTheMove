@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../breakpoints";
+@use "../variables" as *;
+@use "../breakpoints" as *;
 
 // Styles spécifiques pour la page carte
 body.page-carte {
@@ -8,10 +8,10 @@ body.page-carte {
   height: 100%;
   overflow: hidden;
   background-color: $primary-dark-red !important;
-  
+
   // Forcer une scrollbar invisible pour éviter les sauts de layout
   overflow-y: scroll;
-  
+
   // La cacher
   &::-webkit-scrollbar {
     width: 0;
@@ -24,7 +24,7 @@ body.page-carte {
 // Styles spécifiques Samsung Internet (uniquement quand pas connecté)
 body.page-carte:not(.admin-bar) {
   background: $primary-dark-red !important;
-  
+
   // Force le fond sur Samsung Internet et autres navigateurs webkit
   -webkit-background-clip: border-box;
   background-clip: border-box;
@@ -33,7 +33,7 @@ body.page-carte:not(.admin-bar) {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 
-  // Afficher le header par-dessus la carte
+  // Header au-dessus de tout (carte, contenu) sauf le drawer quand il est ouvert
   .header,
   #header,
   header {
@@ -42,9 +42,11 @@ body.page-carte:not(.admin-bar) {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 1000;
   }
 }
+
+// Quand le drawer est ouvert : forcer tout le header et le menu sous le drawer
 
 .la-carte-container {
   width: 100%;
@@ -57,16 +59,16 @@ body.page-carte:not(.admin-bar) {
   z-index: auto;
   background-color: $primary-dark-red !important;
   background: $primary-dark-red !important;
-  
+
   // Empêcher tout overlay blanc sur Samsung Internet
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  
+
   // IMPORTANT: Ne pas utiliser transform ici, ça cause des sauts
   // Commenté pour éviter l'effet bizarre d'ouverture du drawer
   // -webkit-transform: translateZ(0);
   // transform: translateZ(0);
-  
+
   // Force le background sur tous les pseudo-éléments
   &,
   &::before,
@@ -74,7 +76,7 @@ body.page-carte:not(.admin-bar) {
     background-color: $primary-dark-red !important;
     background: $primary-dark-red !important;
   }
-  
+
   &::before,
   &::after {
     content: none !important;
@@ -89,11 +91,11 @@ body.page-carte:not(.admin-bar) {
   z-index: 2;
   background-color: $primary-dark-red !important;
   background: $primary-dark-red !important;
-  
+
   // Hardware acceleration pour Samsung Internet
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  
+
   // IMPORTANT: Ne pas utiliser transform ici non plus
   // Commenté pour éviter l'effet bizarre d'ouverture du drawer
   // -webkit-transform: translateZ(0);
@@ -105,11 +107,11 @@ body.page-carte:not(.admin-bar) {
     background-color: $primary-dark-red !important;
     background: $primary-dark-red !important;
     filter: none !important; // Enlever tout filtre potentiel
-    
+
     // Hardware acceleration pour Samsung Internet
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    
+
     // IMPORTANT: Ne pas utiliser transform ici non plus
     // Commenté pour éviter l'effet bizarre d'ouverture du drawer
     // -webkit-transform: translateZ(0);
@@ -166,41 +168,46 @@ body.page-carte:not(.admin-bar) {
   padding: 0;
   overflow-y: scroll; // Force le scroll pour être sûr qu'il fonctionne
   overflow-x: hidden;
-  // Doit passer au-dessus du header (header.scss monte jusqu'à ~1004)
-  z-index: 9999;
+  // Fermé : sous le header. Ouvert : au-dessus du header/menu (voir &.open)
+  z-index: 2147483647;
+
+  overflow-y: auto;
   color: $primary-dark-red;
   box-sizing: border-box;
-  
+
   // Utiliser transform au lieu de right pour éviter les repaints
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
-  
+
   // Hardware acceleration
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  
+
   // Isolation pour ne pas affecter les autres éléments
   isolation: isolate;
-  
+
   // Améliorer le scroll sur mobile - le rendre très réactif
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: auto; // Scroll complètement libre
-  
+
   // Sur mobile, s'assurer que le scroll est toujours possible
   @include respond-to-down(sm) {
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch !important;
   }
-  
+
   // Cacher la scrollbar tout en gardant le scroll
   scrollbar-width: none; // Firefox
   -ms-overflow-style: none; // IE et Edge
-  
+
   &::-webkit-scrollbar {
     display: none; // Chrome, Safari, Opera
   }
 
+  // Quand on clique sur le pin : drawer au-dessus du header et du menu (mobile)
   &.open {
+    z-index: 2147483647 !important; // Max z-index pour passer au-dessus de tout
+    position: fixed !important;
     transform: translateX(0);
   }
 
@@ -208,7 +215,7 @@ body.page-carte:not(.admin-bar) {
   .im-drawer-close {
     position: absolute;
     // Descendu de 30px pour éviter le header
-    top: 99px;
+    top: 30px;
     right: 20px;
     background: $primary-dark-red;
     border: none;
@@ -246,7 +253,7 @@ body.page-carte:not(.admin-bar) {
     padding-bottom: 40px; // Espace en bas pour faciliter le scroll
     min-height: 100%; // S'assure que le contenu prend au moins toute la hauteur
     position: relative; // Pour s'assurer que le contenu est bien positionné
-    
+
     // Padding bottom beaucoup plus important sur mobile pour voir le bouton entier
     @include respond-to-down(sm) {
       padding-bottom: 30vh; // 30% de la hauteur de viewport
@@ -278,7 +285,8 @@ body.page-carte:not(.admin-bar) {
       display: flex;
       align-items: center;
       padding: 20px 20px 10px 20px;
-      gap: 10px;
+      gap: 0.4em;
+      width: 90%;
 
       .drawer-title-icon {
         width: 14px;
@@ -293,13 +301,16 @@ body.page-carte:not(.admin-bar) {
       h1 {
         margin: 0;
         padding: 0;
-        font-size: 28px;
+        font-size: 14px;
         font-weight: 700;
         color: $primary-dark-red;
         line-height: 1.3;
+        font-family: "Commissioner", sans-serif;
+        letter-spacing: 10%;
+        text-transform: uppercase;
 
         @include respond-to-down(sm) {
-          font-size: 20px;
+          font-size: 12px;
         }
       }
     }
@@ -310,9 +321,14 @@ body.page-carte:not(.admin-bar) {
       padding-right: 20px;
       margin-top: 20px;
       margin-bottom: 15px;
-      font-size: 24px;
+      font-size: 35px;
       font-weight: 600;
       color: $primary-dark-red;
+      font-family: "Test Manuka", sans-serif;
+
+      @include respond-to-down(sm) {
+        font-size: 30px;
+      }
     }
 
     // Le h6
@@ -363,12 +379,12 @@ body.page-carte:not(.admin-bar) {
 
     // Style pour le bouton
     .wp-block-buttons {
-      margin-top: auto;
+      margin-top: 10vh;
       padding-bottom: 20px;
 
       .wp-block-button {
         a.wp-block-button__link {
-          width: 392px;
+          width: 100%;
           height: 22px;
           display: flex;
           align-items: center;
@@ -390,8 +406,7 @@ body.page-carte:not(.admin-bar) {
           position: relative;
 
           @include respond-to-down(sm) {
-            width: 98%;
-            max-width: 350px;
+            width: 100%;
           }
 
           // Flèche à droite

@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../breakpoints";
+@use "../variables" as *;
+@use "../breakpoints" as *;
 
 #header {
   position: fixed;
@@ -88,7 +88,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1001;
+    z-index: 999;
 
     a {
       display: flex;
@@ -110,7 +110,7 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 1002;
+      z-index: 999;
       background-color: transparent;
       padding: 0;
       width: auto;
@@ -164,7 +164,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1001;
+    z-index: 999;
     position: relative;
 
     span:not(.header-menu-burger-text) {
@@ -227,7 +227,7 @@
       transform: none;
       padding: 15px 20px;
       background-color: transparent;
-      z-index: 1003;
+      z-index: 999;
 
       &::before {
         content: "";
@@ -301,7 +301,7 @@
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
-        z-index: 1004;
+        z-index: 999;
         background-color: $primary-dark-red;
         padding: 10px 20px;
         border-radius: 4px;
@@ -330,7 +330,7 @@
       align-items: center;
       padding-top: 80px;
       padding-bottom: 100px;
-      z-index: 1000;
+      z-index: 999;
       overflow-y: auto;
       overflow-x: hidden;
       font-size: 16px;
@@ -623,7 +623,7 @@
           padding: 15px 0;
           min-width: 300px;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          z-index: 1000;
+          z-index: 999;
           pointer-events: auto;
 
           @include respond-to-down(md) {
@@ -638,7 +638,9 @@
             flex-direction: column;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transition:
+              opacity 0.8s ease-in-out,
+              transform 0.8s ease-in-out;
           }
 
           @include respond-to-down(md) {
@@ -802,7 +804,7 @@
       left: 0;
       right: 0;
       background-color: $primary-dark-red;
-      z-index: 1001;
+      z-index: 999;
 
       .header-menu-footer-legal {
         flex: 1;

@@ -1,3 +1,6 @@
+@use "../variables" as *;
+@use "../breakpoints" as *;
+
 #footer {
   background-color: $primary-dark-red;
   padding: 0;

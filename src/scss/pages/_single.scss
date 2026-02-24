@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../breakpoints";
+@use "../variables" as *;
+@use "../breakpoints" as *;
 
 .home-carousel-container {
   position: fixed;
@@ -11,11 +11,11 @@
   overflow: hidden;
   background-color: #000;
   background: #000;
-  
+
   // Force noir sur Samsung Internet et autres navigateurs webkit
   -webkit-background-clip: border-box;
   background-clip: border-box;
-  
+
   // Empêcher tout overlay blanc
   &::before,
   &::after {
@@ -50,16 +50,16 @@
       display: block;
       opacity: 1;
       visibility: visible;
-    @include respond-to-down(sm) {
-      width: 200px;
-      height: 50px;
-    }
-    
-    // Très petits écrans (320-375px)
-    @media (max-width: 389px) {
-      width: clamp(160px, 45vw, 180px);
-      height: clamp(40px, 12vw, 45px);
-    }
+      @include respond-to-down(sm) {
+        width: 200px;
+        height: 50px;
+      }
+
+      // Très petits écrans (320-375px)
+      @media (max-width: 389px) {
+        width: clamp(160px, 45vw, 180px);
+        height: clamp(40px, 12vw, 45px);
+      }
     }
   }
 }
@@ -67,9 +67,10 @@
 .home-carousel-logo-text {
   height: 100vh;
   position: fixed;
-  top: 40%;
-  bottom: 0;
-  left: clamp(20px, 5vw, 40px);
+  // bottom: 40px; // toujours 40px du bas
+  left: clamp(20px, 5vw, 40px); // reste responsive horizontalement
+
+  // left: clamp(20px, 5vw, 40px);
   z-index: 100001;
   color: $primary-light-white;
   pointer-events: auto;
@@ -78,9 +79,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  height: auto;
 
+  @include respond-to-down(xxxl) {
+    top: 80%;
+  }
   @include respond-to-down(xxl) {
-    top: 60%;
+    top: 40%;
   }
   @include respond-to-down(xl) {
     top: 35%;
@@ -93,6 +98,15 @@
   }
   @include respond-to-down(sm) {
     top: 30%;
+  }
+  // Media query pour écran 27 pouces (2560px et plus)
+  @media (min-width: 2560px) {
+    top: 60%; // plus d'espace à gauche
+  }
+
+  // Media query pour écran 14 pouces (1920px et moins)
+  @media (max-width: 1920px) {
+    top: 50%; // moins d'espace à gauche
   }
 
   h1 {
@@ -114,7 +128,7 @@
       font-size: 30px;
       padding-bottom: 2px;
     }
-    
+
     // Très petits écrans (320-375px)
     @media (max-width: 389px) {
       width: clamp(280px, 85vw, 330px);
@@ -140,7 +154,7 @@
     @include respond-to-down(sm) {
       width: 350px;
     }
-    
+
     // Très petits écrans (320-375px)
     @media (max-width: 389px) {
       width: clamp(280px, 85vw, 330px);
@@ -174,7 +188,7 @@
         @include respond-to-down(sm) {
           font-size: 14px;
         }
-        
+
         // Très petits écrans (320-375px)
         @media (max-width: 389px) {
           font-size: clamp(11px, 3.2vw, 13px);
@@ -192,7 +206,7 @@
     margin: 10px 0 0 0;
     padding: 0;
     width: 600px;
-    
+
     @media (max-width: 389px) {
       width: clamp(280px, 85vw, 330px);
     }
@@ -227,7 +241,7 @@
         padding-top: 15px;
         padding-bottom: 15px;
       }
-      
+
       // Très petits écrans (320-375px)
       @media (max-width: 389px) {
         width: clamp(280px, 85vw, 330px);

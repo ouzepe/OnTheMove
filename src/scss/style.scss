@@ -1,27 +1,21 @@
 @use "sass:color";
-
-@import "variables";
-@import "breakpoints";
-@import "pages/footer";
-@import "pages/header";
-@import "pages/single";
-@import "pages/carte";
-@import "pages/interactive-map";
-@import "pages/contact";
-@import "pages/a-propos";
-@import "pages/press";
-@import "pages/disparus";
-@import "pages/chiffres-des-disparus";
-@import "pages/morts-de-la-manche";
-@import "pages/frontiere-franco-britannique";
-@import "pages/contexte-des-disparitions";
-@import "pages/aux-frontieres-de-la-bulgarie";
-@import "pages/au-depart-de-la-syrie";
-
-@import "~swiper/css";
-@import "~swiper/css/pagination";
-@import "~swiper/css/autoplay";
-@import "~swiper/css/effect-fade";
+@use "variables" as *;
+@use "breakpoints" as *;
+@use "pages/footer";
+@use "pages/header";
+@use "pages/single";
+@use "pages/carte";
+@use "pages/interactive-map";
+@use "pages/contact";
+@use "pages/a-propos";
+@use "pages/press";
+@use "pages/disparus";
+@use "pages/chiffres-des-disparus";
+@use "pages/morts-de-la-manche";
+@use "pages/frontiere-franco-britannique";
+@use "pages/contexte-des-disparitions";
+@use "pages/aux-frontieres-de-la-bulgarie";
+@use "pages/au-depart-de-la-syrie";
 
 // Styles globaux pour tous les boutons play des vidéos Presto Player
 // Utilisation des variables CSS pour pénétrer le Shadow DOM

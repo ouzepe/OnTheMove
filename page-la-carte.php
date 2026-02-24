@@ -17,10 +17,10 @@ while (have_posts()):
 
     <div class="la-carte-container">
         <div id="im-map"></div>
-        <div id="im-drawer" aria-hidden="true">
+        <!-- <div id="im-drawer" aria-hidden="true">
             <button type="button" class="im-drawer-close" aria-label="Fermer">×</button>
             <div id="drawer-content"></div>
-        </div>
+        </div> -->
         <p class="card-txt-slt">Sélectionnez un territoire d'enquête sur la carte.</p>
         <p class="card-txt-src">Source : Natural Earth. Réalisé avec Graticule</p>
     </div>
@@ -28,3 +28,7 @@ while (have_posts()):
     <?php
 endwhile;
 ?>
+<div id="im-drawer" aria-hidden="true">
+    <button type="button" class="im-drawer-close" aria-label="Fermer">×</button>
+    <div id="drawer-content"></div>
+</div>

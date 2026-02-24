@@ -22,42 +22,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Force les styles sur Samsung Internet pour éviter l'overlay blanc
   // Uniquement si pas d'admin bar (utilisateur non connecté)
-  if (document.body.classList.contains('page-carte') && !document.body.classList.contains('admin-bar')) {
-    document.body.style.setProperty('background-color', '#4a0b24', 'important');
-    document.body.style.setProperty('background', '#4a0b24', 'important');
-    document.body.style.setProperty('overflow', 'hidden', 'important');
-    
+  if (
+    document.body.classList.contains("page-carte") &&
+    !document.body.classList.contains("admin-bar")
+  ) {
+    document.body.style.setProperty("background-color", "#4a0b24", "important");
+    document.body.style.setProperty("background", "#4a0b24", "important");
+    document.body.style.setProperty("overflow", "hidden", "important");
+
     // Force aussi sur le container
-    const carteContainer = document.querySelector('.la-carte-container') as HTMLElement;
+    const carteContainer = document.querySelector(
+      ".la-carte-container",
+    ) as HTMLElement;
     if (carteContainer) {
-      carteContainer.style.setProperty('background-color', '#4a0b24', 'important');
-      carteContainer.style.setProperty('background', '#4a0b24', 'important');
+      carteContainer.style.setProperty(
+        "background-color",
+        "#4a0b24",
+        "important",
+      );
+      carteContainer.style.setProperty("background", "#4a0b24", "important");
     }
-    
+
     // Force sur la map
-    const imMap = document.getElementById('im-map');
+    const imMap = document.getElementById("im-map");
     if (imMap) {
-      imMap.style.setProperty('background-color', '#4a0b24', 'important');
-      imMap.style.setProperty('background', '#4a0b24', 'important');
+      imMap.style.setProperty("background-color", "#4a0b24", "important");
+      imMap.style.setProperty("background", "#4a0b24", "important");
     }
   }
 
   const drawer = document.getElementById("im-drawer");
+  // Déplacer le drawer à la fin de body pour qu'il soit au même niveau que #page :
+  // son z-index (quand .open) le place alors au-dessus du header/menu.
+  if (drawer && document.body.classList.contains("page-carte")) {
+    document.body.appendChild(drawer);
+  }
   const drawerContent = document.getElementById("drawer-content");
   const drawerClose = drawer?.querySelector(
-    ".im-drawer-close"
+    ".im-drawer-close",
   ) as HTMLButtonElement | null;
 
   const closeDrawer = () => {
     if (!drawer) return;
     drawer.classList.remove("open");
     drawer.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("im-drawer-open");
+    document.documentElement.classList.remove("im-drawer-open");
   };
 
   const openDrawer = () => {
     if (!drawer) return;
     drawer.classList.add("open");
     drawer.setAttribute("aria-hidden", "false");
+    document.body.classList.add("im-drawer-open");
+    document.documentElement.classList.add("im-drawer-open");
     drawerClose?.focus?.();
   };
 
@@ -233,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const y = (latlng.lat + offsetY) / scale;
 
     console.log(
-      `📍 Coordonnées pour pinsData: x: ${x.toFixed(4)}, y: ${y.toFixed(4)}`
+      `📍 Coordonnées pour pinsData: x: ${x.toFixed(4)}, y: ${y.toFixed(4)}`,
     );
   });
 });

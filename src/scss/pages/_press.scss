@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../breakpoints";
+@use "../variables" as *;
+@use "../breakpoints" as *;
 
 .page-template-page-press {
   // Avoid mobile width differences between environments (scrollbars/vw quirks)

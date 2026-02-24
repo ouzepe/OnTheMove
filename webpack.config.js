@@ -30,6 +30,7 @@ module.exports = (env = {}, argv = {}) => {
               options: {
                 sassOptions: {
                   quietDeps: true,
+                  // Silencer l’avertissement @import pour les CSS externes (ex. Swiper)
                 },
                 // Supprime tous les warnings de dépréciation Sass
                 warnRuleAsWarning: false,
