@@ -540,3 +540,54 @@ body.page-carte:not(.admin-bar) {
     font-size: 16px;
   }
 }
+
+.wp-block-button__link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Commissioner", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: #4a0b24;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid #ff1154;
+  padding: 30px;
+  box-sizing: border-box;
+  position: relative;
+
+  &::after {
+    content: "→";
+    color: #ff1154;
+    font-size: 20px;
+    margin-left: 10px;
+  }
+
+  &:hover {
+    background-color: $primary-dark-red;
+    border-color: $primary-dark-red;
+    color: #fff;
+
+    &::after {
+      color: #fff;
+    }
+  }
+
+  &.disabled-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &:hover {
+      background-color: transparent;
+      border-color: #ff1154;
+      color: #4a0b24;
+
+      &::after {
+        color: #ff1154;
+      }
+    }
+  }
+}
