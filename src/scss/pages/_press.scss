@@ -201,7 +201,8 @@
               transform-origin: 60% 50%;
               -webkit-transform-origin: 60% 50%;
               // Override global `img { transition: none !important; }`
-              transition: transform 1s ease-in-out,
+              transition:
+                transform 1s ease-in-out,
                 -webkit-transform 1s ease-in-out !important;
               will-change: transform;
             }
@@ -345,7 +346,8 @@
                     margin: 0;
                     padding: 0;
                     // Override global `img { transition: none !important; }`
-                    transition: transform 1s ease-in-out,
+                    transition:
+                      transform 1s ease-in-out,
                       -webkit-transform 1s ease-in-out !important;
                     transform: scale(3);
                     -webkit-transform: scale(3);
@@ -403,7 +405,8 @@
                   transform-origin: 60% 50%;
                   -webkit-transform-origin: 60% 50%;
                   // Override global `img { transition: none !important; }`
-                  transition: transform 1s ease-in-out,
+                  transition:
+                    transform 1s ease-in-out,
                     -webkit-transform 1s ease-in-out !important;
                   will-change: transform;
                 }
@@ -656,7 +659,8 @@
             transform-origin: 60% 50%;
             -webkit-transform-origin: 60% 50%;
             // Override global `img { transition: none !important; }`
-            transition: transform 1s ease-in-out,
+            transition:
+              transform 1s ease-in-out,
               -webkit-transform 1s ease-in-out !important;
             will-change: transform;
           }
@@ -771,7 +775,8 @@
                   margin: 0;
                   padding: 0;
                   // Override global `img { transition: none !important; }`
-                  transition: transform 1s ease-in-out,
+                  transition:
+                    transform 1s ease-in-out,
                     -webkit-transform 1s ease-in-out !important;
                   transform-origin: 60% 50%;
                   -webkit-transform-origin: 60% 50%;
@@ -820,7 +825,8 @@
                 object-fit: cover;
                 display: block;
                 // Override global `img { transition: none !important; }`
-                transition: transform 1s ease-in-out,
+                transition:
+                  transform 1s ease-in-out,
                   -webkit-transform 1s ease-in-out !important;
                 transform-origin: 60% 50%;
                 -webkit-transform-origin: 60% 50%;

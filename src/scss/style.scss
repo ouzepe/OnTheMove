@@ -118,6 +118,15 @@ body:not(.wp-admin) {
   }
 }
 
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited {
+  color: $primary-red;
+  text-decoration: none;
+}
+
 html {
   overflow-x: hidden;
   overflow-y: visible;
