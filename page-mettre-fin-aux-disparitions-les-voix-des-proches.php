@@ -1,10 +1,10 @@
 <?php
 /**
- * Template Name: Le contexte des disparitions
- * Template pour la page "Le contexte des disparitions"
+ * Template Name: Mettre fin aux disparitions - Les voix des proches
+ * Template pour la page "Mettre fin aux disparitions - Les voix des proches"
  *
  * Ce template sera automatiquement utilisé par WordPress
- * si le slug de la page est "le-contexte-des-disparitions"
+ * si le slug de la page est "mettre-fin-aux-disparitions-les-voix-des-proches"
  */
 get_header();
 ?>

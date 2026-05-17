@@ -52,7 +52,7 @@ while (have_posts()):
                 </div>
             </div>
             <div class="chiffres-disparus-container-carousel-arrow">
-                <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/le-contexte-des-disparitions/')); ?>">
+                <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/mettre-fin-aux-disparitions-les-voix-des-proches/')); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-left.svg" alt="" />
                 </a>
                 <a class="carousel-arrow-icon is-disabled" href="#" aria-disabled="true" tabindex="-1">

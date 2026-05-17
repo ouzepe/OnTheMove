@@ -3,6 +3,22 @@ document.addEventListener("DOMContentLoaded", () => {
     "[data-disparus-show-all]"
   ) as HTMLButtonElement | null;
 
+  const drawer = document.querySelector(
+    "#disparus-drawer"
+  ) as HTMLElement | null;
+  const drawerContent = document.querySelector(
+    "#disparus-drawer-content"
+  ) as HTMLElement | null;
+  const drawerClose = document.querySelector(
+    ".disparus-drawer-close"
+  ) as HTMLButtonElement | null;
+
+  const closeDrawer = () => {
+    if (!drawer) return;
+    drawer.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true");
+  };
+
   const updateSeparators = () => {
     const items = Array.from(
       document.querySelectorAll(".disparus-article")
@@ -29,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (button) {
     button.addEventListener("click", () => {
+      closeDrawer();
+
       const items = document.querySelectorAll(
         ".disparus-article"
       ) as NodeListOf<HTMLElement>;
@@ -48,19 +66,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const drawer = document.querySelector(
-    "#disparus-drawer"
-  ) as HTMLElement | null;
-  const drawerContent = document.querySelector(
-    "#disparus-drawer-content"
-  ) as HTMLElement | null;
-  const drawerClose = document.querySelector(
-    ".disparus-drawer-close"
-  ) as HTMLButtonElement | null;
-
   if (drawerContent) {
     document.addEventListener("click", (event) => {
       const target = event.target as HTMLElement | null;
+
+      // Fermer le drawer si clic en dehors (pas sur un lien biographie ni dans le drawer)
+      if (
+        drawer?.classList.contains("open") &&
+        !target?.closest(".disparus-drawer") &&
+        !target?.closest(".disparus-link")
+      ) {
+        closeDrawer();
+        return;
+      }
+
       const link = target?.closest(".disparus-link") as HTMLElement | null;
       if (!link) return;
 
@@ -106,11 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (drawerClose) {
-      drawerClose.addEventListener("click", () => {
-        if (!drawer) return;
-        drawer.classList.remove("open");
-        drawer.setAttribute("aria-hidden", "true");
-      });
+      drawerClose.addEventListener("click", closeDrawer);
     }
   }
 });
