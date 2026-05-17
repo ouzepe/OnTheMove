@@ -221,7 +221,7 @@ while (have_posts()):
                             </div>
                             <div class="chapterCard-cta">
                                 <?php
-                                $morts_de_la_manche_page = get_page_by_title('Les morts de la manche');
+                                $morts_de_la_manche_page = get_page_by_title('Le memorial');
                                 $morts_de_la_manche_url = $morts_de_la_manche_page ? get_permalink($morts_de_la_manche_page) : get_permalink();
                                 ?>
                                 <a href="<?php echo esc_url($morts_de_la_manche_url); ?>">
