@@ -87,8 +87,16 @@ while (have_posts()):
                                         </div>
                                         <div class="chapterCard-cta">
                                             <?php
-                                            $target_page = get_page_by_title($subtitle);
-                                            $target_url = $target_page ? get_permalink($target_page) : get_permalink();
+                                            // Fix: ensure subtitle is always correct (and not a date) before using get_page_by_title
+                                            // If h3 subtitle not found, don't attempt to create a link to page "0" or to a date
+                                            if (!empty($subtitle)) {
+                                                $target_page = get_page_by_title($subtitle);
+                                                // Only use $target_url if $target_page is found, otherwise fallback to current post permalink
+                                                $target_url = $target_page ? get_permalink($target_page) : get_permalink();
+                                            } else {
+                                                // If no subtitle, always use post permalink to avoid error
+                                                $target_url = get_permalink();
+                                            }
                                             ?>
                                             <a href="<?php echo esc_url($target_url); ?>">
                                                 <span><?php echo (function_exists('pll_current_language') && pll_current_language() === 'en') ? 'Read more' : 'Lire la suite'; ?></span>
@@ -96,6 +104,7 @@ while (have_posts()):
                                                     alt="" />
                                             </a>
                                         </div>
+                       
                                     </div>
                                     <div class="chapterCard-right">
                                         <?php
