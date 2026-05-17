@@ -43,7 +43,7 @@ while (have_posts()):
                             'posts_per_page' => -1,
                             'category_name' => 'a-la-une',
                             'orderby' => 'date',
-                            'order' => 'ASC'
+                            'order' => 'DESC'
                         );
 
                         $featured_posts = new WP_Query($args);
@@ -113,7 +113,7 @@ while (have_posts()):
                             'posts_per_page' => 12,
                             'category_name' => 'press',
                             'orderby' => 'date',
-                            'order' => 'ASC',
+                            'order' => 'DESC',
                             'paged' => $paged
                         );
 
