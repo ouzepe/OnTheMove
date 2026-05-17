@@ -548,9 +548,11 @@
             align-items: center;
             margin-top: 20px;
 
+            // Fix: Toujours même taille et width pour chaque figure même si + de 4 SVG/figure
             figure {
-              width: 45px;
-              height: 45px;
+              flex: 0 0 45px !important;
+              width: 45px !important;
+              height: 45px !important;
               margin: 0;
               padding: 0;
               position: relative;
@@ -567,9 +569,14 @@
                 border-color: #ff115466;
               }
 
-              img {
-                width: 21px;
-                height: 21px;
+              img,
+              svg {
+                width: 21px !important;
+                height: 21px !important;
+                min-width: 21px !important;
+                min-height: 21px !important;
+                max-width: 21px !important;
+                max-height: 21px !important;
                 opacity: 1;
                 position: relative;
                 display: block;
@@ -582,7 +589,8 @@
                 transition: all 0.3s ease;
               }
 
-              &:hover img {
+              &:hover img,
+              &:hover svg {
                 filter: brightness(0) saturate(100%) invert(18%) sepia(99%)
                   saturate(7499%) hue-rotate(332deg) brightness(70%)
                   contrast(101%);
@@ -590,8 +598,12 @@
 
               a {
                 display: block;
-                width: 21px;
-                height: 21px;
+                width: 21px !important;
+                height: 21px !important;
+                min-width: 21px !important;
+                min-height: 21px !important;
+                max-width: 21px !important;
+                max-height: 21px !important;
                 position: relative;
                 cursor: pointer;
               }
