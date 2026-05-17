@@ -4,7 +4,7 @@
  * Template pour la page "Les morts de la manche"
  *
  * Ce template sera automatiquement utilisé par WordPress
- * si le slug de la page est "les-morts-de-la-manche"
+ * si le slug de la page est "le-memorial"
  */
 get_header();
 ?>
@@ -52,7 +52,8 @@ while (have_posts()):
                 </div>
             </div>
             <div class="chiffres-disparus-container-carousel-arrow">
-                <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/mettre-fin-aux-disparitions-les-voix-des-proches/')); ?>">
+                <a class="carousel-arrow-icon"
+                    href="<?php echo esc_url(home_url('/mettre-fin-aux-disparitions-les-voix-des-proches/')); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-left.svg" alt="" />
                 </a>
                 <a class="carousel-arrow-icon is-disabled" href="#" aria-disabled="true" tabindex="-1">
@@ -97,7 +98,7 @@ while (have_posts()):
                 </figure>
             </div>
         </div>
-        <div class="les-morts-de-la-manche-title">
+        <!-- <div class="les-morts-de-la-manche-title">
             <div class="les-morts-de-la-manche-title">
                 <?php
                 $is_en = (function_exists('pll_current_language') && pll_current_language() === 'en')
@@ -105,8 +106,8 @@ while (have_posts()):
                 echo $is_en ? 'Biographies of the Channel deaths' : 'Biographies des morts de la manche';
                 ?>
             </div>
-        </div>
-        <div class="chiffres-disparus-container-content-people-missing">
+        </div> -->
+        <!-- <div class="chiffres-disparus-container-content-people-missing">
 
             <?php
             $args = array(
@@ -214,7 +215,7 @@ while (have_posts()):
                 <button type="button" class="disparus-drawer-close" aria-label="Fermer">×</button>
                 <div id="disparus-drawer-content"></div>
             </div>
-        </div>
+        </div> -->
         <?php
 endwhile;
 ?>

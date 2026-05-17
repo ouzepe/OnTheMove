@@ -55,8 +55,7 @@ while (have_posts()):
                 <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/les-chiffres-des-disparus/')); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-left.svg" alt="" />
                 </a>
-                <a class="carousel-arrow-icon is-disabled"
-                    href="<?php echo esc_url(home_url('/les-morts-de-la-manche/')); ?>">
+                <a class="carousel-arrow-icon is-disabled" href="<?php echo esc_url(home_url('/le-memorial/')); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-right.svg" alt="" />
                 </a>
             </div>
