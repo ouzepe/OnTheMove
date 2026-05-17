@@ -237,7 +237,7 @@ while (have_posts()):
                 'category_name' => 'chapitre',
                 'orderby' => 'date',
                 'order' => 'ASC',
-                's' => 'Le contexte des disparitions'
+                's' => 'METTRE FIN AUX DISPARITIONS : LES VOIX DES PROCHES'
             );
             $chapter_query = new WP_Query($chapter_args);
             if ($chapter_query->have_posts()):

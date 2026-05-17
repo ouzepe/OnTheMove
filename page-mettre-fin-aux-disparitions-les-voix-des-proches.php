@@ -187,7 +187,7 @@ while (have_posts()):
                 'category_name' => 'chapitre',
                 'orderby' => 'date',
                 'order' => 'ASC',
-                's' => 'Les morts de la manche'
+                's' => 'LE MEMORIAL'
             );
             $chapter_query = new WP_Query($chapter_args);
             if ($chapter_query->have_posts()):
