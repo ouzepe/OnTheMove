@@ -238,7 +238,7 @@ while (have_posts()):
                 'category_name' => 'chapitre',
                 'orderby' => 'date',
                 'order' => 'ASC',
-                's' => 'METTRE FIN AUX DISPARITIONS : LES VOIX DES PROCHES'
+                's' => 'La voix des proches'
             );
             $chapter_query = new WP_Query($chapter_args);
             if ($chapter_query->have_posts()):
@@ -281,7 +281,7 @@ while (have_posts()):
                                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-right.svg" alt="" />
                                 </a>
                             </div>
-                    
+
                         </div>
                         <div class="chapterCard-right">
                             <?php
