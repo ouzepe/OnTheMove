@@ -673,6 +673,19 @@
           align-items: stretch;
           justify-content: flex-start;
 
+          h6,
+          h3,
+          p,
+          a,
+          span,
+          li {
+            text-transform: lowercase;
+
+            &::first-letter {
+              text-transform: uppercase;
+            }
+          }
+
           .press-left {
             width: 100%;
             // padding: 5px 0 5px 0;
