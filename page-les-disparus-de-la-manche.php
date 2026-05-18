@@ -87,41 +87,41 @@ while (have_posts()):
                                         </div>
                                         <div class="chapterCard-cta">
                                             <?php
+                                            // Toujours re-récupérer le sous-titre à l'intérieur de la boucle
                                             $cta_subtitle = '';
                                             if (preg_match('/<h3[^>]*>(.*?)<\/h3>/is', get_the_content(), $cta_h3_matches)) {
                                                 $cta_subtitle = strip_tags($cta_h3_matches[1]);
                                             }
 
-                                            $target_url = home_url('/');
                                             if (!empty($cta_subtitle)) {
                                                 $subtitle_slug = sanitize_title($cta_subtitle);
+
+                                                // Cherche une page ayant ce slug
                                                 $target_page = get_page_by_path($subtitle_slug);
 
-                                                if (!$target_page) {
-                                                    $pages = get_posts(array(
-                                                        'post_type' => 'page',
-                                                        'name' => $subtitle_slug,
-                                                        'post_status' => 'publish',
-                                                        'posts_per_page' => 1,
-                                                    ));
-                                                    if (!empty($pages)) {
-                                                        $target_page = $pages[0];
-                                                    }
-                                                }
-
                                                 if ($target_page) {
-                                                    $page_id = $target_page->ID;
-                                                    if (function_exists('pll_get_post')) {
-                                                        $translated_id = pll_get_post($page_id);
-                                                        if ($translated_id) {
-                                                            $page_id = $translated_id;
-                                                        }
-                                                    }
-                                                    $target_url = get_permalink($page_id);
+                                                    $target_url = get_permalink($target_page->ID);
                                                 } else {
-                                                    // URL propre sans date (page dédiée, pas le post chapitre)
-                                                    $target_url = home_url('/' . $subtitle_slug . '/');
+                                                    // Sinon, cherche un post ayant ce slug
+                                                    $args_post = array(
+                                                        'name'           => $subtitle_slug,
+                                                        'post_type'      => 'post',
+                                                        'post_status'    => 'publish',
+                                                        'posts_per_page' => 1
+                                                    );
+                                                    $post_query = new WP_Query($args_post);
+                                                    if ($post_query->have_posts()) {
+                                                        $post_query->the_post();
+                                                        $target_url = get_permalink();
+                                                        wp_reset_postdata();
+                                                    } else {
+                                                        // Fallback sur l'article courant si pas de correspondance
+                                                        $target_url = get_permalink();
+                                                    }
                                                 }
+                                            } else {
+                                                // Fallback sur l'article courant si pas de sous-titre
+                                                $target_url = get_permalink();
                                             }
                                             ?>
                                             <a href="<?php echo esc_url($target_url); ?>">
