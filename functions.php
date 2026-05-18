@@ -232,3 +232,61 @@ add_filter('the_content', function ($content) {
 
     return $content;
 });
+
+/**
+ * URL de page chapitre sans date (évite le permalink du post « chapitre »).
+ */
+function onthemove_get_chapter_page_url($subtitle, $chapter_post_id = 0)
+{
+    $slug = !empty($subtitle) ? sanitize_title($subtitle) : '';
+    if (empty($slug) && $chapter_post_id) {
+        $slug = get_post_field('post_name', $chapter_post_id);
+    }
+    if (empty($slug)) {
+        return home_url('/');
+    }
+
+    $target_page = get_page_by_path($slug);
+
+    if (!$target_page) {
+        $pages = get_posts(array(
+            'post_type' => 'page',
+            'name' => $slug,
+            'post_status' => 'publish',
+            'posts_per_page' => 1,
+        ));
+        if (!empty($pages)) {
+            $target_page = $pages[0];
+        }
+    }
+
+    if (!$target_page && !empty($subtitle)) {
+        $target_page = get_page_by_title($subtitle);
+    }
+
+    if (!$target_page) {
+        $template_pages = get_posts(array(
+            'post_type' => 'page',
+            'post_status' => 'publish',
+            'posts_per_page' => 1,
+            'meta_key' => '_wp_page_template',
+            'meta_value' => 'page-' . $slug . '.php',
+        ));
+        if (!empty($template_pages)) {
+            $target_page = $template_pages[0];
+        }
+    }
+
+    if ($target_page) {
+        $page_id = $target_page->ID;
+        if (function_exists('pll_get_post')) {
+            $translated_id = pll_get_post($page_id);
+            if ($translated_id) {
+                $page_id = $translated_id;
+            }
+        }
+        return get_permalink($page_id);
+    }
+
+    return home_url('/' . $slug . '/');
+}
