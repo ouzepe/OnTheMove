@@ -234,13 +234,16 @@ add_filter('the_content', function ($content) {
 });
 
 /**
- * URL de page chapitre sans date (évite le permalink du post « chapitre »).
+ * URL d’un chapitre : utilise le slug WordPress du post (post_name), pas le titre h3.
  */
 function onthemove_get_chapter_page_url($subtitle, $chapter_post_id = 0)
 {
-    $slug = !empty($subtitle) ? sanitize_title($subtitle) : '';
-    if (empty($slug) && $chapter_post_id) {
+    $slug = '';
+    if ($chapter_post_id) {
         $slug = get_post_field('post_name', $chapter_post_id);
+    }
+    if (empty($slug) && !empty($subtitle)) {
+        $slug = sanitize_title($subtitle);
     }
     if (empty($slug)) {
         return home_url('/');
@@ -258,10 +261,6 @@ function onthemove_get_chapter_page_url($subtitle, $chapter_post_id = 0)
         if (!empty($pages)) {
             $target_page = $pages[0];
         }
-    }
-
-    if (!$target_page && !empty($subtitle)) {
-        $target_page = get_page_by_title($subtitle);
     }
 
     if (!$target_page) {
@@ -286,6 +285,10 @@ function onthemove_get_chapter_page_url($subtitle, $chapter_post_id = 0)
             }
         }
         return get_permalink($page_id);
+    }
+
+    if ($chapter_post_id) {
+        return get_permalink($chapter_post_id);
     }
 
     return home_url('/' . $slug . '/');
