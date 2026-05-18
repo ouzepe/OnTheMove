@@ -87,18 +87,34 @@ while (have_posts()):
                                         </div>
                                         <div class="chapterCard-cta">
                                             <?php
-                                            // Si on a trouvé un sous-titre (h3), on tente de trouver la page correspondante via le slug
+                                            // Si on a trouvé un sous-titre (h3), on tente de trouver la page ou l'article correspondante via le slug
                                             if (!empty($subtitle)) {
                                                 // Générer le slug à partir du sous-titre (même méthode que WP)
                                                 $subtitle_slug = sanitize_title($subtitle);
-                                                // Tenter de récupérer la page ayant ce slug
+
+                                                // Vérifier s'il existe une page avec ce slug
                                                 $target_page = get_page_by_path($subtitle_slug);
-                                                // S'il existe une page cible, créer une URL basée uniquement sur le slug (sans date ni structure d'article)
+
                                                 if ($target_page) {
-                                                    $target_url = '/' . $subtitle_slug . '/';
+                                                    // URL canonique de la page (page, pas post !)
+                                                    $target_url = get_permalink($target_page->ID);
                                                 } else {
-                                                    // Fallback sur l'article courant si pas de correspondance
-                                                    $target_url = get_permalink();
+                                                    // Vérifier s'il existe un article (post) avec ce slug
+                                                    $args_post = array(
+                                                        'name'           => $subtitle_slug,
+                                                        'post_type'      => 'post',
+                                                        'post_status'    => 'publish',
+                                                        'posts_per_page' => 1
+                                                    );
+                                                    $post_query = new WP_Query($args_post);
+                                                    if ($post_query->have_posts()) {
+                                                        $post_query->the_post();
+                                                        $target_url = '/' . $subtitle_slug . '/'; // lien court sans date ni structure, comme demandé
+                                                        wp_reset_postdata();
+                                                    } else {
+                                                        // Fallback sur l'article courant si pas de correspondance
+                                                        $target_url = get_permalink();
+                                                    }
                                                 }
                                             } else {
                                                 // Fallback sur l'article courant si pas de sous-titre
@@ -111,6 +127,7 @@ while (have_posts()):
                                                     alt="" />
                                             </a>
                                         </div>
+              
                  
                     
                        
