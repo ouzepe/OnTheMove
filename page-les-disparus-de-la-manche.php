@@ -93,8 +93,13 @@ while (have_posts()):
                                                 $subtitle_slug = sanitize_title($subtitle);
                                                 // Tenter de récupérer la page ayant ce slug
                                                 $target_page = get_page_by_path($subtitle_slug);
-                                                // Utiliser le permalink ciblé si la page existe, sinon fallback sur l'article courant
-                                                $target_url = $target_page ? get_permalink($target_page) : get_permalink();
+                                                // S'il existe une page cible, créer une URL basée uniquement sur le slug (sans date ni structure d'article)
+                                                if ($target_page) {
+                                                    $target_url = '/' . $subtitle_slug . '/';
+                                                } else {
+                                                    // Fallback sur l'article courant si pas de correspondance
+                                                    $target_url = get_permalink();
+                                                }
                                             } else {
                                                 // Fallback sur l'article courant si pas de sous-titre
                                                 $target_url = get_permalink();
@@ -106,6 +111,7 @@ while (have_posts()):
                                                     alt="" />
                                             </a>
                                         </div>
+                 
                     
                        
                                     </div>
