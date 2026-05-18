@@ -272,14 +272,16 @@ while (have_posts()):
                             </div>
                             <div class="chapterCard-cta">
                                 <?php
-                                $contexte_page = get_page_by_title('Mettre fin aux disparitions - Les voix des proches');
-                                $contexte_url = $contexte_page ? get_permalink($contexte_page) : get_permalink();
+                                // Hardcode the URL to the "Mettre fin aux disparitions - Les voix des proches" page to avoid date in permalink
+                                $page_slug = 'mettre-fin-aux-disparitions-les-voix-des-proches';
+                                $contexte_url = esc_url(home_url('/' . $page_slug . '/'));
                                 ?>
-                                <a href="<?php echo esc_url($contexte_url); ?>">
+                                <a href="<?php echo $contexte_url; ?>">
                                     <span><?php echo (function_exists('pll_current_language') && pll_current_language() === 'en') ? 'Read more' : 'Lire la suite'; ?></span>
                                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-right.svg" alt="" />
                                 </a>
                             </div>
+                    
                         </div>
                         <div class="chapterCard-right">
                             <?php
