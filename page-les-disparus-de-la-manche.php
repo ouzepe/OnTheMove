@@ -87,14 +87,16 @@ while (have_posts()):
                                         </div>
                                         <div class="chapterCard-cta">
                                             <?php
-                                            // Fix: ensure subtitle is always correct (and not a date) before using get_page_by_title
-                                            // If h3 subtitle not found, don't attempt to create a link to page "0" or to a date
+                                            // Si on a trouvé un sous-titre (h3), on tente de trouver la page correspondante via le slug
                                             if (!empty($subtitle)) {
-                                                $target_page = get_page_by_title($subtitle);
-                                                // Only use $target_url if $target_page is found, otherwise fallback to current post permalink
+                                                // Générer le slug à partir du sous-titre (même méthode que WP)
+                                                $subtitle_slug = sanitize_title($subtitle);
+                                                // Tenter de récupérer la page ayant ce slug
+                                                $target_page = get_page_by_path($subtitle_slug);
+                                                // Utiliser le permalink ciblé si la page existe, sinon fallback sur l'article courant
                                                 $target_url = $target_page ? get_permalink($target_page) : get_permalink();
                                             } else {
-                                                // If no subtitle, always use post permalink to avoid error
+                                                // Fallback sur l'article courant si pas de sous-titre
                                                 $target_url = get_permalink();
                                             }
                                             ?>
@@ -104,6 +106,7 @@ while (have_posts()):
                                                     alt="" />
                                             </a>
                                         </div>
+                    
                        
                                     </div>
                                     <div class="chapterCard-right">
