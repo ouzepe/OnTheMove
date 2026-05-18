@@ -116,16 +116,42 @@
             margin: 0 auto;
           }
 
-          &:hover {
-            border-color: $primary-red;
+          @include respond-to(md) {
+            &:hover {
+              border-color: $primary-red;
 
-            .press-item-content {
-              h3 {
-                color: $primary-red;
+              .press-item-content {
+                h3 {
+                  color: $primary-red;
+                }
+
+                .press-right {
+                  .press-image-container {
+                    > figure:first-of-type {
+                      img {
+                        -webkit-transform: scale(1.5);
+                        transform: scale(1.5);
+                        transform-origin: 60% 50%;
+                        -webkit-transform-origin: 60% 50%;
+                      }
+                    }
+                  }
+                }
               }
 
-              .press-right {
-                .press-image-container {
+              // Effet de zoom sur l'image principale de l'article
+              .press-item-image {
+                img {
+                  -webkit-transform: scale(1.5);
+                  transform: scale(1.5);
+                  transform-origin: 60% 50%;
+                  -webkit-transform-origin: 60% 50%;
+                }
+              }
+
+              // Effet de zoom sur la première image dans press-right (si pas dans press-image-container)
+              .press-item-content {
+                .press-right {
                   > figure:first-of-type {
                     img {
                       -webkit-transform: scale(1.5);
@@ -137,29 +163,15 @@
                 }
               }
             }
+          }
 
-            // Effet de zoom sur l'image principale de l'article
-            .press-item-image {
-              img {
-                -webkit-transform: scale(1.5);
-                transform: scale(1.5);
-                transform-origin: 60% 50%;
-                -webkit-transform-origin: 60% 50%;
-              }
-            }
-
-            // Effet de zoom sur la première image dans press-right (si pas dans press-image-container)
-            .press-item-content {
-              .press-right {
-                > figure:first-of-type {
-                  img {
-                    -webkit-transform: scale(1.5);
-                    transform: scale(1.5);
-                    transform-origin: 60% 50%;
-                    -webkit-transform-origin: 60% 50%;
-                  }
-                }
-              }
+          @include respond-to-down(sm) {
+            .press-item-image img,
+            .press-item-content .press-right img {
+              transition: none !important;
+              transform: none !important;
+              -webkit-transform: none !important;
+              will-change: auto;
             }
           }
 
@@ -872,20 +884,31 @@
           }
         }
 
-        // Effet de zoom au survol (comme "A LA UNE")
-        &:hover {
-          .press-mini-item-image {
-            img {
-              -webkit-transform: scale(1.5);
-              transform: scale(1.5);
-              transform-origin: 60% 50%;
-              -webkit-transform-origin: 60% 50%;
+        // Effet de zoom au survol (comme "A LA UNE") — desktop uniquement
+        @include respond-to(md) {
+          &:hover {
+            .press-mini-item-image {
+              img {
+                -webkit-transform: scale(1.5);
+                transform: scale(1.5);
+                transform-origin: 60% 50%;
+                -webkit-transform-origin: 60% 50%;
+              }
             }
-          }
 
-          .press-mini-item-content {
-            .press-right {
-              .press-image-container {
+            .press-mini-item-content {
+              .press-right {
+                .press-image-container {
+                  > figure:first-of-type {
+                    img {
+                      -webkit-transform: scale(1.5);
+                      transform: scale(1.5);
+                      transform-origin: 60% 50%;
+                      -webkit-transform-origin: 60% 50%;
+                    }
+                  }
+                }
+
                 > figure:first-of-type {
                   img {
                     -webkit-transform: scale(1.5);
@@ -895,16 +918,17 @@
                   }
                 }
               }
-
-              > figure:first-of-type {
-                img {
-                  -webkit-transform: scale(1.5);
-                  transform: scale(1.5);
-                  transform-origin: 60% 50%;
-                  -webkit-transform-origin: 60% 50%;
-                }
-              }
             }
+          }
+        }
+
+        @include respond-to-down(sm) {
+          .press-mini-item-image img,
+          .press-mini-item-content .press-right img {
+            transition: none !important;
+            transform: none !important;
+            -webkit-transform: none !important;
+            will-change: auto;
           }
         }
       }
