@@ -408,7 +408,7 @@ while (have_posts()):
                             </div>
                             <div class="chapterCard-cta">
                                 <?php
-                                $contexte_page = get_page_by_title('Les chiffres des disparus');
+                                $contexte_page = get_page_by_title('Les disparus');
                                 $contexte_url = $contexte_page ? get_permalink($contexte_page) : get_permalink();
                                 ?>
                                 <a href="<?php echo esc_url($contexte_url); ?>">
