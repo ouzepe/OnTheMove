@@ -4,12 +4,13 @@
 $manuka-dir: "../fonts/manuka-font-family";
 $barlow-dir: "../fonts/barlow-condensed";
 
-$unicode-manuka-basic: U+0020-002F, U+0030-0039, U+003A-0040, U+0041-005A, U+005B-0060,
-  U+0061-007A, U+007B-007E;
+$unicode-manuka-basic:
+  U+0020-002F, U+0030-0039, U+003A-0040, U+0041-005A, U+005B-0060, U+0061-007A,
+  U+007B-007E;
 $unicode-latin-ext: U+00A0, U+00C0-00FF, U+0100-024F;
 
 // Ajustements pour harmoniser la largeur de Barlow Condensed avec Manuka
-$manuka-accent-size-adjust: 80%;
+$manuka-accent-size-adjust: auto;
 
 @mixin manuka-basic($weight, $file) {
   @font-face {
