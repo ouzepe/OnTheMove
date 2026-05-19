@@ -1,4 +1,43 @@
 <?php
+
+// Fonction pour rediriger les URLs avec date vers les URLs propres
+function redirect_date_permalinks() {
+    // Récupérer l'URL actuelle
+    $request_uri = $_SERVER['REQUEST_URI'];
+    
+    // Pattern pour détecter les URLs avec date (format /YYYY/MM/DD/)
+    $pattern = '/^\/(\d{4})\/(\d{1,2})\/(\d{1,2})\/(.*)/';
+    
+    if (preg_match($pattern, $request_uri, $matches)) {
+        $year = $matches[1];
+        $month = $matches[2];
+        $day = $matches[3];
+        $slug = $matches[4];
+        
+        // URL propre sans date
+        $clean_url = home_url('/' . $slug);
+        
+        // Redirection 301 (permanente) vers l'URL propre
+        wp_redirect($clean_url, 301);
+        exit();
+    }
+}
+add_action('template_redirect', 'redirect_date_permalinks', 1);
+
+// Fonction pour forcer les permaliens sans date
+function force_clean_permalinks($permalink, $post, $leavename) {
+    // Si c'est un post/page et qu'il contient une date, la nettoyer
+    if (is_object($post) && preg_match('/\/\d{4}\/\d{1,2}\/\d{1,2}\//', $permalink)) {
+        $slug = $post->post_name;
+        if ($slug) {
+            return home_url('/' . $slug . '/');
+        }
+    }
+    return $permalink;
+}
+add_filter('post_link', 'force_clean_permalinks', 10, 3);
+add_filter('page_link', 'force_clean_permalinks', 10, 3);
+
 function mon_theme_enqueue_assets()
 {
     // Prefer build/ (push) if it exists, fallback to dist/ (dev)
