@@ -1,8 +1,5 @@
-// Les fichiers Test Manuka (.otf) n’incluent pas les accents : mélanger Manuka + repli
-// dans un même mot donne des tailles et graisses incohérentes.
-// Sur le web, la famille « Test Manuka » utilise Barlow Condensed (latin complet) pour
-// garder un rendu uniforme (même graisse, même taille sur tout le mot).
-// Les OTF Manuka restent disponibles pour Test Manuka Condensed / Slab (style.scss).
+// Les fichiers Test Manuka (.otf) n’incluent pas les accents.
+// Sur le web, « Test Manuka » = Barlow Condensed (latin complet, graisse uniforme).
 
 $barlow-dir: "../fonts/barlow-condensed";
 
@@ -16,28 +13,22 @@ $barlow-dir: "../fonts/barlow-condensed";
   }
 }
 
-@include test-manuka-face(100, "BarlowCondensed-Regular.ttf");
-@include test-manuka-face(300, "BarlowCondensed-Regular.ttf");
-@include test-manuka-face(400, "BarlowCondensed-Regular.ttf");
+@include test-manuka-face(100 450, "BarlowCondensed-Regular.ttf");
 @include test-manuka-face(500, "BarlowCondensed-Medium.ttf");
 @include test-manuka-face(600, "BarlowCondensed-SemiBold.ttf");
-@include test-manuka-face(700, "BarlowCondensed-Bold.ttf");
-@include test-manuka-face(800, "BarlowCondensed-Bold.ttf");
-@include test-manuka-face(900, "BarlowCondensed-Bold.ttf");
-@include test-manuka-face(950, "BarlowCondensed-Bold.ttf");
+@include test-manuka-face(700 950, "BarlowCondensed-Bold.ttf");
 
-// Alias explicite (héritage)
-@mixin barlow-condensed($weight, $file) {
-  @font-face {
-    font-family: "Barlow Condensed";
-    src: url("#{$barlow-dir}/#{$file}") format("truetype");
-    font-weight: $weight;
-    font-style: normal;
-    font-display: swap;
+// Graisse homogène : le contenu WP met parfois <strong> sur la 1re lettre seulement
+body[class*="page-template"] {
+  :is(h1, h2, h3, h4, h5, h6, .press-item-title, .press-all-articles-title) {
+    font-synthesis: weight;
+
+    :is(strong, b) {
+      font-weight: inherit;
+    }
+
+    &::first-letter {
+      font-weight: inherit;
+    }
   }
 }
-
-@include barlow-condensed(400, "BarlowCondensed-Regular.ttf");
-@include barlow-condensed(500, "BarlowCondensed-Medium.ttf");
-@include barlow-condensed(600, "BarlowCondensed-SemiBold.ttf");
-@include barlow-condensed(700, "BarlowCondensed-Bold.ttf");

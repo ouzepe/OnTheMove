@@ -108,7 +108,7 @@ while (have_posts()):
                 <?php
                 if (preg_match_all('/<h5[^>]*>(.*?)<\/h5>/is', $post_content, $h5_matches)) {
                     if (isset($h5_matches[1][0])) {
-                        echo '<h5>' . wp_kses_post($h5_matches[1][0]) . '</h5>';
+                        echo '<h5>' . esc_html(onthemove_flat_heading_text($h5_matches[1][0])) . '</h5>';
                     }
                 }
                 if (preg_match_all('/<p[^>]*>(.*?)<\/p>/is', $post_content, $p_matches)) {
