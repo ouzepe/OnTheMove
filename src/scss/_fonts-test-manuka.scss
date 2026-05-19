@@ -54,16 +54,16 @@ $manuka-accent-size-adjust: 100%;
 @include manuka-basic(900, "TestManuka-Black-BF663c33db5944e.otf");
 @include manuka-basic(950, "TestManuka-Ultra-BF663c33db84738.otf");
 
-// Accents dans la même famille (évite le repli système entre deux glyphes)
+// Accents dans la même famille (mapping ajusté pour harmoniser l'épaisseur)
 @include manuka-accent(400, "BarlowCondensed-Regular.ttf");
-@include manuka-accent(500, "BarlowCondensed-Medium.ttf");
-@include manuka-accent(600, "BarlowCondensed-Medium.ttf");
-@include manuka-accent(700, "BarlowCondensed-SemiBold.ttf");
-@include manuka-accent(800, "BarlowCondensed-Bold.ttf");
-@include manuka-accent(900, "BarlowCondensed-Bold.ttf");
+@include manuka-accent(500, "BarlowCondensed-Regular.ttf");
+@include manuka-accent(600, "BarlowCondensed-Regular.ttf");
+@include manuka-accent(700, "BarlowCondensed-Medium.ttf");
+@include manuka-accent(800, "BarlowCondensed-SemiBold.ttf");
+@include manuka-accent(900, "BarlowCondensed-SemiBold.ttf");
 @include manuka-accent(100, "BarlowCondensed-Regular.ttf");
 @include manuka-accent(300, "BarlowCondensed-Regular.ttf");
-@include manuka-accent(950, "BarlowCondensed-Bold.ttf");
+@include manuka-accent(950, "BarlowCondensed-SemiBold.ttf");
 
 // Pile de secours (glyphes hors latin étendu)
 @include barlow-condensed(400, "BarlowCondensed-Regular.ttf");
