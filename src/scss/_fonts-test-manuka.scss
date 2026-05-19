@@ -8,10 +8,10 @@ $unicode-manuka-basic: U+0020-002F, U+0030-0039, U+003A-0040, U+0041-005A, U+005
   U+0061-007A, U+007B-007E;
 $unicode-latin-ext: U+00A0, U+00C0-00FF, U+0100-024F;
 
-// Manuka est ~30 % plus étroite ; cap height proche → size-adjust basé sur la largeur des minuscules.
-$manuka-accent-size-adjust: 81%;
-$manuka-accent-ascent: 90%;
-$manuka-accent-descent: 11%;
+// Ajustements pour harmoniser Barlow Condensed avec Manuka
+$manuka-accent-size-adjust: 100%;
+$manuka-accent-ascent: 100%;
+$manuka-accent-descent: 0%;
 
 @mixin manuka-basic($weight, $file) {
   @font-face {
@@ -32,10 +32,6 @@ $manuka-accent-descent: 11%;
     font-style: normal;
     font-display: swap;
     unicode-range: $unicode-latin-ext;
-    size-adjust: $manuka-accent-size-adjust;
-    ascent-override: $manuka-accent-ascent;
-    descent-override: $manuka-accent-descent;
-    line-gap-override: 0%;
   }
 }
 
@@ -46,10 +42,6 @@ $manuka-accent-descent: 11%;
     font-weight: $weight;
     font-style: normal;
     font-display: swap;
-    size-adjust: $manuka-accent-size-adjust;
-    ascent-override: $manuka-accent-ascent;
-    descent-override: $manuka-accent-descent;
-    line-gap-override: 0%;
   }
 }
 
