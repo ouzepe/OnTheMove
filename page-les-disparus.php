@@ -57,8 +57,7 @@ while (have_posts()):
                 <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/la-frontiere-franco-britannique/')); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-left.svg" alt="" />
                 </a>
-                <a class="carousel-arrow-icon"
-                    href="<?php echo esc_url(home_url('/mettre-fin-aux-disparitions-les-voix-des-proches/')); ?>">
+                <a class="carousel-arrow-icon" href="<?php echo esc_url(home_url('/les-proches/')); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/src/assets/arrow-right.svg" alt="" />
                 </a>
             </div>
