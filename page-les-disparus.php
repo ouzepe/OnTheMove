@@ -274,7 +274,7 @@ while (have_posts()):
                             <div class="chapterCard-cta">
                                 <?php
                                 // Hardcode the URL to the "Mettre fin aux disparitions - Les voix des proches" page to avoid date in permalink
-                                $page_slug = 'mettre-fin-aux-disparitions-les-voix-des-proches';
+                                $page_slug = 'les-proches';
                                 $contexte_url = esc_url(home_url('/' . $page_slug . '/'));
                                 ?>
                                 <a href="<?php echo $contexte_url; ?>">
