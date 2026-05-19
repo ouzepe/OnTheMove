@@ -1,0 +1,48 @@
+// Test Manuka (.otf) : uniquement A–Z, a–z, chiffres et ponctuation de base (pas d’accents).
+// Les lettres accentuées passent par Commissioner (même famille, unicode-range + graisses alignées).
+
+$manuka-dir: "../fonts/manuka-font-family";
+$unicode-manuka-basic: U+0020-002F, U+0030-0039, U+003A-0040, U+0041-005A, U+005B-0060,
+  U+0061-007A, U+007B-007E;
+$unicode-latin-ext: U+00A0, U+00C0-00FF, U+0100-024F;
+
+@mixin manuka-basic($weight, $file) {
+  @font-face {
+    font-family: "Test Manuka";
+    src: url("#{$manuka-dir}/#{$file}") format("opentype");
+    font-weight: $weight;
+    font-style: normal;
+    font-display: block;
+    unicode-range: $unicode-manuka-basic;
+  }
+}
+
+@include manuka-basic(100, "TestManuka-Thin-BF663c33db97e05.otf");
+@include manuka-basic(300, "TestManuka-Light-BF663c33db8aab4.otf");
+@include manuka-basic(400, "TestManuka-Regular-BF663c33db89825.otf");
+@include manuka-basic(500, "TestManuka-Medium-BF663c33db67c40.otf");
+@include manuka-basic(600, "TestManuka-Medium-BF663c33db67c40.otf");
+@include manuka-basic(700, "TestManuka-Bold-BF663c33db7b03f.otf");
+@include manuka-basic(900, "TestManuka-Black-BF663c33db5944e.otf");
+@include manuka-basic(950, "TestManuka-Ultra-BF663c33db84738.otf");
+
+// Accents : Commissioner statique (même graisse que le titre → bold sur é, è, à, etc.)
+@mixin manuka-latin-ext($weight, $file) {
+  @font-face {
+    font-family: "Test Manuka";
+    src: url("../fonts/Commissioner/static/#{$file}") format("truetype");
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: $unicode-latin-ext;
+    size-adjust: 92%;
+    font-stretch: 98%;
+  }
+}
+
+@include manuka-latin-ext(300, "Commissioner-Light.ttf");
+@include manuka-latin-ext(400, "Commissioner-Regular.ttf");
+@include manuka-latin-ext(500, "Commissioner-Medium.ttf");
+@include manuka-latin-ext(600, "Commissioner-SemiBold.ttf");
+@include manuka-latin-ext(700, "Commissioner-Bold.ttf");
+@include manuka-latin-ext(800, "Commissioner-ExtraBold.ttf");

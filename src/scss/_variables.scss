@@ -9,5 +9,5 @@ $primary-red-transparent: #a58491;
 $primary-red: #ff1154;
 $primary-border-red: #ff115466;
 
-// Titres / display — fallback métrique pour glyphes absents (évite accents « trop gros » vs Manuka)
-$font-test-manuka: "Test Manuka", "Test Manuka Fallback", sans-serif;
+// Titres display : Manuka (ASCII) + Commissioner pour accents (même famille, voir _fonts-test-manuka.scss)
+$font-test-manuka: "Test Manuka", sans-serif;
