@@ -1,16 +1,17 @@
 // Test Manuka (.otf) : pas de glyphes accentués dans les fichiers.
-// Repli : Barlow Condensed (condensée, latin étendu) dans la pile + calibrage métriques.
+// Repli : Barlow Condensed (latin étendu), calibrée sur les métriques Manuka Medium.
 
 $manuka-dir: "../fonts/manuka-font-family";
 $barlow-dir: "../fonts/barlow-condensed";
 
 $unicode-manuka-basic: U+0020-002F, U+0030-0039, U+003A-0040, U+0041-005A, U+005B-0060,
   U+0061-007A, U+007B-007E;
+$unicode-latin-ext: U+00A0, U+00C0-00FF, U+0100-024F;
 
-// Barlow est déjà condensée ; ajustement léger pour se rapprocher de Manuka.
-$manuka-accent-size-adjust: 86%;
-$manuka-accent-ascent: 88%;
-$manuka-accent-descent: 12%;
+// Manuka est ~30 % plus étroite ; cap height proche → size-adjust basé sur la largeur des minuscules.
+$manuka-accent-size-adjust: 81%;
+$manuka-accent-ascent: 90%;
+$manuka-accent-descent: 11%;
 
 @mixin manuka-basic($weight, $file) {
   @font-face {
@@ -20,6 +21,21 @@ $manuka-accent-descent: 12%;
     font-style: normal;
     font-display: block;
     unicode-range: $unicode-manuka-basic;
+  }
+}
+
+@mixin manuka-accent($weight, $file) {
+  @font-face {
+    font-family: "Test Manuka";
+    src: url("#{$barlow-dir}/#{$file}") format("truetype");
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: $unicode-latin-ext;
+    size-adjust: $manuka-accent-size-adjust;
+    ascent-override: $manuka-accent-ascent;
+    descent-override: $manuka-accent-descent;
+    line-gap-override: 0%;
   }
 }
 
@@ -46,12 +62,22 @@ $manuka-accent-descent: 12%;
 @include manuka-basic(900, "TestManuka-Black-BF663c33db5944e.otf");
 @include manuka-basic(950, "TestManuka-Ultra-BF663c33db84738.otf");
 
+// Accents dans la même famille (évite le repli système entre deux glyphes)
+@include manuka-accent(400, "BarlowCondensed-Regular.ttf");
+@include manuka-accent(500, "BarlowCondensed-Medium.ttf");
+@include manuka-accent(600, "BarlowCondensed-Medium.ttf");
+@include manuka-accent(700, "BarlowCondensed-SemiBold.ttf");
+@include manuka-accent(800, "BarlowCondensed-Bold.ttf");
+@include manuka-accent(900, "BarlowCondensed-Bold.ttf");
+@include manuka-accent(100, "BarlowCondensed-Regular.ttf");
+@include manuka-accent(300, "BarlowCondensed-Regular.ttf");
+@include manuka-accent(950, "BarlowCondensed-Bold.ttf");
+
+// Pile de secours (glyphes hors latin étendu)
 @include barlow-condensed(400, "BarlowCondensed-Regular.ttf");
 @include barlow-condensed(500, "BarlowCondensed-Medium.ttf");
-@include barlow-condensed(600, "BarlowCondensed-SemiBold.ttf");
-@include barlow-condensed(700, "BarlowCondensed-Bold.ttf");
-
-// Graisses Manuka sans fichier Barlow dédié → repli sur la plus proche
+@include barlow-condensed(600, "BarlowCondensed-Medium.ttf");
+@include barlow-condensed(700, "BarlowCondensed-SemiBold.ttf");
 @include barlow-condensed(100, "BarlowCondensed-Regular.ttf");
 @include barlow-condensed(300, "BarlowCondensed-Regular.ttf");
 @include barlow-condensed(800, "BarlowCondensed-Bold.ttf");
