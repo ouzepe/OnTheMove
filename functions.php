@@ -2,34 +2,55 @@
 
 // Fonction pour rediriger les URLs avec date vers les URLs propres
 function redirect_date_permalinks() {
-    // Récupérer l'URL actuelle
-    $request_uri = $_SERVER['REQUEST_URI'];
+    // Vérifier que nous sommes sur le frontend et pas dans l'admin
+    if (is_admin() || defined('DOING_AJAX') || defined('DOING_CRON')) {
+        return;
+    }
+    
+    // Récupérer l'URL actuelle de manière sécurisée
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+    
+    if (empty($request_uri)) {
+        return;
+    }
     
     // Pattern pour détecter les URLs avec date (format /YYYY/MM/DD/)
-    $pattern = '/^\/(\d{4})\/(\d{1,2})\/(\d{1,2})\/(.*)/';
+    $pattern = '/^\/(\d{4})\/(\d{1,2})\/(\d{1,2})\/([\w\-]+(?:\/[\w\-]*)*)\/?$/';
     
     if (preg_match($pattern, $request_uri, $matches)) {
         $year = $matches[1];
         $month = $matches[2];
         $day = $matches[3];
-        $slug = $matches[4];
+        $slug = rtrim($matches[4], '/');
+        
+        // Vérifier que l'année est réaliste (éviter les faux positifs)
+        if ($year < 2020 || $year > 2030) {
+            return;
+        }
         
         // URL propre sans date
-        $clean_url = home_url('/' . $slug);
+        $clean_url = home_url('/' . $slug . '/');
         
-        // Redirection 301 (permanente) vers l'URL propre
-        wp_redirect($clean_url, 301);
-        exit();
+        // Éviter les boucles de redirection
+        if ($clean_url !== $request_uri) {
+            wp_redirect($clean_url, 301);
+            exit();
+        }
     }
 }
-add_action('template_redirect', 'redirect_date_permalinks', 1);
+add_action('template_redirect', 'redirect_date_permalinks', 5);
 
 // Fonction pour forcer les permaliens sans date
 function force_clean_permalinks($permalink, $post, $leavename) {
+    // Vérifications de sécurité
+    if (!is_object($post) || empty($post->post_name) || is_admin()) {
+        return $permalink;
+    }
+    
     // Si c'est un post/page et qu'il contient une date, la nettoyer
-    if (is_object($post) && preg_match('/\/\d{4}\/\d{1,2}\/\d{1,2}\//', $permalink)) {
-        $slug = $post->post_name;
-        if ($slug) {
+    if (preg_match('/\/\d{4}\/\d{1,2}\/\d{1,2}\//', $permalink)) {
+        $slug = sanitize_title($post->post_name);
+        if (!empty($slug)) {
             return home_url('/' . $slug . '/');
         }
     }
