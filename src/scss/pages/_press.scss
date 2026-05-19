@@ -12,7 +12,7 @@
   h1,
   h2.press-title {
     font-family: $font-test-manuka;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 75px;
     color: $primary-light-white;
     margin: 0 0 0 0;
@@ -462,7 +462,7 @@
 
             h3 {
               font-family: $font-test-manuka;
-              font-weight: 700;
+              font-weight: bold;
               font-size: 32px;
               color: $primary-dark-red;
               margin: 0 0 15px 0;
@@ -514,7 +514,7 @@
 
             .press-item-title {
               font-family: $font-test-manuka;
-              font-weight: 700;
+              font-weight: bold;
               font-size: 32px;
               color: $primary-dark-red;
               margin: 0;
@@ -579,7 +579,7 @@
   .press-content {
     .press-all-articles-title {
       font-family: $font-test-manuka;
-      font-weight: 700;
+      font-weight: bold;
       font-size: 40px;
       color: $primary-dark-red;
       margin: 0 0 40px 0;

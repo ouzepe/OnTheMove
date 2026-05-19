@@ -11,8 +11,8 @@ function mon_theme_enqueue_assets()
     $js_ver = file_exists($js_file) ? filemtime($js_file) : '1.0';
 
     // Force version update pour bust le cache
-    $css_ver .= '.4';
-    $js_ver .= '.4';
+    $css_ver .= '.2';
+    $js_ver .= '.2';
 
     wp_enqueue_style('mon-theme-style', get_template_directory_uri() . '/' . $asset_dir . '/css/style.css', [], $css_ver);
 
@@ -232,37 +232,6 @@ add_filter('the_content', function ($content) {
 
     return $content;
 });
-
-/**
- * Texte de titre sans balises inline (évite <strong> sur la 1re lettre seulement).
- */
-function onthemove_flat_heading_text($html)
-{
-    return trim(wp_strip_all_tags((string) $html));
-}
-
-/**
- * Retire strong/b des titres dans le contenu éditeur.
- */
-function onthemove_normalize_display_headings_in_content($content)
-{
-    if (!is_string($content) || $content === '') {
-        return $content;
-    }
-
-    return preg_replace_callback(
-        '/<(h[1-6])(\s[^>]*)?>(.*?)<\/\1>/is',
-        static function (array $matches): string {
-            $tag = $matches[1];
-            $attrs = $matches[2] ?? '';
-            $inner = preg_replace('/<\/?(strong|b)\b[^>]*>/i', '', $matches[3]);
-
-            return '<' . $tag . $attrs . '>' . $inner . '</' . $tag . '>';
-        },
-        $content
-    );
-}
-add_filter('the_content', 'onthemove_normalize_display_headings_in_content', 25);
 
 /**
  * URL d’un chapitre : utilise le slug WordPress du post (post_name), pas le titre h3.
