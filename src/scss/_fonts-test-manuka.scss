@@ -1,10 +1,15 @@
-// Test Manuka (.otf) : uniquement A–Z, a–z, chiffres et ponctuation de base (pas d’accents).
-// Les lettres accentuées passent par Commissioner (même famille, unicode-range + graisses alignées).
+// Test Manuka (.otf) : uniquement A–Z, a–z (pas d’accents dans les fichiers).
+// Accents : Commissioner dans la même famille, calibré en taille via métriques CSS.
 
 $manuka-dir: "../fonts/manuka-font-family";
 $unicode-manuka-basic: U+0020-002F, U+0030-0039, U+003A-0040, U+0041-005A, U+005B-0060,
   U+0061-007A, U+007B-007E;
 $unicode-latin-ext: U+00A0, U+00C0-00FF, U+0100-024F;
+
+// Calibrage visuel : Manuka est très condensée ; sans ça Commissioner paraît plus grande.
+$manuka-accent-size-adjust: 68%;
+$manuka-accent-ascent: 72%;
+$manuka-accent-descent: 14%;
 
 @mixin manuka-basic($weight, $file) {
   @font-face {
@@ -17,6 +22,21 @@ $unicode-latin-ext: U+00A0, U+00C0-00FF, U+0100-024F;
   }
 }
 
+@mixin manuka-latin-ext($weight, $file) {
+  @font-face {
+    font-family: "Test Manuka";
+    src: url("../fonts/Commissioner/static/#{$file}") format("truetype");
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: $unicode-latin-ext;
+    size-adjust: $manuka-accent-size-adjust;
+    ascent-override: $manuka-accent-ascent;
+    descent-override: $manuka-accent-descent;
+    line-gap-override: 0%;
+  }
+}
+
 @include manuka-basic(100, "TestManuka-Thin-BF663c33db97e05.otf");
 @include manuka-basic(300, "TestManuka-Light-BF663c33db8aab4.otf");
 @include manuka-basic(400, "TestManuka-Regular-BF663c33db89825.otf");
@@ -26,23 +46,11 @@ $unicode-latin-ext: U+00A0, U+00C0-00FF, U+0100-024F;
 @include manuka-basic(900, "TestManuka-Black-BF663c33db5944e.otf");
 @include manuka-basic(950, "TestManuka-Ultra-BF663c33db84738.otf");
 
-// Accents : Commissioner statique (même graisse que le titre → bold sur é, è, à, etc.)
-@mixin manuka-latin-ext($weight, $file) {
-  @font-face {
-    font-family: "Test Manuka";
-    src: url("../fonts/Commissioner/static/#{$file}") format("truetype");
-    font-weight: $weight;
-    font-style: normal;
-    font-display: swap;
-    unicode-range: $unicode-latin-ext;
-    size-adjust: 92%;
-    font-stretch: 98%;
-  }
-}
-
-@include manuka-latin-ext(300, "Commissioner-Light.ttf");
-@include manuka-latin-ext(400, "Commissioner-Regular.ttf");
-@include manuka-latin-ext(500, "Commissioner-Medium.ttf");
-@include manuka-latin-ext(600, "Commissioner-SemiBold.ttf");
-@include manuka-latin-ext(700, "Commissioner-Bold.ttf");
-@include manuka-latin-ext(800, "Commissioner-ExtraBold.ttf");
+// Graisses Commissioner un cran en dessous de Manuka (évite accents trop gras / trop grands)
+@include manuka-latin-ext(300, "Commissioner-ExtraLight.ttf");
+@include manuka-latin-ext(400, "Commissioner-Light.ttf");
+@include manuka-latin-ext(500, "Commissioner-Regular.ttf");
+@include manuka-latin-ext(600, "Commissioner-Medium.ttf");
+@include manuka-latin-ext(700, "Commissioner-SemiBold.ttf");
+@include manuka-latin-ext(800, "Commissioner-Bold.ttf");
+@include manuka-latin-ext(900, "Commissioner-ExtraBold.ttf");
