@@ -10,7 +10,7 @@ $unicode-manuka-basic:
 $unicode-latin-ext: U+00A0, U+00C0-00FF, U+0100-024F;
 
 // Ajustements pour harmoniser la largeur de Barlow Condensed avec Manuka
-$manuka-accent-size-adjust: 78%;
+$manuka-accent-size-adjust: 90%;
 
 @mixin manuka-basic($weight, $file) {
   @font-face {
@@ -32,8 +32,6 @@ $manuka-accent-size-adjust: 78%;
     font-display: swap;
     unicode-range: $unicode-latin-ext;
     size-adjust: $manuka-accent-size-adjust;
-    ascent-override: normal;
-    descent-override: normal;
   }
 }
 
