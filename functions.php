@@ -11,8 +11,8 @@ function mon_theme_enqueue_assets()
     $js_ver = file_exists($js_file) ? filemtime($js_file) : '1.0';
 
     // Force version update pour bust le cache
-    $css_ver .= '.2';
-    $js_ver .= '.2';
+    $css_ver .= '.3';
+    $js_ver .= '.3';
 
     wp_enqueue_style('mon-theme-style', get_template_directory_uri() . '/' . $asset_dir . '/css/style.css', [], $css_ver);
 
