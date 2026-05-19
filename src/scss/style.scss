@@ -95,6 +95,9 @@ body:not(.wp-admin) {
   -webkit-background-clip: border-box;
   background-clip: border-box;
 
+  // Harmonise les glyphes de substitution (accents hors fonte display)
+  font-synthesis: none;
+
   // Force immediate loading of all media globally
   img,
   video,
@@ -1116,4 +1119,16 @@ html {
   font-weight: 950;
   font-style: normal;
   font-display: block;
+}
+
+// Fallback quand un glyphe (accents, etc.) n’existe pas dans les .otf Test Manuka :
+// le navigateur passait à `sans-serif` en pleine taille — trop gros par rapport au reste.
+// Police locale + size-adjust pour rapprocher la hauteur d’x du display Manuka (~ ajuster 78–88 % si besoin).
+@font-face {
+  font-family: "Test Manuka Fallback";
+  src: local("Arial");
+  font-weight: 100 950;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 82%;
 }

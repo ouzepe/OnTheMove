@@ -427,7 +427,7 @@
           }
 
           @include respond-to-down(md) {
-            font-family: "Test Manuka", sans-serif;
+            font-family: $font-test-manuka;
             font-weight: 600;
             font-style: normal;
             font-size: 50px;
@@ -437,7 +437,7 @@
           }
 
           @include respond-to-down(sm) {
-            font-family: "Test Manuka", sans-serif;
+            font-family: $font-test-manuka;
             font-weight: 600;
             font-style: normal;
             font-size: 36px;

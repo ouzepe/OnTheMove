@@ -8,7 +8,7 @@
   margin: 0;
 
   h1 {
-    font-family: "Test Manuka", sans-serif;
+    font-family: $font-test-manuka;
     font-weight: 600;
     font-size: 75px;
     color: $primary-light-white;
@@ -440,7 +440,7 @@
     }
 
     .chapterCard-subtitle {
-      font-family: "Test Manuka", sans-serif;
+      font-family: $font-test-manuka;
       font-weight: 600;
       font-size: 50px;
       line-height: 100%;

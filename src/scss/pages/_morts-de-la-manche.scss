@@ -13,7 +13,7 @@
       height: 100%;
     }
     h1 {
-      font-family: "Test Manuka", sans-serif;
+      font-family: $font-test-manuka;
       font-weight: 600;
       font-size: 70px;
       line-height: 90%;
@@ -199,7 +199,7 @@
     }
 
     h1 {
-      font-family: "Test Manuka", sans-serif;
+      font-family: $font-test-manuka;
       font-weight: 600;
       font-style: normal;
       font-size: 70px;
@@ -345,7 +345,7 @@
       }
 
       h5 {
-        font-family: "Test Manuka", sans-serif;
+        font-family: $font-test-manuka;
         font-weight: 600;
         font-style: normal;
         font-size: 40px;
@@ -379,7 +379,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Test Manuka", sans-serif;
+    font-family: $font-test-manuka;
     font-weight: 600;
     font-style: normal;
     font-size: 50px;
@@ -860,7 +860,7 @@
   }
 
   .chapterCard-subtitle {
-    font-family: "Test Manuka", sans-serif;
+    font-family: $font-test-manuka;
     font-weight: 600;
     font-size: 50px;
     line-height: 100%;

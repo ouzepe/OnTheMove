@@ -11,7 +11,7 @@
 
   h1,
   h2.press-title {
-    font-family: "Test Manuka", sans-serif;
+    font-family: $font-test-manuka;
     font-weight: bold;
     font-size: 75px;
     color: $primary-light-white;
@@ -461,7 +461,7 @@
             }
 
             h3 {
-              font-family: "Test Manuka", sans-serif;
+              font-family: $font-test-manuka;
               font-weight: bold;
               font-size: 32px;
               color: $primary-dark-red;
@@ -513,7 +513,7 @@
             }
 
             .press-item-title {
-              font-family: "Test Manuka", sans-serif;
+              font-family: $font-test-manuka;
               font-weight: bold;
               font-size: 32px;
               color: $primary-dark-red;
@@ -578,7 +578,7 @@
   // Styles pour "Tous nos articles" - Mini-cartes en format mobile sur tous les écrans
   .press-content {
     .press-all-articles-title {
-      font-family: "Test Manuka", sans-serif;
+      font-family: $font-test-manuka;
       font-weight: bold;
       font-size: 40px;
       color: $primary-dark-red;

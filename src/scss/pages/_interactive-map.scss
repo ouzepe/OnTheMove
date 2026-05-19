@@ -324,7 +324,7 @@ body.page-carte:not(.admin-bar) {
       font-size: 35px;
       font-weight: 600;
       color: $primary-dark-red;
-      font-family: "Test Manuka", sans-serif;
+      font-family: $font-test-manuka;
 
       @include respond-to-down(sm) {
         font-size: 30px;

@@ -149,7 +149,7 @@
     }
 
     h1 {
-      font-family: "Test Manuka", sans-serif;
+      font-family: $font-test-manuka;
       font-weight: 600;
       font-style: normal;
       font-size: 70px;
@@ -295,7 +295,7 @@
       }
 
       h5 {
-        font-family: "Test Manuka", sans-serif;
+        font-family: $font-test-manuka;
         font-weight: 600;
         font-style: normal;
         font-size: 40px;
@@ -789,7 +789,7 @@
   }
 
   .chapterCard-subtitle {
-    font-family: "Test Manuka", sans-serif;
+    font-family: $font-test-manuka;
     font-weight: 600;
     font-size: 50px;
     line-height: 100%;
